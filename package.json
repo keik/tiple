@@ -1,0 +1,23 @@
+{
+  "name": "tiple",
+  "version": "0.0.0",
+  "description": "",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/keik/tiple.git"
+  },
+  "author": "keik <k4t0.kei@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/keik/tiple/issues"
+  },
+  "homepage": "https://github.com/keik/tiple#readme",
+  "private": true,
+  "devDependencies": {
+    "babelify": "^7.2.0",
+    "browserify": "^12.0.1",
+    "less": "^2.5.3",
+    "uglify-js": "^2.6.1",
+    "watchify": "^3.6.1"
+  }
+}
