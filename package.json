@@ -14,10 +14,15 @@
   "homepage": "https://github.com/keik/tiple#readme",
   "private": true,
   "devDependencies": {
+    "babel-preset-es2015": "^6.1.18",
     "babelify": "^7.2.0",
     "browserify": "^12.0.1",
     "less": "^2.5.3",
     "uglify-js": "^2.6.1",
+    "watchf": "^0.1.2",
     "watchify": "^3.6.1"
+  },
+  "dependencies": {
+    "lodash": "^3.10.1"
   }
 }
