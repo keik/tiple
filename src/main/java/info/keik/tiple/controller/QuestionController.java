@@ -1,6 +1,8 @@
 package info.keik.tiple.controller;
 
+import info.keik.tiple.model.Answer;
 import info.keik.tiple.model.Question;
+import info.keik.tiple.service.AnswerService;
 import info.keik.tiple.service.QuestionService;
 
 import java.util.List;
@@ -19,6 +21,9 @@ public class QuestionController {
 	@Autowired
 	private QuestionService questionService;
 
+	@Autowired
+	private AnswerService answerService;
+
 	@RequestMapping(method = RequestMethod.GET)
 	public String index(Model model) {
 		List<Question> questions = questionService.getAll();
@@ -29,7 +34,9 @@ public class QuestionController {
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
 	public String show(@PathVariable("id") Integer id, Model model) {
 		Question question = questionService.get(id);
+		List<Answer> answers = answerService.getByQuestionsId(id);
 		model.addAttribute("question", question);
+		model.addAttribute("answers", answers);
 		return "question.html";
 	}
 

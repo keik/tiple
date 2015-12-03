@@ -15,6 +15,12 @@
       </p>
     </div>
 
+    <div th:each="answer : ${answers}">
+      <p th:text="${answer.content}">
+        THIS IS ANSWER'S CONTENT.
+      </p>
+    </div>
+
     <script src="../static/bundle.js" th:src="@{/bundle.js}"></script>
   </body>
 </html>

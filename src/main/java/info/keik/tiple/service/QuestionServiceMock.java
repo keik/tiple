@@ -1,11 +1,11 @@
 package info.keik.tiple.service;
 
+import info.keik.tiple.model.Question;
+
 import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
-
-import info.keik.tiple.model.Question;
 
 @Service
 public class QuestionServiceMock implements QuestionService {
@@ -25,11 +25,9 @@ public class QuestionServiceMock implements QuestionService {
 
 	@Override
 	public Question get(Integer id) {
-		for (Question q : questions) {
-			if (q.id == id) 
-				return q;
-		}
-		return null;
+		return questions.stream()
+				.filter(q -> id == q.id)
+				.findAny().get();
 	}
 
 }
