@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title th:text="#{app.name}"></title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="stylesheet" href="../static/main.css" th:href="@{/main.css}" type="text/css" />
+  </head>
+  <body>
+
+    <header>
+      header
+
+      <!--/* Log in or Log out */-->
+      <div sec:authorize="hasAnyRole('ROLE_USER')">
+        <form action="/" th:action="@{/logout}" method="post">
+          <button>Log out</button>
+        </form>
+      </div>
+      <div sec:authorize="!hasAnyRole('ROLE_USER')">
+        <a href="login.html" th:href="@{/login}">Log in</a>
+      </div>
+
+    </header>
+
+    <div>
+      main
+    </div>
+
+    <footer>
+      footer
+    </footer>
+
+    <script src="../static/bundle.js" th:src="@{/bundle.js}"></script>
+  </body>
+</html>

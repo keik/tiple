@@ -7,5 +7,6 @@ import info.keik.tiple.model.Question;
 public interface QuestionService {
 
 	List<Question> getAll();
+	Question get(Integer id);
 	
 }

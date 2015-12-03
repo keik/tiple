@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title th:text="${question.title} + ' | ' + #{app.name}"></title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <link rel="stylesheet" href="../static/main.css" th:href="@{/main.css}" type="text/css" />
+  </head>
+  <body>
+
+    <div>
+      <h1 th:text="${question.title}">TITLE</h1>
+      <p th:text="${question.content}">
+        THIS IS QUESTION'S CONTENT.
+      </p>
+    </div>
+
+    <script src="../static/bundle.js" th:src="@{/bundle.js}"></script>
+  </body>
+</html>

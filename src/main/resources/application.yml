@@ -2,4 +2,12 @@ spring:
   thymeleaf:
     cache: false
     prefix: classpath:/templates/
-    suffix:
+    suffix: ''
+    mode: LEGACYHTML5
+
+logging:
+  level:
+    org:
+      springframework:
+        security: DEBUG
+        web:      DEBUG
