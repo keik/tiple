@@ -8,18 +8,33 @@
   </head>
   <body>
 
-    <div>
-      <h1 th:text="${question.title}">TITLE</h1>
-      <p th:text="${question.content}">
-        THIS IS QUESTION'S CONTENT.
-      </p>
+    <div th:replace="fragments/header.html"></div>
+
+    <div class="side">
+      side
     </div>
 
-    <div th:each="answer : ${answers}">
-      <p th:text="${answer.content}">
-        THIS IS ANSWER'S CONTENT.
-      </p>
-    </div>
+    <div class="main">
+
+      <div>
+        <h1 th:text="${question.title}">TITLE</h1>
+        <p th:text="${question.content}">
+          THIS IS QUESTION'S CONTENT.
+        </p>
+        <ul class="tags">
+          <li class="tag" th:each="tag : ${question.tags}"><a th:href="'/q?tag=' + ${tag.name}" th:text="${tag.name}">TAG</a></li>
+        </ul>
+      </div>
+
+      <div th:each="answer : ${answers}">
+        <p th:text="${answer.content}">
+          THIS IS ANSWER'S CONTENT.
+        </p>
+      </div>
+
+    </div><!--/* main */-->
+
+    <div th:replace="fragments/footer.html"></div>
 
     <script src="../static/bundle.js" th:src="@{/bundle.js}"></script>
   </body>

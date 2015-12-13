@@ -8,28 +8,17 @@
   </head>
   <body>
 
-    <header>
-      header
+    <div th:replace="fragments/header.html"></div>
 
-      <!--/* Log in or Log out */-->
-      <div sec:authorize="hasAnyRole('ROLE_USER')">
-        <form action="/" th:action="@{/logout}" method="post">
-          <button>Log out</button>
-        </form>
-      </div>
-      <div sec:authorize="!hasAnyRole('ROLE_USER')">
-        <a href="login.html" th:href="@{/login}">Log in</a>
-      </div>
-
-    </header>
-
-    <div>
-      main
+    <div class="side">
+      side
     </div>
 
-    <footer>
-      footer
-    </footer>
+    <div class="main">
+      main
+    </div><!--/* main */-->
+
+    <div th:replace="fragments/footer.html"></div>
 
     <script src="../static/bundle.js" th:src="@{/bundle.js}"></script>
   </body>

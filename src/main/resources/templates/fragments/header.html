@@ -1,0 +1,14 @@
+<header>
+  <h1>Tiple</h1>
+
+  <!--/* Log in or Log out */-->
+  <div class="auth-menus" sec:authorize="hasAnyRole('ROLE_USER')">
+    <form action="/" th:action="@{/logout}" method="post">
+      <button class="btn">Log out</button>
+    </form>
+  </div>
+  <div class="auth-menus" sec:authorize="!hasAnyRole('ROLE_USER')">
+    <a class="btn" href="login.html" th:href="@{/login}">Log in</a>
+  </div>
+
+</header>

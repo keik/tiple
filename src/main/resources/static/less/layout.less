@@ -7,11 +7,26 @@ body {
 }
 
 header {
+  height: 48px;
+  background-color: #444;
+  h1 {
+    display: inline-block;
+    margin: 0 12px;
+    color: #eaeaea;
+    font-size: 24px;
+    line-height: 48px;
+  }
 
+  .auth-menus {
+    height: 32px;
+    margin-top: 8px;
+    margin-right: 8px;
+    float: right;
+  }
 }
 
 .side {
-  float: left;
+  position: fixed;
   width: @width-of-side;
 }
 
@@ -20,5 +35,12 @@ header {
 }
 
 footer {
+  position: absolute;
+  bottom: 0;
+  padding: 4px 0;
+  width: 100%;
+  color: #eaeaea;
+  text-align: center;
 
+  background-color: #444;
 }
