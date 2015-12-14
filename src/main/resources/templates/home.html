@@ -18,6 +18,18 @@
           <li><a>Users</a></li>
         </ul>
       </nav>
+
+      <!-- DEV -->
+      <form th:action="@{/user}" method="post">
+        <input name="name"/>
+        <input name="email"/>
+        <button>Add user</button>
+      </form>
+      <a th:href="@{/user/0}">0</a>
+      <a th:href="@{/user/1}">1</a>
+      <a th:href="@{/user/2}">2</a>
+      <!-- /DEV -->
+
     </div><!--/* main */-->
 
     <div class="side">

@@ -1,5 +1,7 @@
 package info.keik.tiple.config;
 
+import javax.sql.DataSource;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
@@ -39,12 +41,16 @@ public class SecurityConfig {
 		}
 
 		@Autowired
+		DataSource dataSource;
+
+		@Autowired
 		public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
-			// TODO JDBC
-			auth.inMemoryAuthentication()
-					.withUser("user")
-					.password("password")
-					.roles("USER");
+			auth
+					.jdbcAuthentication()
+					.dataSource(dataSource)
+					.withDefaultSchema()
+					.withUser("user").password("password").roles("USER").and()
+					.withUser("admin").password("password").roles("USER", "ADMIN");
 		}
 	}
 
@@ -82,6 +88,5 @@ public class SecurityConfig {
 					.roles("USER");
 		}
 	}
-
 
 }
