@@ -1,8 +1,11 @@
 package info.keik.tiple.model;
 
+import lombok.Data;
+
+@Data
 public class Tag {
 
-	public String name;
+	private String name;
 
 	public Tag() {
 	}

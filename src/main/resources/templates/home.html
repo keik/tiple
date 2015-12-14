@@ -10,13 +10,22 @@
 
     <div th:replace="fragments/header.html"></div>
 
-    <div class="side">
-      side
-    </div>
-
     <div class="main">
-      main
+      <nav>
+        <ul>
+          <li><a th:href="@{/q}">Questions</a></li>
+          <li><a th:href="@{/tags}">Tags</a></li>
+          <li><a>Users</a></li>
+        </ul>
+      </nav>
     </div><!--/* main */-->
+
+    <div class="side">
+      <h2>Recently updated</h2>
+      <ul>
+        <li th:each="q : ${recentryQuestions}"><a th:href="'/q/' + ${q.id}" th:text="${q.title}"></a></li>
+      </ul>
+    </div>
 
     <div th:replace="fragments/footer.html"></div>
 

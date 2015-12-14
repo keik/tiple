@@ -3,14 +3,17 @@ package info.keik.tiple.model;
 import java.util.Date;
 import java.util.List;
 
+import lombok.Data;
+
+@Data
 public class Question {
 
-	public Integer id;
-	public String title;
-	public String content;
-	public List<Tag> tags;
-	public Date createdAt;
-	public Date updatedAt;
+	private Integer id;
+	private String title;
+	private String content;
+	private List<Tag> tags;
+	private Date createdAt;
+	private Date updatedAt;
 
 	public Question() {
 	}

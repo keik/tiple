@@ -1,13 +1,14 @@
 package info.keik.tiple.service;
 
-import info.keik.tiple.model.Question;
-import info.keik.tiple.model.Tag;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Service;
+
+import info.keik.tiple.model.Question;
+import info.keik.tiple.model.Tag;
 
 @Service
 public class QuestionServiceMock implements QuestionService {
@@ -17,23 +18,23 @@ public class QuestionServiceMock implements QuestionService {
 	{
 		questions.add(new Question("q1", "this is q1") {
 			{
-				id = 0;
+				setId(0);
 				Tag[] ts = { new Tag("javascript"), new Tag("jquery") };
-				tags = Arrays.asList(ts);
+				setTags(Arrays.asList(ts));
 			}
 		});
 		questions.add(new Question("q2", "this is q2") {
 			{
-				id = 1;
+				setId(1);
 				Tag[] ts = { new Tag("java"), new Tag("maven") };
-				tags = Arrays.asList(ts);
+				setTags(Arrays.asList(ts));
 			}
 		});
 		questions.add(new Question("q3", "this is q3") {
 			{
-				id = 2;
+				setId(2);
 				Tag[] ts = { new Tag("javascript"), new Tag("node") };
-				tags = Arrays.asList(ts);
+				setTags(Arrays.asList(ts));
 			}
 		});
 	}
@@ -46,8 +47,16 @@ public class QuestionServiceMock implements QuestionService {
 	@Override
 	public Question get(Integer id) {
 		return questions.stream()
-				.filter(q -> id == q.id)
+				.filter(q -> id == q.getId())
 				.findAny().get();
+	}
+
+	@Override
+	public List<Question> getByTag(String tagName) {
+		return questions.stream()
+				.filter(q -> q.getTags().stream()
+						.anyMatch(t -> t.getName().equals(tagName)))
+				.collect(Collectors.toList());
 	}
 
 }

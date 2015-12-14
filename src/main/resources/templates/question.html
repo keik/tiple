@@ -16,8 +16,8 @@
 
     <div class="main">
 
+      <h1 th:text="${question.title}">TITLE</h1>
       <div>
-        <h1 th:text="${question.title}">TITLE</h1>
         <p th:text="${question.content}">
           THIS IS QUESTION'S CONTENT.
         </p>
@@ -31,6 +31,12 @@
           THIS IS ANSWER'S CONTENT.
         </p>
       </div>
+
+      <h2>Your answer</h2>
+      <form th:action="@{'/q/' + ${question.id} + '/answers'}">
+        <textarea name="content"></textarea>
+        <button>Post your answer</button>
+      </form>
 
     </div><!--/* main */-->
 

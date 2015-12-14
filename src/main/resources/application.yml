@@ -9,5 +9,5 @@ logging:
   level:
     org:
       springframework:
-        security: DEBUG
-        web:      DEBUG
+        security: INFO
+        web:      INFO

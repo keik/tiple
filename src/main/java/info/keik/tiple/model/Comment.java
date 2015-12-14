@@ -2,10 +2,17 @@ package info.keik.tiple.model;
 
 import java.util.Date;
 
+import lombok.Data;
+
+@Data
 public class Comment {
 
-	public String content;
-	public Date createdAt;
-	public Date updatedAt;
-	
+	private Integer id;
+	private String content;
+	private Date privatedAt;
+	private Date updatedAt;
+
+	public Comment() {
+	}
+
 }

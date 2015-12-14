@@ -1,29 +1,54 @@
 package info.keik.tiple.service;
 
-import info.keik.tiple.model.Answer;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
+
+import info.keik.tiple.controller.QuestionController;
+import info.keik.tiple.model.Answer;
 
 @Service
 public class AnswerServiceMock implements AnswerService {
 
+	private static final Logger logger = LoggerFactory.getLogger(QuestionController.class);
+
 	public List<Answer> answers = new ArrayList<>();
 
 	{
-		answers.add(new Answer() {{ refQuestionId = 0; content = "this is a answer 1"; }});
-		answers.add(new Answer() {{ refQuestionId = 0; content = "this is a answer 2"; }});
-		answers.add(new Answer() {{ refQuestionId = 1; content = "this is a answer 3"; }});
+		answers.add(new Answer() {
+			{
+				setRefQuestionId(0);
+				setContent("this is a answer 1");
+			}
+		});
+		answers.add(new Answer() {
+			{
+				setRefQuestionId(0);
+				setContent("this is a answer 2");
+			}
+		});
+		answers.add(new Answer() {
+			{
+				setRefQuestionId(1);
+				setContent("this is a answer 3");
+			}
+		});
 	}
 
 	@Override
 	public List<Answer> getByQuestionsId(Integer id) {
 		return answers.stream()
-				.filter(a -> id == a.refQuestionId)
+				.filter(a -> id == a.getRefQuestionId())
 				.collect(Collectors.toList());
+	}
+
+	@Override
+	public void add(Answer answer) {
+		answers.add(answer);
 	}
 
 }

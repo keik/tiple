@@ -7,31 +7,38 @@ body {
 }
 
 header {
-  height: 48px;
+  height: @height-of-header;
   background-color: #444;
   h1 {
     display: inline-block;
     margin: 0 12px;
     color: #eaeaea;
     font-size: 24px;
-    line-height: 48px;
+    line-height: @height-of-header;
+
+    a {
+      color: #eaeaea;
+      text-decoration: none;
+    }
   }
 
   .auth-menus {
-    height: 32px;
+    height: @height-of-header - 8px * 2;
     margin-top: 8px;
     margin-right: 8px;
     float: right;
   }
 }
 
-.side {
-  position: fixed;
-  width: @width-of-side;
+.main {
+  margin-right: @width-of-side;
 }
 
-.main {
-  margin-left: @width-of-side;
+.side {
+  position: fixed;
+  top: @height-of-header;
+  right: 0;
+  width: @width-of-side;
 }
 
 footer {
