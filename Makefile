@@ -13,6 +13,9 @@ DIST_JS	= $(STATIC)/bundle.js
 watch:
 	@make -j 3 watch-less watch-js run-dev-server
 
+run-server:
+	@mvn spring-boot:run -Drun.jvmArguments="-Dspring.profiles.active=prod"
+
 run-dev-server:
 	@mvn spring-boot:run -Drun.jvmArguments="-Dspring.profiles.active=dev"
 

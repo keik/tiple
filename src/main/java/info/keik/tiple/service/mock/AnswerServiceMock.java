@@ -1,4 +1,4 @@
-package info.keik.tiple.service;
+package info.keik.tiple.service.mock;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import info.keik.tiple.controller.QuestionController;
 import info.keik.tiple.model.Answer;
+import info.keik.tiple.service.AnswerService;
 
 @Service
 public class AnswerServiceMock implements AnswerService {

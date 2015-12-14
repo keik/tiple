@@ -1,4 +1,6 @@
-package info.keik.tiple.service;
+package info.keik.tiple.service.mock;
+
+import info.keik.tiple.service.CommentService;
 
 import org.springframework.stereotype.Service;
 
