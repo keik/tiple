@@ -3,6 +3,7 @@
 
   <!--/* Log in or Log out */-->
   <div class="auth-menus" sec:authorize="hasAnyRole('ROLE_USER')">
+    <span sec:authentication="name" th:remove="tag">USER_NAME</span>
     <form action="/" th:action="@{/logout}" method="post">
       <button class="btn">Log out</button>
     </form>

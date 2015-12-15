@@ -1,15 +1,15 @@
 package info.keik.tiple.service.mock;
 
+import info.keik.tiple.model.Question;
+import info.keik.tiple.model.Tag;
+import info.keik.tiple.service.QuestionService;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Service;
-
-import info.keik.tiple.model.Question;
-import info.keik.tiple.model.Tag;
-import info.keik.tiple.service.QuestionService;
 
 @Service
 public class QuestionServiceMock implements QuestionService {

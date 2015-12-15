@@ -12,18 +12,18 @@
       <!--#include virtual="fragments/header.html" -->
     </header>
 
-    <form class="centered-box" action="index.html" th:action="@{/users}" method="post" onsubmit="alert('Not implemented'); return false;">
+    <form class="centered-box" action="index.html" th:action="@{/users}" method="post">
       <section>
         <h3>Sign up</h3>
         <ul>
           <li>
-            <label for="username">Username</label><input id="username" type="text" placeholder="Username" />
+            <label for="name">Username</label><input id="name" type="text" name="name" placeholder="username" />
           </li>
           <li>
-            <label for="email">Email</label><input id="email" type="text" placeholder="Email" />
+            <label for="email">Email</label><input id="email" type="text" name="email" placeholder="Email" />
           </li>
           <li>
-            <label for="password">Password</label><input id="password" type="password" placeholder="password" />
+            <label for="password">Password</label><input id="password" type="password" name="password" placeholder="password" />
           </li>
           <li>
             <label></label><input class="btn" type="submit" value="Sign up" />

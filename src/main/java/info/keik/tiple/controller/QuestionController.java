@@ -1,5 +1,10 @@
 package info.keik.tiple.controller;
 
+import info.keik.tiple.model.Answer;
+import info.keik.tiple.model.Question;
+import info.keik.tiple.service.AnswerService;
+import info.keik.tiple.service.QuestionService;
+
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -11,11 +16,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-
-import info.keik.tiple.model.Answer;
-import info.keik.tiple.model.Question;
-import info.keik.tiple.service.AnswerService;
-import info.keik.tiple.service.QuestionService;
 
 @Controller
 @RequestMapping("/q")
