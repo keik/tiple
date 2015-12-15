@@ -1,6 +1,0 @@
-spring:
-  datasource:
-    url: jdbc:mysql://localhost/tiple
-    username: tiple
-    password: tiple
-    driverClassName: com.mysql.jdbc.Driver
