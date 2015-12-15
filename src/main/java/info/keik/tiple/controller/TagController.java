@@ -1,5 +1,8 @@
 package info.keik.tiple.controller;
 
+import info.keik.tiple.model.Tag;
+import info.keik.tiple.service.TagService;
+
 import java.util.Map;
 
 import org.slf4j.Logger;
@@ -9,9 +12,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-
-import info.keik.tiple.model.Tag;
-import info.keik.tiple.service.TagService;
 
 @Controller
 @RequestMapping("/tags")
