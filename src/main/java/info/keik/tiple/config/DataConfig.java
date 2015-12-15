@@ -8,16 +8,43 @@ import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Profile;
+import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseBuilder;
+import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseType;
 
 @Configuration
 @MapperScan("info.keik.tiple.repository")
 public class DataConfig {
 
 	@Autowired
-	private DataSource dataSource;
+	DataSource dataSource;
+
+	// @Bean
+	// @Primary
+	// @Autowired
+	// protected PlatformTransactionManager createTransactionManager(
+	// DataSource dataSource) {
+	// return new DataSourceTransactionManager(dataSource);
+	// }
+
+	// @Bean
+	// @Profile("prod")
+	// public DataSource prodDataSource() {
+	// return new EmbeddedDatabaseBuilder().setType(EmbeddedDatabaseType.HSQL)
+	// .addScript("classpath:import-mysql.sql").build();
+	// }
 
 	@Bean
-	public SqlSessionFactory sqlSessionFactory(DataSource dataSource) throws Exception {
+	@Profile("dev")
+	public DataSource devDataSource() {
+		return new EmbeddedDatabaseBuilder().setType(EmbeddedDatabaseType.HSQL)
+				.addScript("classpath:import-dev.sql").build();
+	}
+
+	@Bean
+	@Autowired
+	public SqlSessionFactory sqlSessionFactory(DataSource dataSource)
+			throws Exception {
 		final SqlSessionFactoryBean sessionFactory = new SqlSessionFactoryBean();
 		sessionFactory.setDataSource(dataSource);
 		return sessionFactory.getObject();
