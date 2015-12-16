@@ -7,13 +7,12 @@ import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Profile;
 
-@Profile("prod")
+@Profile("dev")
 @EnableAutoConfiguration
 @ComponentScan(basePackages = {
 		"info.keik.tiple.config",
-		"info.keik.tiple.security",
-		"**.controller",
-		"**.service.impl" })
+		"info.keik.**.controller",
+		"info.keik.**.service.mock" })
 public class Application {
 
 	private static final Logger log = LoggerFactory.getLogger(Application.class);
