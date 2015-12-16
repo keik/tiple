@@ -1,7 +1,7 @@
-package info.keik.tiple.security;
+package info.keik.tiple.security.impl;
 
 import info.keik.tiple.model.User;
-import info.keik.tiple.repository.UserRepository;
+import info.keik.tiple.service.UserService;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -18,14 +18,14 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 	private static final Logger logger = LoggerFactory.getLogger(UserDetailsServiceImpl.class);
 
 	@Autowired
-	UserRepository userRepository;
+	UserService userService;
 
 	@Override
-	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-		logger.warn(username);
+	public UserDetails loadUserByUsername(String id) throws UsernameNotFoundException {
+		logger.warn(id);
 
-		User user = userRepository.getByName(username);
-		logger.warn(user.toString());
+		User user = userService.getById(id);
+		logger.warn("@@@" + user);
 		if (user == null)
 			throw new UsernameNotFoundException("Authentication failed.");
 		return new org.springframework.security.core.userdetails.User(user.getName(), user.getPassword(),

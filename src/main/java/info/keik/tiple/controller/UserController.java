@@ -1,7 +1,7 @@
 package info.keik.tiple.controller;
 
 import info.keik.tiple.model.User;
-import info.keik.tiple.repository.UserRepository;
+import info.keik.tiple.service.UserService;
 
 import java.util.List;
 
@@ -21,26 +21,26 @@ import org.springframework.web.bind.annotation.ResponseBody;
 public class UserController {
 
 	private static final Logger logger = LoggerFactory.getLogger(TagController.class);
-	
+
 	@Autowired
-	UserRepository userRepository;
+	UserService userService;
 
 	@ResponseBody
 	@RequestMapping(value = "", method = RequestMethod.GET)
 	public List<User> index() {
-		return userRepository.getAll();
+		return userService.getAll();
 	}
 
 	@ResponseBody
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
-	public User show(@PathVariable("id") Integer id) {
-		return userRepository.getById(id);
+	public User show(@PathVariable("id") String id) {
+		return userService.getById(id);
 	}
 
 	@ResponseBody
 	@RequestMapping(value = "", method = RequestMethod.POST)
 	public ResponseEntity<String> create(User user) {
-		userRepository.addUser(user);
+		userService.add(user);
 		return new ResponseEntity<String>(HttpStatus.CREATED);
 	}
 

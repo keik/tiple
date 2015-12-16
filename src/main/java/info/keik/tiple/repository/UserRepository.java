@@ -13,10 +13,7 @@ public interface UserRepository {
 	public List<User> getAll();
 
 	@Select("SELECT * FROM user WHERE id = #{id}")
-	public User getById(long userId);
-
-	@Select("SELECT * FROM user WHERE name = #{name}")
-	public User getByName(String name);
+	public User getById(String userId);
 
 	@Insert("insert into user (email, name, password) values(#{email}, #{name}, #{password})")
 	public int addUser(User user);

@@ -5,15 +5,9 @@ import org.slf4j.LoggerFactory;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.context.annotation.ComponentScan;
-import org.springframework.context.annotation.Profile;
 
-@Profile("prod")
 @EnableAutoConfiguration
-@ComponentScan(basePackages = {
-		"info.keik.tiple.config",
-		"info.keik.tiple.security",
-		"**.controller",
-		"**.service.impl" })
+@ComponentScan(basePackages = {"info.keik.tiple.config"})
 public class Application {
 
 	private static final Logger log = LoggerFactory.getLogger(Application.class);
