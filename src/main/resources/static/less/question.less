@@ -1,0 +1,49 @@
+.questions {
+  padding: 0;
+  list-style: none;
+
+  > li {
+    padding-bottom: 12px;
+    margin-bottom: 12px;
+    height: 64px;
+    border-bottom: 1px solid #ccc;
+
+    > * {
+      display: inline-block;
+    }
+
+    .status {
+      width: 64px;
+      text-align: center;
+      line-height: 64px;
+      vertical-align: top;
+
+      &.answered {
+      }
+    }
+
+    .ans-counts {
+      margin-left: 8px;
+      width: 64px;
+      text-align: center;
+      line-height: 64px;
+      vertical-align: top;
+    }
+
+    .summary {
+      margin-left: 8px;
+      vertical-align: top;
+
+      h3 {
+        margin: 0;
+        font-size: 16px;
+        height: 40px;
+      }
+
+      .tags {
+        height: 24px;
+      }
+    }
+
+  }
+}

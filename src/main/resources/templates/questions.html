@@ -12,9 +12,28 @@
 
     <div class="main">
 
-      <div th:each="question : ${questions}">
-        <a href="question.html" th:href="@{'/q/' + ${question.id}}" th:text="${question.title}">TITLE</a>
-      </div>
+      <h2>All questions</h2>
+
+      <ul class="questions">
+        <li th:each="question : ${questions}">
+          <span class="status answered">x</span><span class="ans-counts">1</span>
+          <div class="summary">
+            <h3><a href="question.html" th:href="@{'/q/' + ${question.id}}" th:text="${question.title}">TITLE</a></h3>
+            <ul class="tags">
+              <li><a href="#">javascript</a></li>
+              <li><a href="#">node</a></li>
+            </ul>
+          </div>
+        </li>
+      </ul>
+
+      <nav class="pagenations">
+        <ul>
+          <li><a href="#">1</a></li>
+          <li><a href="#">2</a></li>
+          <li><a href="#">3</a></li>
+        </ul>
+      </nav>
 
     </div><!--/* main */-->
 

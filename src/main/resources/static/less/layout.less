@@ -3,6 +3,8 @@ html {
 }
 
 body {
+  position: relative;
+  padding-bottom: @height-of-footer;
   margin: 0;
 }
 
@@ -32,6 +34,7 @@ header {
 
 .main {
   margin-right: @width-of-side;
+  padding: 12px;
 }
 
 .side {
@@ -45,9 +48,11 @@ footer {
   position: absolute;
   bottom: 0;
   padding: 4px 0;
+  height: @height-of-footer;
   width: 100%;
   color: #eaeaea;
   text-align: center;
+  line-height: @height-of-footer;
 
   background-color: #444;
 }
