@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <link rel="stylesheet" href="../static/main.css" th:href="@{/main.css}" type="text/css" />
   </head>
-  <body>
+  <body id="question">
 
     <div th:replace="fragments/header.html"></div>
 
@@ -33,7 +33,7 @@
       </div>
 
       <h2>Your answer</h2>
-      <form th:action="@{'/q/' + ${question.id} + '/answers'}">
+      <form id="ask-form" th:action="@{'/q/' + ${question.id} + '/answers'}" th:method="post">
         <textarea name="content"></textarea>
         <button>Post your answer</button>
       </form>

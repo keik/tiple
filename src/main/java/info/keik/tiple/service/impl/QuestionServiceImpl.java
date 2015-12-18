@@ -25,4 +25,9 @@ public class QuestionServiceImpl implements QuestionService {
 		throw new RuntimeException("Not implemented");
 	}
 
+	@Override
+	public Question add(Question question) {
+		throw new RuntimeException("Not implemented");
+	}
+
 }

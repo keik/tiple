@@ -29,4 +29,12 @@ public interface QuestionService {
 	 */
 	List<Question> getByTag(String tagName);
 
+	/**
+	 * Add a new question.
+	 * 
+	 * @param a question
+	 * @return created question
+	 */
+	Question add(Question question);
+
 }

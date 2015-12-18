@@ -35,7 +35,7 @@ public class QuestionController {
 				? questionService.getAll()
 				: questionService.getByTag(tagName);
 		model.addAttribute("questions", questions);
-		return "questions.html";
+		return "questions/index.html";
 	}
 
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
@@ -44,7 +44,18 @@ public class QuestionController {
 		List<Answer> answers = answerService.getByQuestionsId(id);
 		model.addAttribute("question", question);
 		model.addAttribute("answers", answers);
-		return "question.html";
+		return "questions/show.html";
+	}
+
+	@RequestMapping(value = "/ask", method = RequestMethod.GET)
+	public String _new(Model model) {
+		return "questions/ask.html";
+	}
+
+	@RequestMapping(value = "", method = RequestMethod.POST)
+	public String create(Model model, Question question) {
+		questionService.add(question);
+		return "redirect:/q";
 	}
 
 }

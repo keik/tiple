@@ -17,21 +17,21 @@ public class QuestionServiceMock implements QuestionService {
 	public List<Question> questions = new ArrayList<>();
 
 	{
-		questions.add(new Question("q1", "this is q1") {
+		questions.add(new Question("Lorem ipsum", "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.") {
 			{
 				setId(0);
 				Tag[] ts = { new Tag("javascript"), new Tag("jquery") };
 				setTags(Arrays.asList(ts));
 			}
 		});
-		questions.add(new Question("q2", "this is q2") {
+		questions.add(new Question("Et case malorum", "Et case malorum omittantur has, eos eu nibh minim vitae, nobis oblique pri id. Et mea veri possit molestiae, nec ea vidisse tritani prodesset, est dictas torquatos necessitatibus no. Quo ne pericula salutatus, nec eu putent convenire instructior. Cum te diam postulant, qui iisque prompta ex. Numquam abhorreant his cu, vis ut vide delicatissimi. No vis vidit facete impedit. Reque maiestatis eum ea, ut consul graeco sit.") {
 			{
 				setId(1);
 				Tag[] ts = { new Tag("java"), new Tag("maven") };
 				setTags(Arrays.asList(ts));
 			}
 		});
-		questions.add(new Question("q3", "this is q3") {
+		questions.add(new Question("Et case malorum omittantur", "Et case malorum omittantur has, eos eu nibh minim vitae, nobis oblique pri id. Et mea veri possit molestiae, nec ea vidisse tritani prodesset, est dictas torquatos necessitatibus no. Quo ne pericula salutatus, nec eu putent convenire instructior. Cum te diam postulant, qui iisque prompta ex. Numquam abhorreant his cu, vis ut vide delicatissimi. No vis vidit facete impedit. Reque maiestatis eum ea, ut consul graeco sit.") {
 			{
 				setId(2);
 				Tag[] ts = { new Tag("javascript"), new Tag("node") };
@@ -60,4 +60,11 @@ public class QuestionServiceMock implements QuestionService {
 				.collect(Collectors.toList());
 	}
 
+	@Override
+	public Question add(Question question) {
+		question.setId(questions.size());
+		questions.add(question);
+		return question;
+	}
+	
 }
