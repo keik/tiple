@@ -27,7 +27,7 @@ public class TagController {
 		Map<Tag, Integer> tagsWithTaggedNumbers = tagService.getAllWithTaggedNumbers();
 		logger.warn(tagsWithTaggedNumbers.toString());
 		model.addAttribute("tagsWithTaggedNumbers", tagsWithTaggedNumbers);
-		return "tags.html";
+		return "tags/index.html";
 	}
 
 }

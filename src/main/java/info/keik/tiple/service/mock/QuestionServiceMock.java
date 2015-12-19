@@ -3,16 +3,21 @@ package info.keik.tiple.service.mock;
 import info.keik.tiple.model.Question;
 import info.keik.tiple.model.Tag;
 import info.keik.tiple.service.QuestionService;
+import info.keik.tiple.service.TagService;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
 public class QuestionServiceMock implements QuestionService {
+
+	@Autowired
+	TagService tagService;
 
 	public List<Question> questions = new ArrayList<>();
 
@@ -64,7 +69,12 @@ public class QuestionServiceMock implements QuestionService {
 	public Question add(Question question) {
 		question.setId(questions.size());
 		questions.add(question);
+
+		List<Tag> tags = tagService.getAll();
+		question.getTags().stream()
+				.filter(t -> !tags.contains(t))
+				.forEach(t -> tags.add(t));
+
 		return question;
 	}
-	
 }
