@@ -20,7 +20,7 @@ public class AnswerController {
 	@RequestMapping
 	public ResponseEntity<String> create(Answer answer, @PathVariable("questionId") Integer questionId) {
 		answer.setRefQuestionId(questionId);
-		answerService.add(answer);		
+		answerService.add(answer);
 		return new ResponseEntity<>(HttpStatus.CREATED);
 	}
 

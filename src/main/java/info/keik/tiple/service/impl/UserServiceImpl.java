@@ -14,7 +14,7 @@ public class UserServiceImpl implements UserService {
 
 	@Autowired
 	UserRepository userRepository;
-	
+
 	@Override
 	public List<User> getAll() {
 		throw new RuntimeException("Not implemented");
