@@ -4,6 +4,7 @@ import info.keik.tiple.controller.QuestionController;
 import info.keik.tiple.model.Answer;
 import info.keik.tiple.service.AnswerService;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -49,6 +50,7 @@ public class AnswerServiceMock implements AnswerService {
 
 	@Override
 	public void add(Answer answer) {
+		answer.setCreatedAt(LocalDateTime.now());
 		answers.add(answer);
 	}
 

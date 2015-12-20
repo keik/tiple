@@ -8,11 +8,8 @@
     height: 64px;
     border-bottom: 1px solid #ccc;
 
-    > * {
-      display: inline-block;
-    }
-
     .status {
+      float: left;
       width: 64px;
       text-align: center;
       line-height: 64px;
@@ -23,6 +20,8 @@
     }
 
     .ans-counts {
+      float: left;
+
       margin-left: 8px;
       width: 64px;
       text-align: center;
@@ -41,5 +40,25 @@
       }
     }
 
+  }
+}
+
+.question, .answer {
+  padding-bottom: 12px;
+  border-bottom: 1px solid #ccc;
+
+  .meta {
+    .tags {
+      float: left;
+    }
+    .right {
+      float: right;
+    }
+  }
+
+  &:after {
+    content: ' ';
+    display: table;
+    clear: both;
   }
 }

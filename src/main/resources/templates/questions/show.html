@@ -17,19 +17,32 @@
     <div class="main">
 
       <h1 th:text="${question.title}">TITLE</h1>
-      <div>
+      <div class="question">
         <p th:text="${question.content}">
           THIS IS QUESTION'S CONTENT.
         </p>
-        <ul class="tags">
-          <li class="tag" th:each="tag : ${question.tags}"><a th:href="'/q?tag=' + ${tag.name}" th:text="${tag.name}">TAG</a></li>
-        </ul>
+        <div class="meta">
+          <ul class="tags">
+            <li class="tag" th:each="tag : ${question.tags}"><a th:href="'/q?tag=' + ${tag.name}" th:text="${tag.name}">TAG</a></li>
+          </ul>
+          <div class="right">
+            <a th:text="${question.createdBy.id}" th:href="@{'/users/' + ${question.createdBy.id}}">USER</a>
+            <span th:text="${question.createdAt}">POSTED_AT</span>
+          </div>
+        </div>
       </div>
 
-      <div th:each="answer : ${answers}">
+      <h2>Answers</h2>
+      <div class="answer" th:each="answer : ${answers}">
         <p th:text="${answer.content}">
           THIS IS ANSWER'S CONTENT.
         </p>
+        <div class="meta">
+          <div class="right">
+            <a th:text="${answer.createdBy.id}" th:href="@{'/users/' + ${answer.createdBy.id}}">USER</a>
+            <span th:text="${answer.createdAt}">POSTED_AT</span>
+          </div>
+        </div>
       </div>
 
       <h2>Your answer</h2>

@@ -5,6 +5,7 @@ import info.keik.tiple.model.Tag;
 import info.keik.tiple.service.QuestionService;
 import info.keik.tiple.service.TagService;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -68,6 +69,7 @@ public class QuestionServiceMock implements QuestionService {
 	@Override
 	public Question add(Question question) {
 		question.setId(questions.size());
+		question.setCreatedAt(LocalDateTime.now());
 		questions.add(question);
 
 		List<Tag> tags = tagService.getAll();

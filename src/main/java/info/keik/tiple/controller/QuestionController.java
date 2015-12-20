@@ -2,9 +2,12 @@ package info.keik.tiple.controller;
 
 import info.keik.tiple.model.Answer;
 import info.keik.tiple.model.Question;
+import info.keik.tiple.model.User;
 import info.keik.tiple.service.AnswerService;
 import info.keik.tiple.service.QuestionService;
+import info.keik.tiple.service.UserService;
 
+import java.security.Principal;
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -28,6 +31,9 @@ public class QuestionController {
 
 	@Autowired
 	private AnswerService answerService;
+
+	@Autowired
+	private UserService userService;
 
 	@RequestMapping(method = RequestMethod.GET)
 	public String index(Model model, @RequestParam(value = "tag", required = false) String tagName) {
@@ -53,7 +59,13 @@ public class QuestionController {
 	}
 
 	@RequestMapping(value = "", method = RequestMethod.POST)
-	public String create(Model model, Question question) {
+	public String create(Principal principal, Model model, Question question) {
+		if (principal == null) {
+			throw new RuntimeException("authentication required.");
+		}
+
+		User user = userService.getById(principal.getName());
+		question.setCreatedBy(user);
 		questionService.add(question);
 		return "redirect:/q";
 	}

@@ -9,7 +9,7 @@ import org.springframework.context.annotation.Profile;
 @ComponentScan(basePackages = {
 		"info.keik.tiple.config",
 		"info.keik.tiple.**.controller",
-		"info.keik.tiple.**.security.impl",
+		"info.keik.tiple.**.security",
 		"info.keik.tiple.**.service.impl" })
 public class ApplicationConfig {
 

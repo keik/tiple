@@ -1,7 +1,11 @@
 package info.keik.tiple.controller;
 
 import info.keik.tiple.model.Answer;
+import info.keik.tiple.model.User;
 import info.keik.tiple.service.AnswerService;
+import info.keik.tiple.service.UserService;
+
+import java.security.Principal;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -16,10 +20,19 @@ public class AnswerController {
 
 	@Autowired
 	AnswerService answerService;
+	
+	@Autowired
+	UserService userService;
 
 	@RequestMapping
-	public ResponseEntity<String> create(Answer answer, @PathVariable("questionId") Integer questionId) {
+	public ResponseEntity<String> create(Principal principal, Answer answer, @PathVariable("questionId") Integer questionId) {
+		if (principal == null) {
+			throw new RuntimeException("authentication required.");
+		}
+
 		answer.setRefQuestionId(questionId);
+		User user = userService.getById(principal.getName());
+		answer.setCreatedBy(user);
 		answerService.add(answer);
 		return new ResponseEntity<>(HttpStatus.CREATED);
 	}

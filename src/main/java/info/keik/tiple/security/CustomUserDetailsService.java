@@ -1,4 +1,4 @@
-package info.keik.tiple.security.impl;
+package info.keik.tiple.security;
 
 import info.keik.tiple.model.User;
 import info.keik.tiple.service.UserService;
@@ -13,22 +13,19 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 @Service
-public class UserDetailsServiceImpl implements UserDetailsService {
+public class CustomUserDetailsService implements UserDetailsService {
 
-	private static final Logger logger = LoggerFactory.getLogger(UserDetailsServiceImpl.class);
+	private static final Logger logger = LoggerFactory.getLogger(CustomUserDetailsService.class);
 
 	@Autowired
 	UserService userService;
 
 	@Override
 	public UserDetails loadUserByUsername(String id) throws UsernameNotFoundException {
-		logger.warn(id);
-
 		User user = userService.getById(id);
-		logger.warn("@@@" + user);
 		if (user == null)
 			throw new UsernameNotFoundException("Authentication failed.");
-		return new org.springframework.security.core.userdetails.User(user.getName(), user.getPassword(),
+		return new org.springframework.security.core.userdetails.User(user.getId(), user.getPassword(),
 				AuthorityUtils.createAuthorityList("ROLE_USER", "USER"));
 	}
 

@@ -15,14 +15,21 @@
       <h2>All questions</h2>
 
       <ul class="questions">
-        <li th:each="question : ${questions}">
-          <span class="status answered">x</span><span class="ans-counts">1</span>
+        <li class="question" th:each="question : ${questions}">
+          <div class="status answered">x</div>
+          <div class="ans-counts">1</div>
           <div class="summary">
             <h3><a href="question.html" th:href="@{'/q/' + ${question.id}}" th:text="${question.title}">TITLE</a></h3>
-            <ul class="tags">
-              <li><a href="#">javascript</a></li>
-              <li><a href="#">node</a></li>
-            </ul>
+            <div class="meta">
+              <ul class="tags">
+                <li><a href="#">javascript</a></li>
+                <li><a href="#">node</a></li>
+              </ul>
+              <div class="right">
+                <span>USER</span>
+                <span>POSTED_AT</span>
+              </div>
+            </div>
           </div>
         </li>
       </ul>
