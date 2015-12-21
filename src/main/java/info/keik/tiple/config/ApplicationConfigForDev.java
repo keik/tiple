@@ -8,9 +8,10 @@ import org.springframework.context.annotation.Profile;
 @Configuration
 @ComponentScan(basePackages = {
 		"info.keik.tiple.config",
-		"info.keik.**.controller",
+		"info.keik.tiple.**.advice",
+		"info.keik.tiple.**.controller",
 		"info.keik.tiple.**.security",
-		"info.keik.**.service.mock" })
+		"info.keik.tiple.**.service.mock" })
 public class ApplicationConfigForDev {
 
 }

@@ -25,7 +25,6 @@ public class TagController {
 	@RequestMapping(method = RequestMethod.GET)
 	public String index(Model model) {
 		Map<Tag, Integer> tagsWithTaggedNumbers = tagService.getAllWithTaggedNumbers();
-		logger.warn(tagsWithTaggedNumbers.toString());
 		model.addAttribute("tagsWithTaggedNumbers", tagsWithTaggedNumbers);
 		return "tags/index.html";
 	}

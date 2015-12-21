@@ -2,6 +2,7 @@ package info.keik.tiple.service.mock;
 
 import info.keik.tiple.model.Question;
 import info.keik.tiple.model.Tag;
+import info.keik.tiple.model.User;
 import info.keik.tiple.service.QuestionService;
 import info.keik.tiple.service.TagService;
 
@@ -28,6 +29,12 @@ public class QuestionServiceMock implements QuestionService {
 				setId(0);
 				Tag[] ts = { new Tag("javascript"), new Tag("jquery") };
 				setTags(Arrays.asList(ts));
+				setCreatedBy(new User() {
+					{
+						setId("alice");;
+						setName("Alice");;
+					}
+				});
 			}
 		});
 		questions.add(new Question("Et case malorum", "Et case malorum omittantur has, eos eu nibh minim vitae, nobis oblique pri id. Et mea veri possit molestiae, nec ea vidisse tritani prodesset, est dictas torquatos necessitatibus no. Quo ne pericula salutatus, nec eu putent convenire instructior. Cum te diam postulant, qui iisque prompta ex. Numquam abhorreant his cu, vis ut vide delicatissimi. No vis vidit facete impedit. Reque maiestatis eum ea, ut consul graeco sit.") {
@@ -35,6 +42,12 @@ public class QuestionServiceMock implements QuestionService {
 				setId(1);
 				Tag[] ts = { new Tag("java"), new Tag("maven") };
 				setTags(Arrays.asList(ts));
+				setCreatedBy(new User() {
+					{
+						setId("alice");;
+						setName("Alice");;
+					}
+				});
 			}
 		});
 		questions.add(new Question("Et case malorum omittantur", "Et case malorum omittantur has, eos eu nibh minim vitae, nobis oblique pri id. Et mea veri possit molestiae, nec ea vidisse tritani prodesset, est dictas torquatos necessitatibus no. Quo ne pericula salutatus, nec eu putent convenire instructior. Cum te diam postulant, qui iisque prompta ex. Numquam abhorreant his cu, vis ut vide delicatissimi. No vis vidit facete impedit. Reque maiestatis eum ea, ut consul graeco sit.") {
@@ -42,6 +55,12 @@ public class QuestionServiceMock implements QuestionService {
 				setId(2);
 				Tag[] ts = { new Tag("javascript"), new Tag("node") };
 				setTags(Arrays.asList(ts));
+				setCreatedBy(new User() {
+					{
+						setId("alice");;
+						setName("Alice");;
+					}
+				});
 			}
 		});
 	}
