@@ -1,7 +1,5 @@
 package info.keik.tiple.config;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -13,8 +11,6 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 @Configuration
 @EnableWebMvcSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
-
-	private static final Logger logger = LoggerFactory.getLogger(SecurityConfig.class);
 
 	@Autowired
 	UserDetailsService userDetailsService;

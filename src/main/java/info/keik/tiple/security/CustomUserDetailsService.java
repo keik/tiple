@@ -3,8 +3,6 @@ package info.keik.tiple.security;
 import info.keik.tiple.model.User;
 import info.keik.tiple.service.UserService;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -14,8 +12,6 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class CustomUserDetailsService implements UserDetailsService {
-
-	private static final Logger logger = LoggerFactory.getLogger(CustomUserDetailsService.class);
 
 	@Autowired
 	UserService userService;
