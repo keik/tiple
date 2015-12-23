@@ -27,7 +27,7 @@
           </ul>
           <div class="right">
             <a th:text="${question.createdBy.id}" th:href="@{'/users/' + ${question.createdBy.id}}">USER</a>
-            <span th:text="${question.createdAt}">POSTED_AT</span>
+            <span th:text="${#dates.format(question.createdAt, 'yyyy-MM-dd HH:mm')}">POSTED_AT</span>
           </div>
         </div>
       </div>
@@ -40,7 +40,7 @@
         <div class="meta">
           <div class="right">
             <a th:text="${answer.createdBy.id}" th:href="@{'/users/' + ${answer.createdBy.id}}">USER</a>
-            <span th:text="${answer.createdAt}">POSTED_AT</span>
+            <span th:text="${#dates.format(answer.createdAt, 'yyyy-MM-dd HH:mm')}">POSTED_AT</span>
           </div>
         </div>
       </div>

@@ -6,9 +6,9 @@ import info.keik.tiple.model.User;
 import info.keik.tiple.service.QuestionService;
 import info.keik.tiple.service.TagService;
 
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -31,10 +31,12 @@ public class QuestionServiceMock implements QuestionService {
 				setTags(Arrays.asList(ts));
 				setCreatedBy(new User() {
 					{
-						setId("alice");;
-						setName("Alice");;
+						setId("alice");
+						setName("Alice");
 					}
 				});
+				setCreatedAt(new Date());
+				setAnswersCount(2);
 			}
 		});
 		questions.add(new Question("Et case malorum", "Et case malorum omittantur has, eos eu nibh minim vitae, nobis oblique pri id. Et mea veri possit molestiae, nec ea vidisse tritani prodesset, est dictas torquatos necessitatibus no. Quo ne pericula salutatus, nec eu putent convenire instructior. Cum te diam postulant, qui iisque prompta ex. Numquam abhorreant his cu, vis ut vide delicatissimi. No vis vidit facete impedit. Reque maiestatis eum ea, ut consul graeco sit.") {
@@ -44,10 +46,12 @@ public class QuestionServiceMock implements QuestionService {
 				setTags(Arrays.asList(ts));
 				setCreatedBy(new User() {
 					{
-						setId("alice");;
-						setName("Alice");;
+						setId("alice");
+						setName("Alice");
 					}
 				});
+				setCreatedAt(new Date());
+				setAnswersCount(1);
 			}
 		});
 		questions.add(new Question("Et case malorum omittantur", "Et case malorum omittantur has, eos eu nibh minim vitae, nobis oblique pri id. Et mea veri possit molestiae, nec ea vidisse tritani prodesset, est dictas torquatos necessitatibus no. Quo ne pericula salutatus, nec eu putent convenire instructior. Cum te diam postulant, qui iisque prompta ex. Numquam abhorreant his cu, vis ut vide delicatissimi. No vis vidit facete impedit. Reque maiestatis eum ea, ut consul graeco sit.") {
@@ -57,10 +61,12 @@ public class QuestionServiceMock implements QuestionService {
 				setTags(Arrays.asList(ts));
 				setCreatedBy(new User() {
 					{
-						setId("alice");;
-						setName("Alice");;
+						setId("alice");
+						setName("Alice");
 					}
 				});
+				setCreatedAt(new Date());
+				setAnswersCount(0);
 			}
 		});
 	}
@@ -88,7 +94,7 @@ public class QuestionServiceMock implements QuestionService {
 	@Override
 	public Question add(Question question) {
 		question.setId(questions.size());
-		question.setCreatedAt(LocalDateTime.now());
+		question.setCreatedAt(new Date());
 		questions.add(question);
 
 		List<Tag> tags = tagService.getAll();

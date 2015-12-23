@@ -17,17 +17,17 @@
       <ul class="questions">
         <li class="question" th:each="question : ${questions}">
           <div class="status answered">x</div>
-          <div class="ans-counts">1</div>
+          <div class="ans-counts" th:text="${question.answersCount}">1</div>
           <div class="summary">
             <h3><a href="question.html" th:href="@{'/q/' + ${question.id}}" th:text="${question.title}">TITLE</a></h3>
             <div class="meta">
-              <ul class="tags">
-                <li><a href="#">javascript</a></li>
+              <ul class="tags" th:remove="all-but-first">
+                <li th:each="tag : ${question.tags}"><a href="#" th:href="@{'/q?tag=' + ${tag.name}}" th:text="${tag.name}">javascript</a></li>
                 <li><a href="#">node</a></li>
               </ul>
               <div class="right">
-                <span>USER</span>
-                <span>POSTED_AT</span>
+                <a th:text="${question.createdBy.id}" th:href="@{'/users/' + ${question.createdBy.id}}">USER</a>
+                <span th:text="${#dates.format(question.createdAt, 'yyyy-MM-dd HH:mm')}">POSTED_AT</span>
               </div>
             </div>
           </div>

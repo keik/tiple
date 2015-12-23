@@ -1,6 +1,6 @@
 package info.keik.tiple.model;
 
-import java.time.LocalDateTime;
+import java.util.Date;
 import java.util.List;
 
 import lombok.Data;
@@ -12,9 +12,10 @@ public class Question {
 	private String title;
 	private String content;
 	private List<Tag> tags;
+	private Integer answersCount;
 	private User createdBy;
-	private LocalDateTime createdAt;
-	private LocalDateTime updatedAt;
+	private Date createdAt;
+	private Date updatedAt;
 
 	public Question() {
 	}

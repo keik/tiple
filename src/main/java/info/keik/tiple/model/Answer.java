@@ -1,6 +1,6 @@
 package info.keik.tiple.model;
 
-import java.time.LocalDateTime;
+import java.util.Date;
 
 import lombok.Data;
 
@@ -10,8 +10,8 @@ public class Answer {
 	private Integer refQuestionId;
 	private String content;
 	private User createdBy;
-	private LocalDateTime createdAt;
-	private LocalDateTime updatedAt;
+	private Date createdAt;
+	private Date updatedAt;
 
 	public Answer() {
 	}

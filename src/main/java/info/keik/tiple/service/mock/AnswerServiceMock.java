@@ -1,18 +1,24 @@
 package info.keik.tiple.service.mock;
 
 import info.keik.tiple.model.Answer;
+import info.keik.tiple.model.Question;
 import info.keik.tiple.model.User;
 import info.keik.tiple.service.AnswerService;
+import info.keik.tiple.service.QuestionService;
 
-import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
 public class AnswerServiceMock implements AnswerService {
+
+	@Autowired
+	QuestionService questionService;
 
 	public List<Answer> answers = new ArrayList<>();
 
@@ -24,11 +30,10 @@ public class AnswerServiceMock implements AnswerService {
 				setCreatedBy(new User() {
 					{
 						setId("alice");
-						;
 						setName("Alice");
-						;
 					}
 				});
+				setCreatedAt(new Date());
 			}
 		});
 		answers.add(new Answer() {
@@ -38,11 +43,10 @@ public class AnswerServiceMock implements AnswerService {
 				setCreatedBy(new User() {
 					{
 						setId("alice");
-						;
 						setName("Alice");
-						;
 					}
 				});
+				setCreatedAt(new Date());
 			}
 		});
 		answers.add(new Answer() {
@@ -52,11 +56,10 @@ public class AnswerServiceMock implements AnswerService {
 				setCreatedBy(new User() {
 					{
 						setId("alice");
-						;
 						setName("Alice");
-						;
 					}
 				});
+				setCreatedAt(new Date());
 			}
 		});
 	}
@@ -70,8 +73,10 @@ public class AnswerServiceMock implements AnswerService {
 
 	@Override
 	public void add(Answer answer) {
-		answer.setCreatedAt(LocalDateTime.now());
+		answer.setCreatedAt(new Date());
 		answers.add(answer);
+		Question q = questionService.get(answer.getRefQuestionId());
+		q.setAnswersCount(q.getAnswersCount() + 1);
 	}
 
 }
