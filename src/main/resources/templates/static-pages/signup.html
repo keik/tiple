@@ -12,23 +12,13 @@
       <!--#include virtual="fragments/header.html" -->
     </header>
 
-    <form class="centered-box" action="index.html" th:action="@{/users}" method="post">
+    <form class="panel form form-centered" action="index.html" th:action="@{/users}" method="post">
       <section>
-        <h3>Sign up</h3>
-        <ul>
-          <li>
-            <label for="id">ID</label><input id="id" type="text" name="id" placeholder="ID" />
-          </li>
-          <li>
-            <label for="email">Email</label><input id="email" type="text" name="email" placeholder="Email" />
-          </li>
-          <li>
-            <label for="password">Password</label><input id="password" type="password" name="password" placeholder="password" />
-          </li>
-          <li>
-            <label></label><input class="btn" type="submit" value="Sign up" />
-          </li>
-        </ul>
+        <h2>Sign up</h2>
+        <label for="id">ID</label><input id="id" type="text" name="id" placeholder="ID" />
+        <label for="email">Email</label><input id="email" type="text" name="email" placeholder="Email" />
+        <label for="password">Password</label><input id="password" type="password" name="password" placeholder="Password" />
+        <input class="btn btn-primary" type="submit" value="Sign up" />
       </section>
     </form>
 

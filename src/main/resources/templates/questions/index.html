@@ -16,8 +16,17 @@
 
       <ul class="questions">
         <li class="question" th:each="question : ${questions}">
-          <div class="status answered">x</div>
-          <div class="ans-counts" th:text="${question.answersCount}">1</div>
+          <div class="status answered">
+            <div class="middle-box">
+              x
+            </div>
+          </div>
+          <div class="ans-counts">
+            <div class="middle-box">
+              <span th:text="${question.answersCount}">1</span><br>
+              answers
+            </div>
+          </div>
           <div class="summary">
             <h3><a href="question.html" th:href="@{'/q/' + ${question.id}}" th:text="${question.title}">TITLE</a></h3>
             <div class="meta">
@@ -26,8 +35,8 @@
                 <li><a href="#">node</a></li>
               </ul>
               <div class="right">
-                <a th:text="${question.createdBy.id}" th:href="@{'/users/' + ${question.createdBy.id}}">USER</a>
                 <span th:text="${#dates.format(question.createdAt, 'yyyy-MM-dd HH:mm')}">POSTED_AT</span>
+                <a th:text="${question.createdBy.id}" th:href="@{'/users/' + ${question.createdBy.id}}">USER</a>
               </div>
             </div>
           </div>

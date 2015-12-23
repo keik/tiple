@@ -1,9 +1,23 @@
 .btn {
   display: inline-block;
   padding: 4px 8px;
-  height: 32px;
-  background-color: #ccc;
+  background-color: #f0f0f0;
   border: none;
   border-radius: 4px;
   box-sizing: border-box;
+  box-shadow: 0 2px 3px -1px #aaa;
+  border: 1px solid transparent;
+
+  &.btn-default {
+    border-color: #ccc;
+  }
+
+  &.btn-primary {
+    color: #fff;
+    background-color: #0072FF;
+  }
+  &.btn-danger {
+    color: #fff;
+    background-color: #FF0000;
+  }
 }

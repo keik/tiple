@@ -14,22 +14,11 @@
 
       <h2>Ask a new question</h2>
 
-      <form th:action="@{/q}" method="post">
-        <ul>
-          <li>
-            <label for="title">Title</label>
-            <input id="title" type="text" name="title"/>
-          </li>
-          <li>
-            <label for="content">Content</label>
-            <textarea id="content" name="content"></textarea>
-          </li>
-          <li>
-            <label for="tags">Tags</label>
-            <input id="tags" type="text" name="tags"/>
-          </li>
-        </ul>
-        <button>Ask</button>
+      <form class="form" th:action="@{/q}" method="post">
+        <label for="title">Title</label><input id="title" type="text" name="title"/>
+        <label for="content">Content</label><textarea id="content" name="content"></textarea>
+        <label for="tags">Tags</label><input id="tags" type="text" name="tags"/>
+        <input class="btn btn-primary" type="submit" value="Ask new question" />
       </form>
 
     </div><!--/* main */-->

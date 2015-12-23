@@ -9,8 +9,8 @@
     </form>
   </div>
   <div class="auth-menus" sec:authorize="!hasAnyRole('ROLE_USER')">
-    <a class="btn" href="signup.html" th:href="@{/signup}">Sign up</a>
-    <a class="btn" href="login.html" th:href="@{/login}">Log in</a>
+    <a class="btn btn-primary" href="signup.html" th:href="@{/signup}">Sign up</a>
+    <a class="btn btn-default" href="login.html" th:href="@{/login}">Log in</a>
   </div>
 
 </header>

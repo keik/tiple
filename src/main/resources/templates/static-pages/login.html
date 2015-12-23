@@ -8,12 +8,15 @@
   </head>
   <body>
 
-    <h1>log in</h1>
+    <header th:replace="fragments/header.html">
+      <!--#include virtual="fragments/header.html" -->
+    </header>
 
-    <form th:action="@{/session}" action="/" method="post">
+    <form class="panel form form-centered" th:action="@{/session}" action="/" method="post">
+      <h2>log in</h2>
       <label>ID: <input type="text" name="id" /></label>
       <label>Password: <input type="text" name="password" /></label>
-      <button>Log in</button>
+      <input class="btn btn-default" type="submit" value="Log in" />
     </form>
 
     <script src="../static/bundle.js" th:src="@{/bundle.js}"></script>

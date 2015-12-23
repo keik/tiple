@@ -95,6 +95,7 @@ public class QuestionServiceMock implements QuestionService {
 	public Question add(Question question) {
 		question.setId(questions.size());
 		question.setCreatedAt(new Date());
+		question.setAnswersCount(0);
 		questions.add(question);
 
 		List<Tag> tags = tagService.getAll();

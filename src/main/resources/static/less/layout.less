@@ -1,25 +1,29 @@
 html {
+  height: 100%;
   font-size: 12px;
+  min-width: 800px;
 }
 
 body {
+  min-height: 100%;
+  color: #444;
   position: relative;
-  padding-bottom: @height-of-footer;
   margin: 0;
 }
 
 header {
   height: @height-of-header;
-  background-color: #444;
+  background-color: #fafafa;
+  box-shadow: 0 2px 3px -1px #aaa;
+
   h1 {
     display: inline-block;
     margin: 0 12px;
-    color: #eaeaea;
     font-size: 24px;
     line-height: @height-of-header;
 
     a {
-      color: #eaeaea;
+      color: #444;
       text-decoration: none;
     }
   }
@@ -40,7 +44,7 @@ header {
 
 .main {
   margin-right: @width-of-side;
-  padding: 12px;
+  padding: 12px 12px @height-of-footer 12px;
 }
 
 .side {
@@ -56,9 +60,8 @@ footer {
   padding: 4px 0;
   height: @height-of-footer;
   width: 100%;
-  color: #eaeaea;
   text-align: center;
   line-height: @height-of-footer;
-
-  background-color: #444;
+  background-color: #fafafa;
+  box-shadow: 0 -1px 3px -1px #aaa;
 }
