@@ -1,33 +1,40 @@
 package info.keik.tiple.service.impl;
 
 import info.keik.tiple.model.Question;
+import info.keik.tiple.model.Tag;
+import info.keik.tiple.repository.QuestionRepository;
 import info.keik.tiple.service.QuestionService;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
 public class QuestionServiceImpl implements QuestionService {
 
+	@Autowired
+	QuestionRepository questionRepository;
+	
 	@Override
 	public List<Question> getAll() {
-		throw new RuntimeException("Not implemented");
+		return questionRepository.getAll();
 	}
 
 	@Override
 	public Question get(Integer id) {
-		throw new RuntimeException("Not implemented");
+		return questionRepository.get(id);
 	}
 
 	@Override
-	public List<Question> getByTag(String tagName) {
-		throw new RuntimeException("Not implemented");
+	public List<Question> getByTag(Tag tag) {
+		return questionRepository.getByTag(tag);
 	}
 
 	@Override
 	public Question add(Question question) {
-		throw new RuntimeException("Not implemented");
+		questionRepository.add(question);
+		return question;
 	}
 
 }

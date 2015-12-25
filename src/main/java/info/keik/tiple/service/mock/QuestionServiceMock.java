@@ -84,10 +84,10 @@ public class QuestionServiceMock implements QuestionService {
 	}
 
 	@Override
-	public List<Question> getByTag(String tagName) {
+	public List<Question> getByTag(Tag tag) {
 		return questions.stream()
 				.filter(q -> q.getTags().stream()
-						.anyMatch(t -> t.getName().equals(tagName)))
+						.anyMatch(t -> t.getName().equals(tag.getName())))
 				.collect(Collectors.toList());
 	}
 

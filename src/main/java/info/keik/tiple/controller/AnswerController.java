@@ -31,7 +31,7 @@ public class AnswerController {
 		}
 
 		answer.setRefQuestionId(questionId);
-		User user = userService.getById(principal.getName());
+		User user = userService.get(principal.getName());
 		answer.setCreatedBy(user);
 		answerService.add(answer);
 		return new ResponseEntity<>(HttpStatus.CREATED);

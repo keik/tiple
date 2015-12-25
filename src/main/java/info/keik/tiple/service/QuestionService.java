@@ -1,6 +1,7 @@
 package info.keik.tiple.service;
 
 import info.keik.tiple.model.Question;
+import info.keik.tiple.model.Tag;
 
 import java.util.List;
 
@@ -27,7 +28,7 @@ public interface QuestionService {
 	 * @param tag name
 	 * @return questions that specified width tag name
 	 */
-	List<Question> getByTag(String tagName);
+	List<Question> getByTag(Tag tag);
 
 	/**
 	 * Add a new question.

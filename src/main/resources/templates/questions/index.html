@@ -35,7 +35,6 @@
                 <li><a href="#">node</a></li>
               </ul>
               <div class="right">
-                <span th:text="${#dates.format(question.createdAt, 'yyyy-MM-dd HH:mm')}">POSTED_AT</span>
                 <a th:text="${question.createdBy.id}" th:href="@{'/users/' + ${question.createdBy.id}}">USER</a>
               </div>
             </div>

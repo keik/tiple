@@ -38,7 +38,7 @@ public class UserServiceMock implements UserService {
 	}
 
 	@Override
-	public User getById(String id) {
+	public User get(String id) {
 		return users.stream()
 				.filter(u -> u.getId().equals(id))
 				.findAny().get();

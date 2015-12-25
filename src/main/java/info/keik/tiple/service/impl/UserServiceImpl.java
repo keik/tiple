@@ -17,17 +17,17 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public List<User> getAll() {
-		throw new RuntimeException("Not implemented");
+		return userRepository.getAll();
 	}
 
 	@Override
-	public User getById(String id) {
-		return userRepository.getById(id);
+	public User get(String id) {
+		return userRepository.get(id);
 	}
 
 	@Override
 	public void add(User user) {
-		throw new RuntimeException("Not implemented");
+		userRepository.add(user);
 	}
 
 }

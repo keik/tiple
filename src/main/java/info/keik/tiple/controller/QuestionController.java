@@ -2,6 +2,7 @@ package info.keik.tiple.controller;
 
 import info.keik.tiple.model.Answer;
 import info.keik.tiple.model.Question;
+import info.keik.tiple.model.Tag;
 import info.keik.tiple.model.User;
 import info.keik.tiple.service.AnswerService;
 import info.keik.tiple.service.QuestionService;
@@ -35,7 +36,7 @@ public class QuestionController {
 	public String index(Model model, @RequestParam(value = "tag", required = false) String tagName) {
 		List<Question> questions = tagName == null
 				? questionService.getAll()
-				: questionService.getByTag(tagName);
+				: questionService.getByTag(new Tag(tagName));
 		model.addAttribute("questions", questions);
 		return "questions/index.html";
 	}
@@ -60,7 +61,7 @@ public class QuestionController {
 			throw new RuntimeException("authentication required.");
 		}
 
-		User user = userService.getById(principal.getName());
+		User user = userService.get(principal.getName());
 		question.setCreatedBy(user);
 		questionService.add(question);
 		return "redirect:/q";

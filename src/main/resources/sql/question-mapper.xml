@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="info.keik.tiple.repository.QuestionRepository">
+
+  <select id="getAll" resultMap="getAll-map">
+    SELECT question.id as qid, question.title, user.id as uid, user.name, tag.name as tname
+    FROM question
+    JOIN user ON question.created_by = user.id
+    JOIN question_tag ON question.id = question_tag.question_id
+    JOIN tag ON question_tag.tag_id = tag.id
+  </select>
+  <resultMap id="getAll-map" type="info.keik.tiple.model.Question">
+    <id property="id" column="qid" />
+    <result property="title" column="title" />
+    <result property="content" column="content" />
+    <result property="createdBy.id" column="uid" />
+    <result property="createdAt" column="created_at" />
+    <collection property="tags" ofType="info.keik.tiple.model.Tag">
+      <result property="name" column="tname" />
+    </collection>
+  </resultMap>
+
+  <select id="get" resultType="info.keik.tiple.model.Question">
+    SELECT * FROM question WHERE id = #{id}
+  </select>
+</mapper>

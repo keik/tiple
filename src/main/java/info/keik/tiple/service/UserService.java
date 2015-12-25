@@ -19,7 +19,7 @@ public interface UserService {
 	 * @param user ID
 	 * @return a user that specified with user ID
 	 */
-	User getById(String id);
+	User get(String id);
 
 	/**
 	 * Add a user.

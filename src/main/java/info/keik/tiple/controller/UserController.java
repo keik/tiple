@@ -30,7 +30,7 @@ public class UserController {
 	@ResponseBody
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
 	public User show(@PathVariable("id") String id) {
-		return userService.getById(id);
+		return userService.get(id);
 	}
 
 	@ResponseBody
