@@ -1,15 +1,25 @@
 .btn {
   display: inline-block;
   padding: 4px 8px;
-  background-color: #f0f0f0;
   border: none;
   border-radius: 4px;
   box-sizing: border-box;
   box-shadow: 0 2px 3px -1px #aaa;
   border: 1px solid transparent;
+  cursor: pointer;
+
+  &:hover {
+    opacity: 0.8;
+  }
 
   &.btn-default {
     border-color: #ccc;
+    background-color: #f0f0f0;
+  }
+
+  &.btn-white {
+    border-color: #ccc;
+    background-color: #fff;
   }
 
   &.btn-primary {

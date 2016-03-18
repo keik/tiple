@@ -18,24 +18,26 @@
       </div>
     </header>
 
-    <div class="main">
+    <div class="content">
+      <div class="main">
 
-      <h2>Ask a new question</h2>
+        <h2>Ask a new question</h2>
 
-      <form class="form" th:action="@{/q}" method="post">
-        <label for="title">Title</label><input id="title" type="text" name="title"/>
-        <label for="content">Content</label><textarea id="content" name="content"></textarea>
-        <label for="tags">Tags</label><input id="tags" type="text" name="tags"/>
-        <input class="btn btn-primary" type="submit" value="Ask new question" />
-      </form>
+        <form class="form" th:action="@{/q}" method="post">
+          <label for="title">Title</label><input id="title" type="text" name="title"/>
+          <label for="content">Content</label><textarea id="content" name="content"></textarea>
+          <label for="tags">Tags</label><input id="tags" type="text" name="tags"/>
+          <input class="btn btn-primary" type="submit" value="Ask new question" />
+        </form>
 
-    </div><!--/* main */-->
+      </div><!--/* main */-->
 
-    <div class="side">
-      <h2>Recently updated</h2>
-      <ul>
-        <li th:each="q : ${recentryQuestions}"><a th:href="'/q/' + ${q.id}" th:text="${q.title}"></a></li>
-      </ul>
+      <div class="side">
+        <h2>Recently updated</h2>
+        <ul>
+          <li th:each="q : ${recentryQuestions}"><a th:href="'/q/' + ${q.id}" th:text="${q.title}"></a></li>
+        </ul>
+      </div>
     </div>
 
     <div th:replace="fragments/footer.html"></div>

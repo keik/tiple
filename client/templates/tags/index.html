@@ -18,18 +18,20 @@
       </div>
     </header>
 
-    <div class="main">
-      <ul class="tags">
-        <li class="tag" th:each="key : ${tagsWithTaggedNumbers.keySet()}"><a href="../questions/index.html" th:href="@{'/q?tag=' + ${key.name}}" th:text="${key.name}">TAG1</a> x <span th:remove="tag" th:text="${tagsWithTaggedNumbers.get(key)}">1</span></li>
-        <li class="tag"><a href="../questions/index.html">TAG2</a> x <span th:remove="tag" th:text="${tagsWithTaggedNumbers.get(key)}">1</span></li>
-      </ul>
-    </div><!--/* main */-->
+    <div class="content">
+      <div class="main">
+        <ul class="tags">
+          <li class="tag" th:each="key : ${tagsWithTaggedNumbers.keySet()}"><a href="../questions/index.html" th:href="@{'/q?tag=' + ${key.name}}" th:text="${key.name}">TAG1</a> x <span th:remove="tag" th:text="${tagsWithTaggedNumbers.get(key)}">1</span></li>
+          <li class="tag"><a href="../questions/index.html">TAG2</a> x <span th:remove="tag" th:text="${tagsWithTaggedNumbers.get(key)}">1</span></li>
+        </ul>
+      </div><!--/* main */-->
 
-    <div class="side">
-      <h2>Recently updated</h2>
-      <ul>
-        <li th:each="q : ${recentryQuestions}"><a th:href="'/q/' + ${q.id}" th:text="${q.title}"></a></li>
-      </ul>
+      <div class="side">
+        <h2>Recently updated</h2>
+        <ul>
+          <li th:each="q : ${recentryQuestions}"><a th:href="'/q/' + ${q.id}" th:text="${q.title}"></a></li>
+        </ul>
+      </div>
     </div>
 
     <div th:replace="fragments/footer.html"></div>

@@ -13,7 +13,7 @@ body {
 
 header {
   height: @height-of-header;
-  background-color: #fafafa;
+  background-color: #f0f0f0;
   box-shadow: 0 2px 3px -1px #aaa;
 
   h1 {
@@ -42,15 +42,18 @@ header {
   }
 }
 
+.content {
+  width: @width-of-content;
+  margin: 0 auto;
+}
+
 .main {
-  margin-right: @width-of-side;
-  padding: 12px 12px (@height-of-footer + 12px) 12px;
+  float: left;
+  width: @width-of-content - @width-of-side - 20px;
 }
 
 .side {
-  position: fixed;
-  top: @height-of-header;
-  right: 0;
+  float: right;
   width: @width-of-side;
 }
 
