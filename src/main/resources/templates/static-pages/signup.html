@@ -9,7 +9,13 @@
   <body>
 
     <header th:replace="fragments/header.html">
-      <!--#include virtual="fragments/header.html" -->
+      <h1><a href="home.html" th:href="@{/}">Tiple</a></h1>
+      <div class="auth-menus">
+        <span sec:authentication="name" th:remove="tag">USER_NAME</span>
+        <form action="/" th:action="@{/logout}" method="post">
+          <button class="btn">Log out</button>
+        </form>
+      </div>
     </header>
 
     <form class="panel form form-centered" action="index.html" th:action="@{/users}" method="post">

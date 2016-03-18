@@ -11,7 +11,7 @@ DIST_CSS         = $(STATIC)/main.css
 DIST_JS	= $(STATIC)/bundle.js
 
 watch:
-	@make -j 3 watch-less watch-js run-dev-server
+	@make -j 2 watch-less watch-js
 
 run-server:
 	@mvn spring-boot:run -Drun.jvmArguments="-Dspring.profiles.active=prod"
@@ -20,9 +20,14 @@ run-dev-server:
 	@mvn spring-boot:run -Drun.jvmArguments="-Dspring.profiles.active=dev"
 
 watch-js: node_modules
-	@node_modules/.bin/watchify $(MAIN_JS) -d -t [ babelify --presets es2015 ] -o $(DIST_JS) -v
+	@node_modules/.bin/watchify $(MAIN_JS) \
+		-d \
+		-v \
+		-t [ babelify --presets es2015 ] \
+		-o $(DIST_JS)
 
-watch-less: $(DIST_CSS)
+watch-less:
+	@node_modules/.bin/lessc $(MAIN_LESS) $(DIST_CSS)
 	@node_modules/.bin/watchf $(LESSES) -c 'make $(DIST_CSS)'
 
 target: clean

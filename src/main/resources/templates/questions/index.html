@@ -4,11 +4,19 @@
     <meta charset="utf-8" />
     <title th:text="'All Questions | ' + #{app.name}"></title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <link rel="stylesheet" href="../static/main.css" th:href="@{/main.css}" type="text/css" />
+    <link rel="stylesheet" href="../../static/main.css" th:href="@{/main.css}" type="text/css" />
   </head>
   <body>
 
-    <div th:replace="fragments/header.html"></div>
+    <header th:replace="fragments/header.html">
+      <h1><a href="../" th:href="@{/}">Tiple</a></h1>
+      <div class="auth-menus">
+        <span sec:authentication="name" th:remove="tag">USER_NAME</span>
+        <form action="/" th:action="@{/logout}" method="post">
+          <button class="btn">Log out</button>
+        </form>
+      </div>
+    </header>
 
     <div class="main">
 
@@ -28,11 +36,11 @@
             </div>
           </div>
           <div class="summary">
-            <h3><a href="question.html" th:href="@{'/q/' + ${question.id}}" th:text="${question.title}">TITLE</a></h3>
+            <h3><a href="show.html" th:href="@{'/q/' + ${question.id}}" th:text="${question.title}">TITLE</a></h3>
             <div class="meta">
               <ul class="tags" th:remove="all-but-first">
-                <li th:each="tag : ${question.tags}"><a href="#" th:href="@{'/q?tag=' + ${tag.name}}" th:text="${tag.name}">javascript</a></li>
-                <li><a href="#">node</a></li>
+                <li th:each="tag : ${question.tags}"><a href="index.html" th:href="@{'/q?tag=' + ${tag.name}}" th:text="${tag.name}">TAG1</a></li>
+                <li><a href="index.html">TAG2</a></li>
               </ul>
               <div class="right">
                 <a th:text="${question.createdBy.id}" th:href="@{'/users/' + ${question.createdBy.id}}">USER</a>
@@ -43,11 +51,18 @@
         </li>
       </ul>
 
-      <nav class="pagenations">
+      <nav class="pagination">
         <ul>
+          <li><a href="#">Previous</a></li>
           <li><a href="#">1</a></li>
           <li><a href="#">2</a></li>
           <li><a href="#">3</a></li>
+          <li><a href="#">4</a></li>
+          <li><a href="#">5</a></li>
+          <li><span>...</span></li>
+          <li><a href="#">9</a></li>
+          <li><a href="#">10</a></li>
+          <li><a href="#">Next</a></li>
         </ul>
       </nav>
 
@@ -62,6 +77,6 @@
 
     <div th:replace="fragments/footer.html"></div>
 
-    <script src="../static/bundle.js" th:src="@{/bundle.js}"></script>
+    <script src="../../static/bundle.js" th:src="@{/bundle.js}"></script>
   </body>
 </html>
