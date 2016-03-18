@@ -3,8 +3,8 @@ INSERT INTO user (id, name, email, password) VALUES ("bob", "Bob", "bob@example.
 INSERT INTO user (id, name, email, password) VALUES ("carol", "Carol", "carol@example.net", "carol");
 
 INSERT INTO question (title, content, created_by) VALUES ("What is JavaScript?", "some contents.", "alice");
-INSERT INTO question (title, content, created_by) VALUES ("What is Node?",       "some contents.", "alice");
-INSERT INTO question (title, content, created_by) VALUES ("What is Java?",       "some contents.", "bob");
+INSERT INTO question (title, content, created_by) VALUES ("What is Node?",       "some contents.", "bob");
+INSERT INTO question (title, content, created_by) VALUES ("What is Java?",       "some contents.", "carol");
 
 INSERT INTO tag (name) VALUES ("javascript");
 INSERT INTO tag (name) VALUES ("node");

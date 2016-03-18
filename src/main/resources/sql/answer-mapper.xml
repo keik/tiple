@@ -3,16 +3,16 @@
 <mapper namespace="info.keik.tiple.repository.AnswerRepository">
 
   <select id="getByQuestionsId" resultMap="getByQuestionId-map">
-    SELECT answer.id, answer.content, user.id as uid, answer.created_at from answer
+    SELECT answer.content, answer.created_by, answer.created_at
+    FROM answer
     JOIN question ON answer.answer_for = question.id
     JOIN user ON answer.created_by = user.id
     WHERE question.id = #{qid}
   </select>
   <resultMap id="getByQuestionId-map" type="info.keik.tiple.model.Answer">
-    <id property="id" column="answer.id" />
-    <result property="content" column="answer.content" />
-    <result property="createdBy.id" column="uid" />
-    <result property="createdAt" column="answer.created_at" />
+    <result property="content" column="content" />
+    <result property="createdBy.id" column="created_by" />
+    <result property="createdAt" column="created_at" />
   </resultMap>
 
   <!--

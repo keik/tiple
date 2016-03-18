@@ -6,6 +6,7 @@ spring:
     mode: LEGACYHTML5
 
   datasource:
+    platform: mysql
     url: jdbc:mysql://localhost/tiple
     username: tiple
     password: tiple

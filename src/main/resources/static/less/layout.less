@@ -44,7 +44,7 @@ header {
 
 .main {
   margin-right: @width-of-side;
-  padding: 12px 12px @height-of-footer 12px;
+  padding: 12px 12px (@height-of-footer + 12px) 12px;
 }
 
 .side {
@@ -64,4 +64,5 @@ footer {
   line-height: @height-of-footer;
   background-color: #fafafa;
   box-shadow: 0 -1px 3px -1px #aaa;
+  box-sizing: border-box;
 }

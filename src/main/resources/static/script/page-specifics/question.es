@@ -11,7 +11,9 @@ let handlers = {
       credentials: 'include'}).then(res => {
         return res.text();
       }).then(body => {
-        console.log(body);
+        var tmpEl = document.createElement('div');
+        tmpEl.innerHTML = `<div class="panel panel-error">body</panel>`;
+        form.appendChild(tmpEl.childNodes[0]);
       });
   }
 };

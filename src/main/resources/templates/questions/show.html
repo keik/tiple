@@ -47,9 +47,12 @@
 
       <h2>Your answer</h2>
       <form id="ask-form" class="form" th:action="@{'/q/' + ${question.id} + '/answers'}" th:method="post">
-        <textarea name="content"></textarea>
+        <div sec:authorize="hasAnyRole('ROLE_USER')">
+          <textarea name="content"></textarea>
+        </div>
         <input class="btn btn-primary" type="submit" value="Post your answer" />
       </form>
+
 
     </div><!--/* main */-->
 

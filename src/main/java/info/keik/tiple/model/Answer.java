@@ -7,7 +7,6 @@ import lombok.Data;
 @Data
 public class Answer {
 
-	private Integer refQuestionId;
 	private String content;
 	private User createdBy;
 	private Date createdAt;

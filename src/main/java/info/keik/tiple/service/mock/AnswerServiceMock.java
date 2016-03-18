@@ -1,7 +1,6 @@
 package info.keik.tiple.service.mock;
 
 import info.keik.tiple.model.Answer;
-import info.keik.tiple.model.Question;
 import info.keik.tiple.model.User;
 import info.keik.tiple.service.AnswerService;
 import info.keik.tiple.service.QuestionService;
@@ -25,7 +24,6 @@ public class AnswerServiceMock implements AnswerService {
 	{
 		answers.add(new Answer() {
 			{
-				setRefQuestionId(0);
 				setContent("Ad quem hinc patrioque pri, in agam homero semper vel, nibh facer libris ne ius. An usu mollis iuvaret, eum veritus consectetuer id, ei latine feugait duo. Et vero volutpat nec. Id tale interesset eos, at pri impetus dolores antiopam. At vis erat timeam eligendi, id vis omnesque tincidunt efficiendi.");
 				setCreatedBy(new User() {
 					{
@@ -38,7 +36,6 @@ public class AnswerServiceMock implements AnswerService {
 		});
 		answers.add(new Answer() {
 			{
-				setRefQuestionId(0);
 				setContent("Et usu graece omittam voluptua, has ei viderer fastidii. Vix omnis iudico eu. Usu ad mandamus expetendis, ad eam sumo clita evertitur. Id his latine tacimates.");
 				setCreatedBy(new User() {
 					{
@@ -51,7 +48,6 @@ public class AnswerServiceMock implements AnswerService {
 		});
 		answers.add(new Answer() {
 			{
-				setRefQuestionId(1);
 				setContent("Usu populo sententiae ad. Vivendo detracto principes mei te, fabulas contentiones ne his. Eu repudiare vituperatoribus duo, ne his dicunt singulis, altera viderer ei nam. Usu timeam sensibus at, corpora suscipit ex usu. Ea congue aliquando vel, agam viderer cu eum, mel eirmod atomorum cu.");
 				setCreatedBy(new User() {
 					{
@@ -67,7 +63,6 @@ public class AnswerServiceMock implements AnswerService {
 	@Override
 	public List<Answer> getByQuestionsId(Integer id) {
 		return answers.stream()
-				.filter(a -> id == a.getRefQuestionId())
 				.collect(Collectors.toList());
 	}
 
@@ -75,8 +70,6 @@ public class AnswerServiceMock implements AnswerService {
 	public void add(Answer answer) {
 		answer.setCreatedAt(new Date());
 		answers.add(answer);
-		Question q = questionService.get(answer.getRefQuestionId());
-		q.setAnswersCount(q.getAnswersCount() + 1);
 	}
 
 }
