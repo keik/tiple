@@ -1,0 +1,68 @@
+html {
+  height: 100%;
+  font-size: 12px;
+  min-width: 800px;
+}
+
+body {
+  min-height: 100%;
+  color: #444;
+  position: relative;
+  margin: 0;
+}
+
+header {
+  height: @height-of-header;
+  background-color: #fafafa;
+  box-shadow: 0 2px 3px -1px #aaa;
+
+  h1 {
+    display: inline-block;
+    margin: 0 12px;
+    font-size: 24px;
+    line-height: @height-of-header;
+
+    a {
+      color: #444;
+      text-decoration: none;
+    }
+  }
+
+  .auth-menus {
+    height: @height-of-header - 8px * 2;
+    margin-top: 8px;
+    margin-right: 8px;
+    float: right;
+    color: #ccc;
+
+    form {
+      display: inline-block;
+      margin-left: 12px;
+    }
+  }
+}
+
+.main {
+  margin-right: @width-of-side;
+  padding: 12px 12px (@height-of-footer + 12px) 12px;
+}
+
+.side {
+  position: fixed;
+  top: @height-of-header;
+  right: 0;
+  width: @width-of-side;
+}
+
+footer {
+  position: absolute;
+  bottom: 0;
+  padding: 4px 0;
+  height: @height-of-footer;
+  width: 100%;
+  text-align: center;
+  line-height: @height-of-footer;
+  background-color: #fafafa;
+  box-shadow: 0 -1px 3px -1px #aaa;
+  box-sizing: border-box;
+}

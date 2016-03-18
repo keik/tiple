@@ -1,0 +1,239 @@
+html {
+  font-family: sans-serif;
+}
+a {
+  text-decoration: none;
+}
+html {
+  height: 100%;
+  font-size: 12px;
+  min-width: 800px;
+}
+body {
+  min-height: 100%;
+  color: #444;
+  position: relative;
+  margin: 0;
+}
+header {
+  height: 48px;
+  background-color: #fafafa;
+  box-shadow: 0 2px 3px -1px #aaa;
+}
+header h1 {
+  display: inline-block;
+  margin: 0 12px;
+  font-size: 24px;
+  line-height: 48px;
+}
+header h1 a {
+  color: #444;
+  text-decoration: none;
+}
+header .auth-menus {
+  height: 32px;
+  margin-top: 8px;
+  margin-right: 8px;
+  float: right;
+  color: #ccc;
+}
+header .auth-menus form {
+  display: inline-block;
+  margin-left: 12px;
+}
+.main {
+  margin-right: 280px;
+  padding: 12px 12px 44px 12px;
+}
+.side {
+  position: fixed;
+  top: 48px;
+  right: 0;
+  width: 280px;
+}
+footer {
+  position: absolute;
+  bottom: 0;
+  padding: 4px 0;
+  height: 32px;
+  width: 100%;
+  text-align: center;
+  line-height: 32px;
+  background-color: #fafafa;
+  box-shadow: 0 -1px 3px -1px #aaa;
+  box-sizing: border-box;
+}
+.btn {
+  display: inline-block;
+  padding: 4px 8px;
+  background-color: #f0f0f0;
+  border: none;
+  border-radius: 4px;
+  box-sizing: border-box;
+  box-shadow: 0 2px 3px -1px #aaa;
+  border: 1px solid transparent;
+}
+.btn.btn-default {
+  border-color: #ccc;
+}
+.btn.btn-primary {
+  color: #fff;
+  background-color: #0072FF;
+}
+.btn.btn-danger {
+  color: #fff;
+  background-color: #FF0000;
+}
+.tags {
+  height: 24px;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.tags li {
+  display: inline-block;
+  height: 100%;
+}
+.tags li:not(:first-child) {
+  margin-left: 8px;
+}
+.tags li a {
+  display: inline-block;
+  padding: 4px 8px;
+  height: 100%;
+  color: #444;
+  background-color: #CDDFFB;
+  border-radius: 2px;
+  line-height: 16px;
+  box-sizing: border-box;
+}
+textarea {
+  display: block;
+}
+.form h2 {
+  margin: 0 0 12px 0;
+}
+.form label {
+  display: block;
+  margin-bottom: 6px;
+  font-weight: bold;
+}
+.form input[type=text],
+.form input[type=password],
+.form textarea {
+  display: block;
+  width: 100%;
+  padding: 4px;
+  margin-bottom: 12px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  box-sizing: border-box;
+}
+.form textarea {
+  height: 6em;
+}
+.form.form-centered {
+  width: 400px;
+  margin: 80px auto;
+}
+.middle-box {
+  top: 50%;
+  position: absolute;
+  width: 100%;
+  transform: translate(0%, -50%);
+}
+.questions {
+  padding: 0;
+  list-style: none;
+}
+.questions > li {
+  padding-bottom: 12px;
+  margin-bottom: 12px;
+  height: 64px;
+  border-bottom: 1px solid #ccc;
+}
+.questions > li .status {
+  float: left;
+  position: relative;
+  width: 64px;
+  height: 100%;
+  text-align: center;
+  vertical-align: top;
+}
+.questions > li .ans-counts {
+  float: left;
+  position: relative;
+  width: 64px;
+  height: 100%;
+  margin-left: 8px;
+  text-align: center;
+  vertical-align: top;
+}
+.questions > li .summary {
+  margin-left: 152px;
+  vertical-align: top;
+}
+.questions > li .summary h3 {
+  margin: 0;
+  font-size: 16px;
+  height: 40px;
+}
+.question,
+.answer {
+  padding-bottom: 12px;
+  border-bottom: 1px solid #ccc;
+}
+.question .meta .tags,
+.answer .meta .tags {
+  float: left;
+}
+.question .meta .right,
+.answer .meta .right {
+  float: right;
+  line-height: 24px;
+}
+.question:after,
+.answer:after {
+  content: ' ';
+  display: table;
+  clear: both;
+}
+.panel {
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-shadow: 0 2px 3px -1px #aaa;
+}
+.panel.panel-error {
+  color: #fff;
+  background-color: #FF0000;
+  border-color: #FF0000;
+  font-weight: bold;
+}
+.pagination:after {
+  display: table;
+  content: '';
+  clear: both;
+}
+.pagination ul {
+  display: block;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+.pagination ul li {
+  border: 1px solid #ccc;
+  float: left;
+  margin-left: -1px;
+}
+.pagination ul li:first-child {
+  border-radius: 3px 0 0 3px;
+}
+.pagination ul li:last-child {
+  border-radius: 0 3px 3px 0;
+}
+.pagination ul li > a,
+.pagination ul li > span {
+  display: block;
+  padding: 8px 12px;
+}

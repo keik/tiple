@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title th:text="${question.title} + ' | ' + #{app.name}">TITLE | APPNAME</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <link rel="stylesheet" href="../../static/main.css" th:href="@{/main.css}" type="text/css" />
+  </head>
+  <body id="question">
+
+    <header th:replace="fragments/header.html">
+      <h1><a href="../" th:href="@{/}">Tiple</a></h1>
+      <div class="auth-menus">
+        <span sec:authentication="name" th:remove="tag">USER_NAME</span>
+        <form action="/" th:action="@{/logout}" method="post">
+          <button class="btn">Log out</button>
+        </form>
+      </div>
+    </header>
+
+    <div class="side">
+      side
+    </div>
+
+    <div class="main">
+
+      <h1 th:text="${question.title}">TITLE</h1>
+      <div class="question">
+        <p th:text="${question.content}">
+          THIS IS QUESTION'S CONTENT.
+        </p>
+        <div class="meta">
+          <ul class="tags">
+            <li class="tag" th:each="tag : ${question.tags}"><a href="../questions/index.html" th:href="'/q?tag=' + ${tag.name}" th:text="${tag.name}">TAG</a></li>
+          </ul>
+          <div class="right">
+            <a th:text="${question.createdBy.id}" th:href="@{'/users/' + ${question.createdBy.id}}">USER</a>
+            <span th:text="${#dates.format(question.createdAt, 'yyyy-MM-dd HH:mm')}">POSTED_AT</span>
+          </div>
+        </div>
+      </div>
+
+      <h2>Answers</h2>
+      <div class="answer" th:each="answer : ${answers}">
+        <p th:text="${answer.content}">
+          THIS IS ANSWER'S CONTENT.
+        </p>
+        <div class="meta">
+          <div class="right">
+            <a th:text="${answer.createdBy.id}" th:href="@{'/users/' + ${answer.createdBy.id}}">USER</a>
+            <span th:text="${#dates.format(answer.createdAt, 'yyyy-MM-dd HH:mm')}">POSTED_AT</span>
+          </div>
+        </div>
+      </div>
+
+      <h2>Your answer</h2>
+      <form id="ask-form" class="form" th:action="@{'/q/' + ${question.id} + '/answers'}" th:method="post">
+        <div sec:authorize="hasAnyRole('ROLE_USER')">
+          <textarea name="content"></textarea>
+        </div>
+        <input class="btn btn-primary" type="submit" value="Post your answer" />
+      </form>
+
+
+    </div><!--/* main */-->
+
+    <div th:replace="fragments/footer.html"></div>
+
+    <script src="../../static/bundle.js" th:src="@{/bundle.js}"></script>
+  </body>
+</html>

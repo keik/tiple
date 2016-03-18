@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title th:text="'About | ' + #{app.name}"></title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="stylesheet" href="../static/main.css" th:href="@{/main.css}" type="text/css" />
+  </head>
+  <body>
+
+    <header th:replace="fragments/header.html">
+      <h1><a href="home.html" th:href="@{/}">Tiple</a></h1>
+      <div class="auth-menus">
+        <span sec:authentication="name" th:remove="tag">USER_NAME</span>
+        <form action="/" th:action="@{/logout}" method="post">
+          <button class="btn">Log out</button>
+        </form>
+      </div>
+    </header>
+
+    <div class="main">
+    </div><!--/* main */-->
+
+    <div th:replace="fragments/footer.html"></div>
+
+    <script src="../static/bundle.js" th:src="@{/bundle.js}"></script>
+  </body>
+</html>

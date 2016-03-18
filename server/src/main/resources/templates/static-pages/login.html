@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title th:text="'Log in | ' + #{app.name}"></title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="stylesheet" href="../static/main.css" th:href="@{/main.css}" type="text/css" />
+  </head>
+  <body>
+
+    <header th:replace="fragments/header.html">
+      <h1><a href="home.html" th:href="@{/}">Tiple</a></h1>
+      <div class="auth-menus">
+        <span sec:authentication="name" th:remove="tag">USER_NAME</span>
+        <form action="/" th:action="@{/logout}" method="post">
+          <button class="btn">Log out</button>
+        </form>
+      </div>
+    </header>
+
+    <form class="panel form form-centered" th:action="@{/session}" action="/" method="post">
+      <h2>log in</h2>
+      <label>ID: <input type="text" name="id" /></label>
+      <label>Password: <input type="text" name="password" /></label>
+      <input class="btn btn-default" type="submit" value="Log in" />
+    </form>
+
+    <script src="../static/bundle.js" th:src="@{/bundle.js}"></script>
+  </body>
+</html>
