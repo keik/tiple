@@ -18,7 +18,7 @@ DIST_JS   = $(R)/static/bundle.js
 
 .PHONY: all watch
 
-all: clean $(DIST_JS) $(DIST_CSS)
+all: clean $(DIST_TMPL) $(DIST_JS) $(DIST_CSS)
 
 watch:
 	@$(MAKE) -j 3 watch-tmpl watch-less watch-js
@@ -39,7 +39,7 @@ $(DIST_CSS): node_modules $(R)/static
 	@node_modules/.bin/lessc $(MAIN_LESS) $@
 
 watch-tmpl: node_modules $(DIST_TMPL)
-	@node_modules/.bin/watchf 'templates/**/*.html' -c 'cp {} $(R)/templates'
+	@node_modules/.bin/watchf 'templates/**/*.html' -c 'cp --parents {} $(R)'
 
 watch-js: node_modules $(R)/static
 	@node_modules/.bin/watchify $(MAIN_JS) \

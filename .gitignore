@@ -1,7 +1,8 @@
 node_modules
 npm-debug.log
 
-bundle.js
-bundle.css
+server/src/main/resources/templates
+server/src/main/resources/static/bundle.js
+server/src/main/resources/static/bundle.css
 
 target
