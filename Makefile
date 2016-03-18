@@ -1,17 +1,6 @@
 # aliases
 
-## src files
-
-LESSES    = client/styles/**/*.less
-MAIN_LESS = client/styles/main.less
-MAIN_JS   = client/scripts/script/main.js
-
-## dist files
-
-R         = src/main/resources/
-TMPL_DIR  = $(R)/templates
-DIST_CSS  = $(R)/static/main.css
-DIST_JS   = $(R)/staticbundle.js
+## none
 
 # targets
 
@@ -19,30 +8,24 @@ DIST_JS   = $(R)/staticbundle.js
 
 .PHONY: all watch run-server run-dev-server
 
-all:
-	@echo NOT CONFIGURED
+all: clean server/target
 
 watch:
-	@make -j 2 watch-less watch-js
+	@$(MAKE) -C client watch
 
 run-server:
-	@mvn spring-boot:run -Drun.jvmArguments="-Dspring.profiles.active=prod"
+	@mvn -f server/pom.xml spring-boot:run -Drun.jvmArguments="-Dspring.profiles.active=prod"
 
 run-dev-server:
-	@mvn spring-boot:run -Drun.jvmArguments="-Dspring.profiles.active=dev"
+	@mvn -f server/pom.xml spring-boot:run -Drun.jvmArguments="-Dspring.profiles.active=dev"
 
 ## sub targets
 
-.PHONY: watch-js watch-less build-js clean
+.PHONY: clean
 
-target: clean
-	@mvn package
+server/target:
+	@$(MAKE) -C client all
+	@mvn -f server/pom.xml package
 
-$(MAIN_JS): node_modules
-	@node_modules/.bin/browserify $(MAIN_JS) -t [ babelify --presets es2015 ] -o $(MAIN_JS)
-
-$(DIST_CSS): node_modules $(LESSES)
-	@node_modules/.bin/lessc $(MAIN_LESS) $(DIST_CSS)
-
-clean: pom.xml
-	@mvn clean
+clean:
+	@mvn -f server/pom.xml clean

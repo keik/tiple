@@ -2,14 +2,13 @@
 
 ## src files
 
-LESSES    = styles/**/*.less
 MAIN_LESS = styles/main.less
 MAIN_JS   = scripts/main.js
 
 ## dist files
 
 R         = ../server/src/main/resources
-TMPL_DIR  = $(R)/templates
+DIST_TMPL = $(R)/templates
 DIST_CSS  = $(R)/static/bundle.css
 DIST_JS   = $(R)/static/bundle.js
 
@@ -22,33 +21,42 @@ DIST_JS   = $(R)/static/bundle.js
 all: clean $(DIST_JS) $(DIST_CSS)
 
 watch:
-	@$(MAKE) -j 2 watch-less watch-js
+	@$(MAKE) -j 3 watch-tmpl watch-less watch-js
 
 ## sub targets
 
-.PHONY: watch-js watch-less build-js clean
+.PHONY: watch-js watch-tmpl watch-less build-js clean
 
-$(DIST_JS): node_modules
+$(DIST_TMPL): node_modules
+		@cp templates $(R)/templates -r
+
+$(DIST_JS): node_modules $(R)/static
 	@node_modules/.bin/browserify $(MAIN_JS) \
 		-t [ babelify --presets es2015 ] \
-		-o $(DIST_JS)
+		-o $@
 
-$(DIST_CSS): node_modules
-	@node_modules/.bin/lessc $(MAIN_LESS) $(DIST_CSS)
+$(DIST_CSS): node_modules $(R)/static
+	@node_modules/.bin/lessc $(MAIN_LESS) $@
 
-watch-js: node_modules
+watch-tmpl: node_modules $(DIST_TMPL)
+	@node_modules/.bin/watchf 'templates/**/*.html' -c 'cp {} $(R)/templates'
+
+watch-js: node_modules $(R)/static
 	@node_modules/.bin/watchify $(MAIN_JS) \
 		-d \
 		-v \
 		-t [ babelify --presets es2015 ] \
 		-o $(DIST_JS)
 
-watch-less:
+watch-less: node_modules $(R)/static
 	@$(MAKE) $(DIST_CSS)
-	@node_modules/.bin/watchf $(LESSES) -c 'make $(DIST_CSS)'
+	@node_modules/.bin/watchf styles/**/*.less -c 'make $(DIST_CSS)'
+
+$(R)/static:
+	@mkdir -p $@
 
 clean:
-	rm -rf $(DIST_JS) $(DIST_CSS)
+	@rm -rf $(DIST_TMPL) $(DIST_JS) $(DIST_CSS)
 
 node_modules: package.json
 	@npm install
