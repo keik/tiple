@@ -25,7 +25,7 @@ watch:
 
 ## sub targets
 
-.PHONY: watch-js watch-tmpl watch-less build-js clean
+.PHONY: $(DIST_TMPL) $(DIST_JS) $(DIST_CSS) watch-js watch-tmpl watch-less build-js clean
 
 $(DIST_TMPL): node_modules
 		@cp templates $(R)/templates -r
