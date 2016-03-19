@@ -41,7 +41,8 @@ $(DIST_CSS): node_modules $(R)/static
 	@node_modules/.bin/lessc $(MAIN_LESS) $@
 
 $(DIST_FONT): node_modules $(R)/static
-	@echo cp --parents fonts/css fonts/fonts $@ -r
+	@mkdir -p $@
+	@cp node_modules/font-awesome/{css,fonts} $@ -r
 
 watch-tmpl: node_modules $(DIST_TMPL)
 	@node_modules/.bin/watchf 'templates/**/*.html' -c 'cp --parents {} $(R)'
