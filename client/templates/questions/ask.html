@@ -2,7 +2,7 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <title th:text="'Ask a new question | ' + #{app.name}"></title>
+    <title th:text="'Ask a Question | ' + #{app.name}">Ask a Question | APP_NAME</title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet" type="text/css">
     <link href="../../static/bundle.css" th:href="@{/bundle.css}" rel="stylesheet" type="text/css">
@@ -22,7 +22,7 @@
     <div class="content">
       <div class="main">
 
-        <h2>Ask a new question</h2>
+        <h2>Ask a Question</h2>
 
         <form class="form" th:action="@{/q}" method="post">
           <label for="title">Title</label><input id="title" type="text" name="title"/>

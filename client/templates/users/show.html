@@ -2,7 +2,7 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <title th:text="${question.title} + ' | ' + #{app.name}">TITLE | APPNAME</title>
+    <title th:text="'User ' + ${user.id} + ' | ' + #{app.name}">USER_1 | APP_NAME</title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet" type="text/css">
     <link href="../../static/bundle.css" th:href="@{/bundle.css}" rel="stylesheet" type="text/css">
@@ -24,9 +24,9 @@
 
         <section class="row">
           <img src=""/>
-          <h2 th:text="${question.title}">USER_1</h2>
+          <h2 th:text="${user.id}">USER_1</h2>
           <div>
-            Vivamus lacinia vel felis elementum tincidunt. Nulla egestas pulvinar metus, vel gravida justo interdum nec. Morbi ornare augue nisl, sit amet pharetra ante commodo non. Sed faucibus lorem sed malesuada ultrices. Nunc a auctor urna. Nam sit amet mollis justo. Cras convallis orci elit, eu ultricies enim pretium id. Donec gravida semper suscipit. Nam a urna nisi. In vitae congue diam. Etiam velit ipsum, suscipit sit amet placerat vel, sagittis at turpis. Nulla sapien lorem, feugiat eu erat ac, pretium sodales purus.
+            TODO Vivamus lacinia vel felis elementum tincidunt. Nulla egestas pulvinar metus, vel gravida justo interdum nec. Morbi ornare augue nisl, sit amet pharetra ante commodo non. Sed faucibus lorem sed malesuada ultrices. Nunc a auctor urna. Nam sit amet mollis justo. Cras convallis orci elit, eu ultricies enim pretium id. Donec gravida semper suscipit. Nam a urna nisi. In vitae congue diam. Etiam velit ipsum, suscipit sit amet placerat vel, sagittis at turpis. Nulla sapien lorem, feugiat eu erat ac, pretium sodales purus.
           </div>
         </section>
 

@@ -2,7 +2,7 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title th:text="'Tags | ' + #{app.name}"></title>
+    <title th:text="'Tags | ' + #{app.name}">Tags | APP_NAME</title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet" type="text/css">
     <link href="../../static/bundle.css" th:href="@{/bundle.css}" rel="stylesheet" type="text/css">
@@ -21,7 +21,7 @@
 
     <div class="content">
       <div class="main">
-        <ul class="tags">
+        <ul class="tags" th:remove="all-but-first">
           <li class="tag" th:each="key : ${tagsWithTaggedNumbers.keySet()}"><a href="../questions/index.html" th:href="@{'/q?tag=' + ${key.name}}" th:text="${key.name}">TAG_1</a> x <span th:remove="tag" th:text="${tagsWithTaggedNumbers.get(key)}">1</span></li>
           <li class="tag"><a href="../questions/index.html">TAG_2</a> x <span th:remove="tag" th:text="${tagsWithTaggedNumbers.get(key)}">1</span></li>
         </ul>

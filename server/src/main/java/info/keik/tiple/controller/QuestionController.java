@@ -34,10 +34,11 @@ public class QuestionController {
 
 	@RequestMapping(method = RequestMethod.GET)
 	public String index(Model model, @RequestParam(value = "tag", required = false) String tagName) {
-		List<Question> questions = tagName == null
+		List<Question> questions = tagName.isEmpty()
 				? questionService.getAll()
 				: questionService.getByTag(new Tag(tagName));
 		model.addAttribute("questions", questions);
+		model.addAttribute("tag", tagName);
 		return "questions/index.html";
 	}
 

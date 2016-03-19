@@ -2,7 +2,7 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <title th:text="'All Questions | ' + #{app.name}"></title>
+    <title th:text="(${#strings.isEmpty(tag)}? 'All Questions' : 'Newest \'' + ${tag} + '\' Questions') + ' | ' + #{app.name}">All Questions | APP_NAME</title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet" type="text/css">
     <link href="../../static/bundle.css" th:href="@{/bundle.css}" rel="stylesheet" type="text/css">
@@ -22,9 +22,11 @@
     <div class="content">
       <div class="main">
 
-        <h2>All Questions</h2>
+        <h2>
+          <span th:text="${#strings.isEmpty(tag)}? 'All Questions' : 'Newest \'' + ${tag} + '\' Questions'" th:remove="tag">All Questions</span>
+        </h2>
 
-        <ul class="questions">
+        <ul class="questions" th:remove="all-but-first">
           <li class="question" th:each="question : ${questions}">
             <div class="stats">
               <div class="middle-box">

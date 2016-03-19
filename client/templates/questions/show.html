@@ -2,7 +2,7 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <title th:text="${question.title} + ' | ' + #{app.name}">TITLE | APPNAME</title>
+    <title th:text="${question.title} + ' | ' + #{app.name}">QUESTION_1 | APP_NAME</title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet" type="text/css">
     <link href="../../static/bundle.css" th:href="@{/bundle.css}" rel="stylesheet" type="text/css">
@@ -28,23 +28,23 @@
             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
           </p>
           <div class="meta">
-            <ul class="tags">
-              <li class="tag" th:each="tag : ${question.tags}"><a href="../questions/index.html" th:href="'/q?tag=' + ${tag.name}" th:text="${tag.name}">TAG1</a></li>
-              <li class="tag"><a href="../questions/index.html">TAG2</a></li>
+            <ul class="tags" th:remove="all-but-first">
+              <li class="tag" th:each="tag : ${question.tags}"><a href="../questions/index.html" th:href="'/q?tag=' + ${tag.name}" th:text="${tag.name}">TAG_1</a></li>
+              <li class="tag"><a href="../questions/index.html">TAG_2</a></li>
             </ul>
             <div class="menus">
               <a href="#">share</a>
               <a href="#">improve this question</a>
             </div>
             <div class="posted-by">
-              <div th:text="${#dates.format(question.createdAt, 'yyyy-MM-dd HH:mm')}">posted YYYY_MM_DD</div>
+              <div>posted <span th:text="${#dates.format(question.createdAt, 'yyyy-MM-dd HH:mm')}">YYYY_MM_DD</span></div>
               <div class="user">
                 <a href="../users/show.html" th:href="@{'/users/' + ${question.createdBy.id}}"><img src=""></a>
                 <a href="../users/show.html" th:text="${question.createdBy.id}" th:href="@{'/users/' + ${question.createdBy.id}}">USER_1</a>
               </div>
             </div>
             <div class="edited-by">
-              <div th:text="${#dates.format(question.createdAt, 'yyyy-MM-dd HH:mm')}">edited YYYY_MM_DD</div>
+              <div>edited <span th:text="${#dates.format(question.createdAt, 'yyyy-MM-dd HH:mm')}">TODO YYYY_MM_DD</span></div>
               <div class="user">
                 <a href="../users/show.html" th:href="@{'/users/' + ${question.createdBy.id}}"><img src=""></a>
                 <a href="../users/show.html" th:text="${question.createdBy.id}" th:href="@{'/users/' + ${question.createdBy.id}}">USER_1</a>
@@ -55,7 +55,7 @@
 
         <section>
           <h2><span>3</span> Answers</h2>
-          <ul class="answers">
+          <ul class="answers" th:remove="all-but-first">
             <li class="answer" th:each="answer : ${answers}">
               <p th:text="${answer.content}">
                 In consequat posuere justo ac hendrerit. Duis vehicula nisi eu est bibendum condimentum. Curabitur nec vulputate enim. Vivamus mattis at quam eget ornare. Integer nec facilisis lectus, ut aliquet purus. Donec felis orci, finibus euismod sollicitudin in, mollis vitae tellus. Mauris posuere orci a orci cursus, in faucibus magna hendrerit. Phasellus vitae molestie libero, at condimentum nulla. Vestibulum auctor cursus urna, id hendrerit nunc scelerisque non.
@@ -66,17 +66,17 @@
                   <a href="#">improve this question</a>
                 </div>
                 <div class="posted-by">
-                  <div>posted YYYY_MM_DD</div>
+                  <div>posted <span th:text="${#dates.format(answer.createdAt, 'yyyy-MM-dd HH:mm')}">YYYY_MM_DD</span></div>
                   <div class="user">
                     <a href="../users/show.html"><img src=""></a>
-                    <a href="../users/show.html">USER_2</a>
+                    <a href="../users/show.html" th:text="${answer.createdBy.id}">USER_2</a>
                   </div>
                 </div>
                 <div class="edited-by">
-                  <div>edited YYYY_MM_DD</div>
+                  <div>edited <span th:text="${#dates.format(answer.createdAt, 'yyyy-MM-dd HH:mm')}">TODO YYYY_MM_DD</span></div>
                   <div class="user">
-                    <a href="../users/show.html"><img src=""></a>
-                    <a href="../users/show.html">USER_2</a>
+                    <a href="../users/show.html" th:href="@{'/users/' + ${answer.createdBy.id}}"><img src=""></a>
+                    <a href="../users/show.html" th:href="@{'/users/' + ${answer.createdBy.id}}" th:text="${answer.createdBy.id}">USER_2</a>
                   </div>
                 </div>
               </div>
