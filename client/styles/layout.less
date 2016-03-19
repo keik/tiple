@@ -44,7 +44,12 @@ header {
 
 .content {
   width: @width-of-content;
-  margin: 0 auto;
+  margin: 12px auto 24px auto;
+  &:after {
+    clear: both;
+    content: '';
+    display: table;
+  }
 }
 
 .main {
@@ -58,14 +63,12 @@ header {
 }
 
 footer {
-  position: absolute;
-  bottom: 0;
   padding: 4px 0;
   height: @height-of-footer;
   width: 100%;
   text-align: center;
   line-height: @height-of-footer;
-  background-color: #fafafa;
+  background-color: #f0f0f0;
   box-shadow: 0 -1px 3px -1px #aaa;
   box-sizing: border-box;
 }
