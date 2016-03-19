@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title th:text="${question.title} + ' | ' + #{app.name}">TITLE | APPNAME</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet" type="text/css">
+    <link href="../../static/bundle.css" th:href="@{/bundle.css}" rel="stylesheet" type="text/css">
+  </head>
+  <body>
+
+    <header th:replace="fragments/header.html">
+      <h1><a href="../" th:href="@{/}">Tiple</a></h1>
+      <div class="auth-menus">
+        <span sec:authentication="name" th:remove="tag">USER_NAME</span>
+        <form action="/" th:action="@{/logout}" method="post">
+          <button class="btn">Log out</button>
+        </form>
+      </div>
+    </header>
+
+    <div class="content">
+      <div class="main user-details">
+
+        <section class="row">
+          <img src=""/>
+          <h2 th:text="${question.title}">USER_1</h2>
+          <div>
+            Vivamus lacinia vel felis elementum tincidunt. Nulla egestas pulvinar metus, vel gravida justo interdum nec. Morbi ornare augue nisl, sit amet pharetra ante commodo non. Sed faucibus lorem sed malesuada ultrices. Nunc a auctor urna. Nam sit amet mollis justo. Cras convallis orci elit, eu ultricies enim pretium id. Donec gravida semper suscipit. Nam a urna nisi. In vitae congue diam. Etiam velit ipsum, suscipit sit amet placerat vel, sagittis at turpis. Nulla sapien lorem, feugiat eu erat ac, pretium sodales purus.
+          </div>
+        </section>
+
+        <section class="row">
+          <h2>Top Posts</h2>
+          <ul class="posts">
+            <li class="post"><span>a</span><span>3</span><a href="../questions/show.html">QUESTION_1</a><span class="right">YYYY_MM_DD</span></li>
+            <li class="post"><span>q</span><span>2</span><a href="../questions/show.html">QUESTION_2</a><span class="right">YYYY_MM_DD</span></li>
+            <li class="post"><span>a</span><span>1</span><a href="../questions/show.html">QUESTION_3</a><span class="right">YYYY_MM_DD</span></li>
+          </ul>
+        </section>
+
+      </div><!--/* main */-->
+
+      <div class="side">
+        <h2>Recently updated</h2>
+        <ul>
+          <li th:each="q : ${recentryQuestions}"><a th:href="'/q/' + ${q.id}" th:text="${q.title}"></a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div th:replace="fragments/footer.html"></div>
+
+    <script src="../../static/bundle.js" th:src="@{/bundle.js}"></script>
+  </body>
+</html>

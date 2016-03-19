@@ -22,7 +22,7 @@
     <div class="content">
       <div class="main">
 
-        <h1 th:text="${question.title}">TITLE</h1>
+        <h1 th:text="${question.title}">QUESTION_1</h1>
         <div class="question-details">
           <p th:text="${question.content}">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
@@ -39,15 +39,15 @@
             <div class="posted-by">
               <div th:text="${#dates.format(question.createdAt, 'yyyy-MM-dd HH:mm')}">posted YYYY_MM_DD</div>
               <div class="user">
-                <a href="#" th:href="@{'/users/' + ${question.createdBy.id}}"><img src=""></a>
-                <a href="#" th:text="${question.createdBy.id}" th:href="@{'/users/' + ${question.createdBy.id}}">USER</a>
+                <a href="../users/show.html" th:href="@{'/users/' + ${question.createdBy.id}}"><img src=""></a>
+                <a href="../users/show.html" th:text="${question.createdBy.id}" th:href="@{'/users/' + ${question.createdBy.id}}">USER_1</a>
               </div>
             </div>
             <div class="edited-by">
               <div th:text="${#dates.format(question.createdAt, 'yyyy-MM-dd HH:mm')}">edited YYYY_MM_DD</div>
               <div class="user">
-                <a href="#" th:href="@{'/users/' + ${question.createdBy.id}}"><img src=""></a>
-                <a href="#" th:text="${question.createdBy.id}" th:href="@{'/users/' + ${question.createdBy.id}}">USER</a>
+                <a href="../users/show.html" th:href="@{'/users/' + ${question.createdBy.id}}"><img src=""></a>
+                <a href="../users/show.html" th:text="${question.createdBy.id}" th:href="@{'/users/' + ${question.createdBy.id}}">USER_1</a>
               </div>
             </div>
           </div>
@@ -68,15 +68,15 @@
                 <div class="posted-by">
                   <div>posted YYYY_MM_DD</div>
                   <div class="user">
-                    <a href="#"><img src=""></a>
-                    <a href="#">USER</a>
+                    <a href="../users/show.html"><img src=""></a>
+                    <a href="../users/show.html">USER_2</a>
                   </div>
                 </div>
                 <div class="edited-by">
                   <div>edited YYYY_MM_DD</div>
                   <div class="user">
-                    <a href="#"><img src=""></a>
-                    <a href="#">USER</a>
+                    <a href="../users/show.html"><img src=""></a>
+                    <a href="../users/show.html">USER_2</a>
                   </div>
                 </div>
               </div>
@@ -94,15 +94,15 @@
                 <div class="posted-by">
                   <span>posted YYYY_MM_DD</span>
                   <div class="user">
-                    <a href="#"><img src=""></a>
-                    <a href="#">USER</a>
+                    <a href="../users/show.html"><img src=""></a>
+                    <a href="../users/show.html">USER_3</a>
                   </div>
                 </div>
                 <div class="edited-by">
                   <span>edited YYYY_MM_DD</span>
                   <div class="user">
-                    <a href="#"><img src=""></a>
-                    <a href="#">USER</a>
+                    <a href="../users/show.html"><img src=""></a>
+                    <a href="../users/show.html">USER_3</a>
                   </div>
                 </div>
               </div>
@@ -120,15 +120,15 @@
                 <div class="posted-by">
                   <span>posted YYYY_MM_DD</span>
                   <div class="user">
-                    <a href="#"><img src=""></a>
-                    <a href="#">USER</a>
+                    <a href="../users/show.html"><img src=""></a>
+                    <a href="../users/show.html">USER_4</a>
                   </div>
                 </div>
                 <div class="edited-by">
                   <span>edited YYYY_MM_DD</span>
                   <div class="user">
-                    <a href="#"><img src=""></a>
-                    <a href="#">USER</a>
+                    <a href="../users/show.html"><img src=""></a>
+                    <a href="../users/show.html">USER_4</a>
                   </div>
                 </div>
               </div>

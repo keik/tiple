@@ -41,15 +41,15 @@
               </div>
             </div>
             <div class="summary">
-              <h3><a href="show.html" th:href="@{'/q/' + ${question.id}}" th:text="${question.title}">TITLE</a></h3>
+              <h3><a href="show.html" th:href="@{'/q/' + ${question.id}}" th:text="${question.title}">QUESTION_1</a></h3>
               <div class="meta">
                 <ul class="tags" th:remove="all-but-first">
-                  <li th:each="tag : ${question.tags}"><a href="index.html" th:href="@{'/q?tag=' + ${tag.name}}" th:text="${tag.name}">TAG1</a></li>
-                  <li><a href="index.html">TAG2</a></li>
+                  <li th:each="tag : ${question.tags}"><a href="index.html" th:href="@{'/q?tag=' + ${tag.name}}" th:text="${tag.name}">TAG_1</a></li>
+                  <li><a href="index.html">TAG_2</a></li>
                 </ul>
                 <div class="right">
-                  <a th:text="${question.createdBy.id}" th:href="@{'/users/' + ${question.createdBy.id}}">USER</a>
-                  <span th:text="${#dates.format(question.createdAt, 'yyyy-MM-dd HH:mm')}">POSTED_AT</span>
+                  <span th:text="${#dates.format(question.createdAt, 'yyyy-MM-dd HH:mm')}">asked YYYY_MM_DD</span>
+                  <a href="../users/show.html" th:text="${question.createdBy.id}" th:href="@{'/users/' + ${question.createdBy.id}}">USER_1</a>
                 </div>
               </div>
             </div>
@@ -71,15 +71,15 @@
             </div>
 
             <div class="summary">
-              <h3><a href="show.html">TITLE2</a></h3>
+              <h3><a href="show.html">QUESTION_2</a></h3>
               <div class="meta">
                 <ul class="tags" th:remove="all-but-first">
-                  <li><a href="index.html">TAG1</a></li>
-                  <li><a href="index.html">TAG2</a></li>
+                  <li><a href="index.html">TAG_1</a></li>
+                  <li><a href="index.html">TAG_2</a></li>
                 </ul>
                 <div class="right">
-                  <a>USER_2</a>
-                  <span>YYYY_MM_DD</span>
+                  <span>asked YYYY_MM_DD</span>
+                  <a href="../users/show.html">USER_2</a>
                 </div>
               </div>
             </div>

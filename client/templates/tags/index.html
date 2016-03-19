@@ -22,8 +22,8 @@
     <div class="content">
       <div class="main">
         <ul class="tags">
-          <li class="tag" th:each="key : ${tagsWithTaggedNumbers.keySet()}"><a href="../questions/index.html" th:href="@{'/q?tag=' + ${key.name}}" th:text="${key.name}">TAG1</a> x <span th:remove="tag" th:text="${tagsWithTaggedNumbers.get(key)}">1</span></li>
-          <li class="tag"><a href="../questions/index.html">TAG2</a> x <span th:remove="tag" th:text="${tagsWithTaggedNumbers.get(key)}">1</span></li>
+          <li class="tag" th:each="key : ${tagsWithTaggedNumbers.keySet()}"><a href="../questions/index.html" th:href="@{'/q?tag=' + ${key.name}}" th:text="${key.name}">TAG_1</a> x <span th:remove="tag" th:text="${tagsWithTaggedNumbers.get(key)}">1</span></li>
+          <li class="tag"><a href="../questions/index.html">TAG_2</a> x <span th:remove="tag" th:text="${tagsWithTaggedNumbers.get(key)}">1</span></li>
         </ul>
       </div><!--/* main */-->
 
