@@ -5,6 +5,7 @@
     <title th:text="'User ' + ${user.id} + ' | ' + #{app.name}">USER_1 | APP_NAME</title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet" type="text/css">
+    <link href="../../fonts/css/font-awesome.css" th:href="@{/fonts/css/font-awesome.css}" rel="stylesheet" type="text/css">
     <link href="../../static/bundle.css" th:href="@{/bundle.css}" rel="stylesheet" type="text/css">
   </head>
   <body>
@@ -33,9 +34,9 @@
         <section class="row">
           <h2>Top Posts</h2>
           <ul class="posts">
-            <li class="post"><span>a</span><span>3</span><a href="../questions/show.html">QUESTION_1</a><span class="right">YYYY_MM_DD</span></li>
-            <li class="post"><span>q</span><span>2</span><a href="../questions/show.html">QUESTION_2</a><span class="right">YYYY_MM_DD</span></li>
-            <li class="post"><span>a</span><span>1</span><a href="../questions/show.html">QUESTION_3</a><span class="right">YYYY_MM_DD</span></li>
+            <li class="post"><i class="fa fa-comment-o fa-custom-faq"><span>A</span></i><span class="voted-count" th:text="TODO">3</span><a href="../questions/show.html">QUESTION_1</a><span>YYYY_MM_DD</span></li>
+            <li class="post"><i class="fa fa-comment-o fa-custom-faq"><span>Q</span></i><span class="voted-count">2</span><a href="../questions/show.html">QUESTION_2</a><span>YYYY_MM_DD</span></li>
+            <li class="post"><i class="fa fa-comment-o fa-custom-faq"><span>A</span></i><span class="voted-count">1</span><a href="../questions/show.html">QUESTION_3</a><span>YYYY_MM_DD</span></li>
           </ul>
         </section>
 

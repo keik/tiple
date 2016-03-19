@@ -18,6 +18,32 @@
       &:first-child {
         border-top: 1px solid #ddd;
       }
+
+      > * {
+        float: left;
+        margin-top: 6px;
+      }
+      > :last-child {
+        float: right;
+      }
+      &:after {
+        clear: both;
+        content: '';
+        display: table;
+      }
+
+      .fa {
+        margin: 0;
+      }
+      .voted-count {
+        padding: 4px;
+        margin-top: 2px;
+        margin-right: 8px;
+        min-width: 24px;
+        text-align: center;
+        border: 1px solid #ddd;
+        border-radius: 3px;
+      }
     }
   }
 }

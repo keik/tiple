@@ -5,6 +5,7 @@
     <title th:text="(${#strings.isEmpty(tag)}? 'All Questions' : 'Newest \'' + ${tag} + '\' Questions') + ' | ' + #{app.name}">All Questions | APP_NAME</title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet" type="text/css">
+    <link href="../../fonts/css/font-awesome.css" th:href="@{/fonts/css/font-awesome.css}" rel="stylesheet" type="text/css">
     <link href="../../static/bundle.css" th:href="@{/bundle.css}" rel="stylesheet" type="text/css">
   </head>
   <body>
@@ -30,15 +31,15 @@
           <li class="question" th:each="question : ${questions}">
             <div class="stats">
               <div class="middle-box">
-                <span class="stats-count">10</span>
+                <span class="stats-count" th:text="TODO">10</span>
                 <span class="stats-label">votes</span>
               </div>
               <div class="middle-box">
-                <span class="stats-count">20</span>
+                <span class="stats-count" th:text="${question.answersCount}">20</span>
                 <span class="stats-label">answers</span>
               </div>
               <div class="middle-box">
-                <span class="stats-count">30</span>
+                <span class="stats-count" th:text="TODO">30</span>
                 <span class="stats-label">view</span>
               </div>
             </div>

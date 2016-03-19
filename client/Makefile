@@ -11,6 +11,7 @@ R         = ../server/src/main/resources
 DIST_TMPL = $(R)/templates
 DIST_CSS  = $(R)/static/bundle.css
 DIST_JS   = $(R)/static/bundle.js
+DIST_FONT = $(R)/static/fonts
 
 # targets
 
@@ -18,17 +19,18 @@ DIST_JS   = $(R)/static/bundle.js
 
 .PHONY: all watch
 
-all: clean $(DIST_TMPL) $(DIST_JS) $(DIST_CSS)
+all: clean $(DIST_TMPL) $(DIST_JS) $(DIST_CSS) $(DIST_FONT)
 
 watch:
+	@$(MAKE) $(DIST_TMPL) $(DIST_CSS) $(DIST_FONT)
 	@$(MAKE) -j 3 watch-tmpl watch-less watch-js
 
 ## sub targets
 
-.PHONY: $(DIST_TMPL) $(DIST_JS) $(DIST_CSS) watch-js watch-tmpl watch-less build-js clean
+.PHONY: $(DIST_TMPL) $(DIST_JS) $(DIST_CSS) $(DIST_FONT) watch-js watch-tmpl watch-less build-js clean
 
 $(DIST_TMPL): node_modules
-		@cp templates $(R)/templates -r
+	@cp templates $@ -r
 
 $(DIST_JS): node_modules $(R)/static
 	@node_modules/.bin/browserify $(MAIN_JS) \
@@ -37,6 +39,9 @@ $(DIST_JS): node_modules $(R)/static
 
 $(DIST_CSS): node_modules $(R)/static
 	@node_modules/.bin/lessc $(MAIN_LESS) $@
+
+$(DIST_FONT): node_modules $(R)/static
+	@echo cp --parents fonts/css fonts/fonts $@ -r
 
 watch-tmpl: node_modules $(DIST_TMPL)
 	@node_modules/.bin/watchf 'templates/**/*.html' -c 'cp --parents {} $(R)'
@@ -49,14 +54,13 @@ watch-js: node_modules $(R)/static
 		-o $(DIST_JS)
 
 watch-less: node_modules $(R)/static
-	@$(MAKE) $(DIST_CSS)
 	@node_modules/.bin/watchf styles/**/*.less -c 'make $(DIST_CSS)'
 
 $(R)/static:
 	@mkdir -p $@
 
 clean:
-	@rm -rf $(DIST_TMPL) $(DIST_JS) $(DIST_CSS)
+	@rm -rf $(DIST_TMPL) $(DIST_JS) $(DIST_CSS) $(DIST_FONT)
 
 node_modules: package.json
 	@npm install
