@@ -1,0 +1,72 @@
+.middle-box {
+//  top: 50%;
+//  position: absolute;
+//  width: 100%;
+//  transform: translate(0%,-50%);
+}
+
+.questions {
+  padding: 0;
+  list-style: none;
+
+  .question {
+    padding: 12px 0;
+    height: 64px;
+    border-bottom: 1px solid #ddd;
+
+    &:first-child {
+      border-top: 1px solid #ddd;
+    }
+
+    .stats {
+      float: left;
+
+      padding-right: 12px;
+
+      div {
+        display: inline-block;
+        padding: 4px 12px;
+        text-align: center;
+      }
+
+      .stats-count {
+        display: block;
+        font-size: 18px;
+      }
+
+      .stats-label {
+        display: block;
+      }
+    }
+
+    .ans-counts {
+      float: left;
+      position: relative;
+      width: 64px;
+      height: 100%;
+      margin-left: 8px;
+      text-align: center;
+      vertical-align: top;
+    }
+
+    .summary {
+      display: block;
+
+      h3 {
+        margin: 0;
+        font-size: 16px;
+        height: 32px;
+      }
+    }
+
+    .meta {
+      .tags {
+        float: left;
+      }
+      .right {
+        float: right;
+        line-height: 24px;
+      }
+    }
+  }
+}

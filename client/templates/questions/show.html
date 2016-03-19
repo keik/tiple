@@ -22,33 +22,118 @@
       <div class="main">
 
         <h1 th:text="${question.title}">TITLE</h1>
-        <div class="question">
+        <div class="question-details">
           <p th:text="${question.content}">
-            THIS IS QUESTION'S CONTENT.
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
           </p>
           <div class="meta">
             <ul class="tags">
-              <li class="tag" th:each="tag : ${question.tags}"><a href="../questions/index.html" th:href="'/q?tag=' + ${tag.name}" th:text="${tag.name}">TAG</a></li>
+              <li class="tag" th:each="tag : ${question.tags}"><a href="../questions/index.html" th:href="'/q?tag=' + ${tag.name}" th:text="${tag.name}">TAG1</a></li>
+              <li class="tag"><a href="../questions/index.html">TAG2</a></li>
             </ul>
-            <div class="right">
-              <a th:text="${question.createdBy.id}" th:href="@{'/users/' + ${question.createdBy.id}}">USER</a>
-              <span th:text="${#dates.format(question.createdAt, 'yyyy-MM-dd HH:mm')}">POSTED_AT</span>
+            <div class="menus">
+              <a href="#">share</a>
+              <a href="#">improve this question</a>
+            </div>
+            <div class="posted-by">
+              <div th:text="${#dates.format(question.createdAt, 'yyyy-MM-dd HH:mm')}">posted YYYY_MM_DD</div>
+              <div class="user">
+                <a href="#" th:href="@{'/users/' + ${question.createdBy.id}}"><img src=""></a>
+                <a href="#" th:text="${question.createdBy.id}" th:href="@{'/users/' + ${question.createdBy.id}}">USER</a>
+              </div>
+            </div>
+            <div class="edited-by">
+              <div th:text="${#dates.format(question.createdAt, 'yyyy-MM-dd HH:mm')}">edited YYYY_MM_DD</div>
+              <div class="user">
+                <a href="#" th:href="@{'/users/' + ${question.createdBy.id}}"><img src=""></a>
+                <a href="#" th:text="${question.createdBy.id}" th:href="@{'/users/' + ${question.createdBy.id}}">USER</a>
+              </div>
             </div>
           </div>
         </div>
 
-        <h2>Answers</h2>
-        <div class="answer" th:each="answer : ${answers}">
-          <p th:text="${answer.content}">
-            THIS IS ANSWER'S CONTENT.
-          </p>
-          <div class="meta">
-            <div class="right">
-              <a th:text="${answer.createdBy.id}" th:href="@{'/users/' + ${answer.createdBy.id}}">USER</a>
-              <span th:text="${#dates.format(answer.createdAt, 'yyyy-MM-dd HH:mm')}">POSTED_AT</span>
-            </div>
-          </div>
-        </div>
+        <section>
+          <h2><span>3</span> Answers</h2>
+          <ul class="answers">
+            <li class="answer" th:each="answer : ${answers}">
+              <p th:text="${answer.content}">
+                In consequat posuere justo ac hendrerit. Duis vehicula nisi eu est bibendum condimentum. Curabitur nec vulputate enim. Vivamus mattis at quam eget ornare. Integer nec facilisis lectus, ut aliquet purus. Donec felis orci, finibus euismod sollicitudin in, mollis vitae tellus. Mauris posuere orci a orci cursus, in faucibus magna hendrerit. Phasellus vitae molestie libero, at condimentum nulla. Vestibulum auctor cursus urna, id hendrerit nunc scelerisque non.
+              </p>
+              <div class="meta">
+                <div class="menus">
+                  <a href="#">share</a>
+                  <a href="#">improve this question</a>
+                </div>
+                <div class="posted-by">
+                  <div>posted YYYY_MM_DD</div>
+                  <div class="user">
+                    <a href="#"><img src=""></a>
+                    <a href="#">USER</a>
+                  </div>
+                </div>
+                <div class="edited-by">
+                  <div>edited YYYY_MM_DD</div>
+                  <div class="user">
+                    <a href="#"><img src=""></a>
+                    <a href="#">USER</a>
+                  </div>
+                </div>
+              </div>
+            </li>
+
+            <li class="answer">
+              <p>
+                Morbi sed semper ante. Fusce pharetra massa vel risus imperdiet, non mattis sem sodales. Duis eleifend aliquam nisl et molestie. Aenean feugiat at ipsum a ullamcorper. Etiam pellentesque purus sem, placerat suscipit lectus fermentum sed. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Maecenas interdum metus id leo elementum, id dictum felis pellentesque. Pellentesque nibh lorem, viverra vitae sapien quis, tempor laoreet dolor. Cras commodo tellus eget libero accumsan, eget interdum nisl porta.
+              </p>
+              <div class="meta">
+                <div class="menus">
+                  <a href="#">share</a>
+                  <a href="#">improve this question</a>
+                </div>
+                <div class="posted-by">
+                  <span>posted YYYY_MM_DD</span>
+                  <div class="user">
+                    <a href="#"><img src=""></a>
+                    <a href="#">USER</a>
+                  </div>
+                </div>
+                <div class="edited-by">
+                  <span>edited YYYY_MM_DD</span>
+                  <div class="user">
+                    <a href="#"><img src=""></a>
+                    <a href="#">USER</a>
+                  </div>
+                </div>
+              </div>
+            </li>
+
+            <li class="answer">
+              <p>
+                Nam a eros efficitur, tincidunt eros at, pellentesque lacus. Maecenas tincidunt turpis vitae orci eleifend, vel venenatis dui sodales. Proin cursus vel augue tempor dapibus. Nunc ligula orci, molestie et sollicitudin in, ornare a nisi. Donec ipsum ante, tristique non tortor ut, bibendum fringilla erat. Morbi luctus ultricies massa, vitae bibendum elit elementum a. Phasellus id bibendum eros. Nulla facilisi. Pellentesque vehicula mi ac magna vulputate, id vehicula eros pellentesque. Phasellus neque lorem, euismod ac scelerisque ut, eleifend non orci. Nunc at metus tortor.
+              </p>
+              <div class="meta">
+                <div class="menus">
+                  <a href="#">share</a>
+                  <a href="#">improve this question</a>
+                </div>
+                <div class="posted-by">
+                  <span>posted YYYY_MM_DD</span>
+                  <div class="user">
+                    <a href="#"><img src=""></a>
+                    <a href="#">USER</a>
+                  </div>
+                </div>
+                <div class="edited-by">
+                  <span>edited YYYY_MM_DD</span>
+                  <div class="user">
+                    <a href="#"><img src=""></a>
+                    <a href="#">USER</a>
+                  </div>
+                </div>
+              </div>
+            </li>
+          </ul>
+        </section>
 
         <h2>Your answer</h2>
         <form id="ask-form" class="form" th:action="@{'/q/' + ${question.id} + '/answers'}" th:method="post">
@@ -61,7 +146,10 @@
       </div><!--/* main */-->
 
       <div class="side">
-        side
+        <h2>Recently updated</h2>
+        <ul>
+          <li th:each="q : ${recentryQuestions}"><a th:href="'/q/' + ${q.id}" th:text="${q.title}"></a></li>
+        </ul>
       </div>
     </div>
 

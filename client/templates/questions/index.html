@@ -4,7 +4,8 @@
     <meta charset="utf-8" />
     <title th:text="'All Questions | ' + #{app.name}"></title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <link rel="stylesheet" href="../../static/bundle.css" th:href="@{/bundle.css}" type="text/css" />
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet" type="text/css">
+    <link href="../../static/bundle.css" th:href="@{/bundle.css}" rel="stylesheet" type="text/css" />
   </head>
   <body>
 
@@ -21,19 +22,22 @@
     <div class="content">
       <div class="main">
 
-        <h2>All questions</h2>
+        <h2>All Questions</h2>
 
         <ul class="questions">
           <li class="question" th:each="question : ${questions}">
-            <div class="status answered">
+            <div class="stats">
               <div class="middle-box">
-                x
+                <span class="stats-count">10</span>
+                <span class="stats-label">votes</span>
               </div>
-            </div>
-            <div class="ans-counts">
               <div class="middle-box">
-                <span th:text="${question.answersCount}">1</span><br>
-                answers
+                <span class="stats-count">20</span>
+                <span class="stats-label">answers</span>
+              </div>
+              <div class="middle-box">
+                <span class="stats-count">30</span>
+                <span class="stats-label">view</span>
               </div>
             </div>
             <div class="summary">
@@ -51,17 +55,21 @@
             </div>
           </li>
           <li class="question">
-            <div class="status answered">
+            <div class="stats">
               <div class="middle-box">
-                x
+                <span class="stats-count">40</span>
+                <span class="stats-label">votes</span>
+              </div>
+              <div class="middle-box">
+                <span class="stats-count">50</span>
+                <span class="stats-label">answers</span>
+              </div>
+              <div class="middle-box">
+                <span class="stats-count">60</span>
+                <span class="stats-label">view</span>
               </div>
             </div>
-            <div class="ans-counts">
-              <div class="middle-box">
-                <span>2</span><br>
-                answers
-              </div>
-            </div>
+
             <div class="summary">
               <h3><a href="show.html">TITLE2</a></h3>
               <div class="meta">
