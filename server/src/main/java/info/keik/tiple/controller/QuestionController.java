@@ -11,6 +11,7 @@ import info.keik.tiple.service.UserService;
 import java.security.Principal;
 import java.util.List;
 
+import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -34,7 +35,7 @@ public class QuestionController {
 
 	@RequestMapping(method = RequestMethod.GET)
 	public String index(Model model, @RequestParam(value = "tag", required = false) String tagName) {
-		List<Question> questions = tagName.isEmpty()
+		List<Question> questions = StringUtils.isEmpty(tagName)
 				? questionService.getAll()
 				: questionService.getByTag(new Tag(tagName));
 		model.addAttribute("questions", questions);
