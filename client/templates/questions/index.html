@@ -91,16 +91,16 @@
 
         <nav class="pagination">
           <ul>
-            <li><a href="#">Previous</a></li>
-            <li><a href="#">1</a></li>
-            <li><a href="#">2</a></li>
-            <li><a href="#">3</a></li>
-            <li><a href="#">4</a></li>
-            <li><a href="#">5</a></li>
-            <li><span>...</span></li>
-            <li><a href="#">9</a></li>
-            <li><a href="#">10</a></li>
-            <li><a href="#">Next</a></li>
+            <li th:if="${page > 1}"><a href="#" th:href="@{'/q?page=' + ${page - 1} +'&page_size=' + ${pageSize}}">Prev</a></li>
+            <li th:if="${page > 3}"><a href="#" th:href="@{'/q?page=1&page_size=' + ${pageSize}}">1</a></li>
+            <li th:if="${page > 4}"><span>...</span></li>
+            <li th:each="i : ${#numbers.sequence(page - 2 > 0 ? page - 2 : 1, page + 2 < total / pageSize ? page + 2 : total / pageSize)}" th:class="${i == page} ? 'active' : ''" class="active">
+              <span th:if="${i == page}" th:text="${page}">1</span>
+              <a th:unless="${i == page}" href="#" th:href="@{'/q?page=' + ${i} + '&page_size=' + ${pageSize}}" th:text="${i}" th:attr="style=''" style="display: none">1</a>
+            </li>
+            <li th:if="${page < total / pageSize - 3}"><span>...</span></li>
+            <li th:if="${page < total / pageSize - 2}"><a href="#" th:href="@{'/q?page=' + ${total / pageSize} + '&page_size=' + ${pageSize}}"}" th:text="${total / pageSize}">10</a></li>
+            <li th:if="${page < total / pageSize}"><a href="#" th:href="@{'/q?page=' + ${page + 1} + '&page_size=' + ${pageSize}}">Next</a></li>
           </ul>
         </nav>
 

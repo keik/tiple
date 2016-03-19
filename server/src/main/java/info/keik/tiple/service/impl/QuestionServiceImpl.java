@@ -37,4 +37,16 @@ public class QuestionServiceImpl implements QuestionService {
 		return question;
 	}
 
+	@Override
+	public Integer getTotalCount() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<Question> search(String tag, Integer page, Integer pageSize) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

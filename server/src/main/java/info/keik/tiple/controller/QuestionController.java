@@ -11,7 +11,6 @@ import info.keik.tiple.service.UserService;
 import java.security.Principal;
 import java.util.List;
 
-import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -34,12 +33,20 @@ public class QuestionController {
 	private UserService userService;
 
 	@RequestMapping(method = RequestMethod.GET)
-	public String index(Model model, @RequestParam(value = "tag", required = false) String tagName) {
-		List<Question> questions = StringUtils.isEmpty(tagName)
-				? questionService.getAll()
-				: questionService.getByTag(new Tag(tagName));
+	public String index(Model model,
+			@RequestParam(value = "tag", required = false) String tagName,
+			@RequestParam(value = "page", required = false, defaultValue = "1") Integer page,
+			@RequestParam(value = "page_size", required = false, defaultValue = "10") Integer pageSize) {
+
+		List<Question> questions = questionService.search(tagName, page, pageSize);
+		Integer total = questionService.getTotalCount();
+
+		System.out.println(questions);
 		model.addAttribute("questions", questions);
 		model.addAttribute("tag", tagName);
+		model.addAttribute("page", page);
+		model.addAttribute("pageSize", pageSize);
+		model.addAttribute("total", total);
 		return "questions/index.html";
 	}
 

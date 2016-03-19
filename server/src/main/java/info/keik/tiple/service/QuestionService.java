@@ -26,7 +26,7 @@ public interface QuestionService {
 	 * Return questions that specified with tag name.
 	 * 
 	 * @param tag name
-	 * @return questions that specified width tag name
+	 * @return questions that specified with tag name
 	 */
 	List<Question> getByTag(Tag tag);
 
@@ -37,5 +37,22 @@ public interface QuestionService {
 	 * @return created question
 	 */
 	Question add(Question question);
+
+	/**
+	 * Return count of all questions.
+	 * 
+	 * @return count of all questions count
+	 */
+	Integer getTotalCount();
+
+	/**
+	 * Search questions with pagination.
+	 * 
+	 * @param tag name
+	 * @param page number
+	 * @param item count per page
+	 * @return questions that specified with conditions
+	 */
+	List<Question> search(String tagName, Integer page, Integer pageSize);
 
 }
