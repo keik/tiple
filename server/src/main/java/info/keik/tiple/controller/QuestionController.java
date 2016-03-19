@@ -41,7 +41,6 @@ public class QuestionController {
 		List<Question> questions = questionService.search(tagName, page, pageSize);
 		Integer total = questionService.getTotalCount();
 
-		System.out.println(questions);
 		model.addAttribute("questions", questions);
 		model.addAttribute("tag", tagName);
 		model.addAttribute("page", page);
