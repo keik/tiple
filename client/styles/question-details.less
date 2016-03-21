@@ -9,6 +9,28 @@
 
 .question-details, .answer {
   .meta();
+  .vote {
+    float: left;
+    width: 80px;
+
+    > * {
+      display: block;
+      color: #888;
+      font-size: 18px;
+      text-align: center;
+      &.fa-star {
+        font-size: 24px;
+        margin-top: 12px;
+      }
+      &.fa-caret-up, &.fa-caret-down {
+        font-size: 36px;
+      }
+    }
+  }
+
+  p {
+    margin-left: 80px;
+  }
 }
 
 .meta() {
