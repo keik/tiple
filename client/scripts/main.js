@@ -1,7 +1,7 @@
-import _ from 'lodash';
+import bows from 'bows'
 import './aliases';
 import './page-specifics/question';
+import './page-specifics/question-details';
 
-let reduced = _.reduce([0, 1, 2, 3], (acc, v) => { return acc + v; }, 0);
-
-console.log(reduced);
+var d = bows('tiple:main')
+d('loaded')

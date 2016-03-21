@@ -56,12 +56,27 @@ public interface QuestionService {
 	List<Question> search(String tagName, Integer page, Integer pageSize);
 
 	/**
-	 * Add views counter of the specified question
-	 * and return the count.
+	 * Add views counter of the specified question.
 	 * 
 	 * @param question id
 	 * @return views count of the specified question
 	 */
-	Integer addViewsCount(Integer id);
+	void addViewsCount(Integer id);
+
+	/**
+	 * Vote to specified question.
+	 * 
+	 * @param questionId
+	 * @param userId
+	 */
+	void vote(Integer questionId, Integer userId);
+
+	/**
+	 * Vote down to specified question.
+	 * 
+	 * @param questionId
+	 * @param userId
+	 */
+	void voteDown(Integer questionId, Integer userId);
 
 }

@@ -21,4 +21,19 @@ public interface AnswerService {
 	 */
 	void add(Answer answer);
 
+	/**
+	 * Vote to specified answer.
+	 * 
+	 * @param answerId
+	 * @param userId
+	 */
+	void vote(Integer answerId, Integer userId);
+
+	/**
+	 * Vote down to specified answer.
+	 * 
+	 * @param answerId
+	 * @param userId
+	 */
+	void voteDown(Integer answerId, Integer userId);
 }

@@ -81,13 +81,27 @@ public class QuestionServiceMock implements QuestionService {
 	}
 
 	@Override
-	public Integer addViewsCount(Integer id) {
+	public void addViewsCount(Integer id) {
 		Question question = questions.stream()
 				.filter(q -> id == q.getId())
 				.findAny().get();
-		Integer newViewsCount = question.getViewsCount() + 1;
-		question.setViewsCount(newViewsCount);
-		return newViewsCount;
+		question.setViewsCount(question.getViewsCount() + 1);
+	}
+
+	@Override
+	public void vote(Integer questionId, Integer userId) {
+		Question question = questions.stream()
+				.filter(q -> questionId == q.getId())
+				.findAny().get();
+		question.setVotesCount(question.getVotesCount() + 1);
+	}
+
+	@Override
+	public void voteDown(Integer questionId, Integer userId) {
+		Question question = questions.stream()
+				.filter(q -> questionId == q.getId())
+				.findAny().get();
+		question.setVotesCount(question.getVotesCount() - 1);
 	}
 
 	private void addDummyQuestion(int p) {
@@ -99,7 +113,7 @@ public class QuestionServiceMock implements QuestionService {
 					setId(questions.size() + 1);
 					Tag[] ts = { new Tag("javascript"), new Tag("jquery") };
 					setTags(Arrays.asList(ts));
-					setVotes(p * 3);
+					setVotesCount(p * 3);
 					setViewsCount(p * 5);
 					setCreatedBy(new User() {
 						{
@@ -118,7 +132,7 @@ public class QuestionServiceMock implements QuestionService {
 					setId(questions.size() + 1);
 					Tag[] ts = { new Tag("java"), new Tag("maven") };
 					setTags(Arrays.asList(ts));
-					setVotes(p * 3);
+					setVotesCount(p * 3);
 					setViewsCount(p * 5);
 					setCreatedBy(new User() {
 						{
@@ -137,7 +151,7 @@ public class QuestionServiceMock implements QuestionService {
 					setId(questions.size() + 1);
 					Tag[] ts = { new Tag("javascript"), new Tag("node") };
 					setTags(Arrays.asList(ts));
-					setVotes(p * 3);
+					setVotesCount(p * 3);
 					setViewsCount(p * 5);
 					setCreatedBy(new User() {
 						{
@@ -156,7 +170,7 @@ public class QuestionServiceMock implements QuestionService {
 					setId(questions.size() + 1);
 					Tag[] ts = { new Tag("stream"), new Tag("node") };
 					setTags(Arrays.asList(ts));
-					setVotes(p * 3);
+					setVotesCount(p * 3);
 					setViewsCount(p * 5);
 					setCreatedBy(new User() {
 						{
@@ -175,7 +189,7 @@ public class QuestionServiceMock implements QuestionService {
 					setId(questions.size() + 1);
 					Tag[] ts = { new Tag("stream"), new Tag("java") };
 					setTags(Arrays.asList(ts));
-					setVotes(p * 3);
+					setVotesCount(p * 3);
 					setViewsCount(p * 5);
 					setCreatedBy(new User() {
 						{

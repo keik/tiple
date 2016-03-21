@@ -21,6 +21,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 				.anyRequest().permitAll()
 
 				.and()
+				.csrf().disable()
+
 				.formLogin().loginPage("/login").loginProcessingUrl("/session")
 				.defaultSuccessUrl("/")
 				.usernameParameter("id").passwordParameter("password")

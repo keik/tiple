@@ -25,4 +25,16 @@ public class AnswerServiceImpl implements AnswerService {
 		answerRepository.add(answer);
 	}
 
+	@Override
+	public void vote(Integer answerId, Integer userId) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void voteDown(Integer answerId, Integer userId) {
+		// TODO Auto-generated method stub
+
+	}
+
 }

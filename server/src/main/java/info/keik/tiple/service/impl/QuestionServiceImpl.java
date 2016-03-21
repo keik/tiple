@@ -15,7 +15,7 @@ public class QuestionServiceImpl implements QuestionService {
 
 	@Autowired
 	QuestionRepository questionRepository;
-	
+
 	@Override
 	public List<Question> getAll() {
 		return questionRepository.getAll();
@@ -50,9 +50,20 @@ public class QuestionServiceImpl implements QuestionService {
 	}
 
 	@Override
-	public Integer addViewsCount(Integer id) {
+	public void addViewsCount(Integer id) {
 		// TODO Auto-generated method stub
-		return null;
+	}
+
+	@Override
+	public void vote(Integer answerId, Integer userId) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void voteDown(Integer answerId, Integer userId) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }
