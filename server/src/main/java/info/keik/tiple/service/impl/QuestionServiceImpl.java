@@ -49,4 +49,10 @@ public class QuestionServiceImpl implements QuestionService {
 		return null;
 	}
 
+	@Override
+	public Integer addViewsCount(Integer id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

@@ -12,7 +12,7 @@ public class Question {
 	private String title;
 	private String content;
 	private List<Tag> tags;
-	private Integer views;
+	private Integer viewsCount;
 	private Integer votes;
 	private Integer answersCount;
 	private User createdBy;

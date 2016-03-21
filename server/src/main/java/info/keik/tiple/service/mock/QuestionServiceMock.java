@@ -80,6 +80,16 @@ public class QuestionServiceMock implements QuestionService {
 				.subList((page - 1) * pageSize, page * pageSize);
 	}
 
+	@Override
+	public Integer addViewsCount(Integer id) {
+		Question question = questions.stream()
+				.filter(q -> id == q.getId())
+				.findAny().get();
+		Integer newViewsCount = question.getViewsCount() + 1;
+		question.setViewsCount(newViewsCount);
+		return newViewsCount;
+	}
+
 	private void addDummyQuestion(int p) {
 		Question q = null;
 		switch (p) {
@@ -90,7 +100,7 @@ public class QuestionServiceMock implements QuestionService {
 					Tag[] ts = { new Tag("javascript"), new Tag("jquery") };
 					setTags(Arrays.asList(ts));
 					setVotes(p * 3);
-					setViews(p * 5);
+					setViewsCount(p * 5);
 					setCreatedBy(new User() {
 						{
 							setId("alice");
@@ -109,7 +119,7 @@ public class QuestionServiceMock implements QuestionService {
 					Tag[] ts = { new Tag("java"), new Tag("maven") };
 					setTags(Arrays.asList(ts));
 					setVotes(p * 3);
-					setViews(p * 5);
+					setViewsCount(p * 5);
 					setCreatedBy(new User() {
 						{
 							setId("bob");
@@ -128,7 +138,7 @@ public class QuestionServiceMock implements QuestionService {
 					Tag[] ts = { new Tag("javascript"), new Tag("node") };
 					setTags(Arrays.asList(ts));
 					setVotes(p * 3);
-					setViews(p * 5);
+					setViewsCount(p * 5);
 					setCreatedBy(new User() {
 						{
 							setId("carol");
@@ -147,7 +157,7 @@ public class QuestionServiceMock implements QuestionService {
 					Tag[] ts = { new Tag("stream"), new Tag("node") };
 					setTags(Arrays.asList(ts));
 					setVotes(p * 3);
-					setViews(p * 5);
+					setViewsCount(p * 5);
 					setCreatedBy(new User() {
 						{
 							setId("dave");
@@ -166,7 +176,7 @@ public class QuestionServiceMock implements QuestionService {
 					Tag[] ts = { new Tag("stream"), new Tag("java") };
 					setTags(Arrays.asList(ts));
 					setVotes(p * 3);
-					setViews(p * 5);
+					setViewsCount(p * 5);
 					setCreatedBy(new User() {
 						{
 							setId("fred");

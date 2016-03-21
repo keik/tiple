@@ -55,4 +55,13 @@ public interface QuestionService {
 	 */
 	List<Question> search(String tagName, Integer page, Integer pageSize);
 
+	/**
+	 * Add views counter of the specified question
+	 * and return the count.
+	 * 
+	 * @param question id
+	 * @return views count of the specified question
+	 */
+	Integer addViewsCount(Integer id);
+
 }

@@ -51,6 +51,7 @@ public class QuestionController {
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
 	public String show(@PathVariable("id") Integer id, Model model) {
 		Question question = questionService.get(id);
+		questionService.addViewsCount(id);
 		List<Answer> answers = answerService.getByQuestionsId(id);
 		model.addAttribute("question", question);
 		model.addAttribute("answers", answers);
