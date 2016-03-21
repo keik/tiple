@@ -2,7 +2,6 @@ package info.keik.tiple.controller;
 
 import info.keik.tiple.model.Answer;
 import info.keik.tiple.model.Question;
-import info.keik.tiple.model.Tag;
 import info.keik.tiple.model.User;
 import info.keik.tiple.service.AnswerService;
 import info.keik.tiple.service.QuestionService;

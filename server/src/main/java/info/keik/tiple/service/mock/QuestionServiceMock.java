@@ -89,6 +89,8 @@ public class QuestionServiceMock implements QuestionService {
 					setId(questions.size() + 1);
 					Tag[] ts = { new Tag("javascript"), new Tag("jquery") };
 					setTags(Arrays.asList(ts));
+					setVotes(p * 3);
+					setViews(p * 5);
 					setCreatedBy(new User() {
 						{
 							setId("alice");
@@ -106,6 +108,8 @@ public class QuestionServiceMock implements QuestionService {
 					setId(questions.size() + 1);
 					Tag[] ts = { new Tag("java"), new Tag("maven") };
 					setTags(Arrays.asList(ts));
+					setVotes(p * 3);
+					setViews(p * 5);
 					setCreatedBy(new User() {
 						{
 							setId("bob");
@@ -123,6 +127,8 @@ public class QuestionServiceMock implements QuestionService {
 					setId(questions.size() + 1);
 					Tag[] ts = { new Tag("javascript"), new Tag("node") };
 					setTags(Arrays.asList(ts));
+					setVotes(p * 3);
+					setViews(p * 5);
 					setCreatedBy(new User() {
 						{
 							setId("carol");
@@ -140,6 +146,8 @@ public class QuestionServiceMock implements QuestionService {
 					setId(questions.size() + 1);
 					Tag[] ts = { new Tag("stream"), new Tag("node") };
 					setTags(Arrays.asList(ts));
+					setVotes(p * 3);
+					setViews(p * 5);
 					setCreatedBy(new User() {
 						{
 							setId("dave");
@@ -157,6 +165,8 @@ public class QuestionServiceMock implements QuestionService {
 					setId(questions.size() + 1);
 					Tag[] ts = { new Tag("stream"), new Tag("java") };
 					setTags(Arrays.asList(ts));
+					setVotes(p * 3);
+					setViews(p * 5);
 					setCreatedBy(new User() {
 						{
 							setId("fred");

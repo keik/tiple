@@ -31,7 +31,7 @@
           <li class="question" th:each="question : ${questions}">
             <div class="stats">
               <div class="middle-box">
-                <span class="stats-count" th:text="TODO">10</span>
+                <span class="stats-count" th:text="${question.votes}">10</span>
                 <span class="stats-label">votes</span>
               </div>
               <div class="middle-box">
@@ -39,7 +39,7 @@
                 <span class="stats-label">answers</span>
               </div>
               <div class="middle-box">
-                <span class="stats-count" th:text="TODO">30</span>
+                <span class="stats-count" th:text="${question.views}">30</span>
                 <span class="stats-label">view</span>
               </div>
             </div>

@@ -12,6 +12,8 @@ public class Question {
 	private String title;
 	private String content;
 	private List<Tag> tags;
+	private Integer views;
+	private Integer votes;
 	private Integer answersCount;
 	private User createdBy;
 	private Date createdAt;
