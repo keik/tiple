@@ -18,7 +18,7 @@ public class UserServiceMock implements UserService {
 			{
 				setId("alice");
 				setName("Alice");
-				setEmail("user1@example.net");
+				setEmail("alice@example.net");
 				setPassword("password");
 			}
 		});
@@ -26,7 +26,15 @@ public class UserServiceMock implements UserService {
 			{
 				setId("bob");
 				setName("Bob");
-				setEmail("user2@example.net");
+				setEmail("bob@example.net");
+				setPassword("password");
+			}
+		});
+		users.add(new User() {
+			{
+				setId("carol");
+				setName("Carol");
+				setEmail("carol@example.net");
 				setPassword("password");
 			}
 		});
