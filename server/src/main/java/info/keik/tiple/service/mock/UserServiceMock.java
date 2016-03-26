@@ -6,6 +6,8 @@ import info.keik.tiple.service.UserService;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -13,13 +15,15 @@ public class UserServiceMock implements UserService {
 
 	public List<User> users = new ArrayList<>();
 
+	private PasswordEncoder passowordEncoder = new BCryptPasswordEncoder();
+
 	{
 		users.add(new User() {
 			{
 				setId("alice");
 				setName("Alice");
 				setEmail("alice@example.net");
-				setPassword("password");
+				setPassword(passowordEncoder.encode("alice"));
 			}
 		});
 		users.add(new User() {
@@ -27,7 +31,7 @@ public class UserServiceMock implements UserService {
 				setId("bob");
 				setName("Bob");
 				setEmail("bob@example.net");
-				setPassword("password");
+				setPassword(passowordEncoder.encode("bob"));
 			}
 		});
 		users.add(new User() {
@@ -35,7 +39,7 @@ public class UserServiceMock implements UserService {
 				setId("carol");
 				setName("Carol");
 				setEmail("carol@example.net");
-				setPassword("password");
+				setPassword(passowordEncoder.encode("carol"));
 			}
 		});
 	}
