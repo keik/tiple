@@ -8,27 +8,12 @@ import java.util.List;
 public interface QuestionService {
 
 	/**
-	 * Return all questions.
-	 * 
-	 * @return all questions
-	 */
-	List<Question> getAll();
-
-	/**
 	 * Return a question that specified with ID.
 	 * 
 	 * @param id
 	 * @return a question that specified with ID
 	 */
 	Question get(Integer id);
-
-	/**
-	 * Return questions that specified with tag name.
-	 * 
-	 * @param tag name
-	 * @return questions that specified with tag name
-	 */
-	List<Question> getByTag(Tag tag);
 
 	/**
 	 * Add a new question.
@@ -41,9 +26,10 @@ public interface QuestionService {
 	/**
 	 * Return count of all questions.
 	 * 
+	 * @param tag name
 	 * @return count of all questions count
 	 */
-	Integer getTotalCount();
+	Integer getTotalCount(String tagName);
 
 	/**
 	 * Search questions with pagination.

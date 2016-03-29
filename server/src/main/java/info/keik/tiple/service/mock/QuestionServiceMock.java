@@ -30,23 +30,10 @@ public class QuestionServiceMock implements QuestionService {
 	}
 
 	@Override
-	public List<Question> getAll() {
-		return questions;
-	}
-
-	@Override
 	public Question get(Integer id) {
 		return questions.stream()
 				.filter(q -> id == q.getId())
 				.findAny().get();
-	}
-
-	@Override
-	public List<Question> getByTag(Tag tag) {
-		return questions.stream()
-				.filter(q -> q.getTags().stream()
-						.anyMatch(t -> t.getName().equals(tag.getName())))
-				.collect(Collectors.toList());
 	}
 
 	@Override
@@ -65,8 +52,12 @@ public class QuestionServiceMock implements QuestionService {
 	}
 
 	@Override
-	public Integer getTotalCount() {
-		return questions.size();
+	public Integer getTotalCount(String tagName) {
+		return (int) questions.stream()
+				.filter(tagName == null ?
+						q -> true :
+						q -> q.getTags().stream().anyMatch(t -> t.getName().equals(tagName))
+				).count();
 	}
 
 	@Override

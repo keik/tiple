@@ -2,24 +2,8 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="info.keik.tiple.repository.QuestionRepository">
 
-  <select id="getAll" resultMap="getAll-map">
-    SELECT question.id, question.title, question.created_by, question.created_at, tag.name as tname
-    FROM question
-    JOIN question_tag ON question.id = question_tag.question_id
-    JOIN tag ON question_tag.tag_id = tag.id
-  </select>
-  <resultMap id="getAll-map" type="info.keik.tiple.model.Question">
-    <id property="id" column="id" />
-    <result property="title" column="title" />
-    <result property="createdBy.id" column="created_by" />
-    <result property="createdAt" column="created_at" />
-    <collection property="tags" ofType="info.keik.tiple.model.Tag">
-      <result property="name" column="tname" />
-    </collection>
-  </resultMap>
-
   <select id="get" resultMap="get-map">
-    SELECT question.id, question.title, question.content, question.created_by, question.created_at, tag.name as tname
+    SELECT question.id, question.title, question.content, question.created_by, question.created_at, tag.name AS tname
     FROM question
     JOIN question_tag ON question.id = question_tag.question_id
     JOIN tag ON question_tag.tag_id = tag.id
@@ -35,5 +19,37 @@
       <result property="name" column="tname" />
     </collection>
   </resultMap>
+
+  <select id="search" resultMap="search-map">
+    SELECT question.id, question.title, question.content, question.created_by, question.created_at, tag.name AS tname
+    FROM question
+    JOIN question_tag ON question.id = question_tag.question_id
+    JOIN tag ON question_tag.tag_id = tag.id
+    <if test="tagName != null">
+      WHERE tag.name = #{tagName}
+    </if>
+    ORDER BY question.id
+    LIMIT #{begin}, #{count}
+  </select>
+  <resultMap id="search-map" type="info.keik.tiple.model.Question">
+    <id property="id" column="id" />
+    <result property="title" column="title" />
+    <result property="content" column="content" />
+    <result property="createdBy.id" column="created_by" />
+    <result property="createdAt" column="created_at" />
+    <collection property="tags" ofType="info.keik.tiple.model.Tag">
+      <result property="name" column="tname" />
+    </collection>
+  </resultMap>
+
+  <select id="count" resultType="Integer">
+    SELECT COUNT(DISTINCT question.id)
+    FROM question
+    JOIN question_tag ON question.id = question_tag.question_id
+    JOIN tag ON question_tag.tag_id = tag.id
+    <if test="tagName != null">
+      WHERE tag.name = #{tagName}
+    </if>
+  </select>
 
 </mapper>

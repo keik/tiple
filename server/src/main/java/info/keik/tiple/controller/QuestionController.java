@@ -38,7 +38,7 @@ public class QuestionController {
 			@RequestParam(value = "page_size", required = false, defaultValue = "10") Integer pageSize) {
 
 		List<Question> questions = questionService.search(tagName, page, pageSize);
-		Integer total = questionService.getTotalCount();
+		Integer total = questionService.getTotalCount(tagName);
 
 		model.addAttribute("questions", questions);
 		model.addAttribute("tag", tagName);

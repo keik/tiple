@@ -17,18 +17,8 @@ public class QuestionServiceImpl implements QuestionService {
 	QuestionRepository questionRepository;
 
 	@Override
-	public List<Question> getAll() {
-		return questionRepository.getAll();
-	}
-
-	@Override
 	public Question get(Integer id) {
 		return questionRepository.get(id);
-	}
-
-	@Override
-	public List<Question> getByTag(Tag tag) {
-		return questionRepository.getByTag(tag);
 	}
 
 	@Override
@@ -38,15 +28,13 @@ public class QuestionServiceImpl implements QuestionService {
 	}
 
 	@Override
-	public Integer getTotalCount() {
-		// TODO Auto-generated method stub
-		return null;
+	public Integer getTotalCount(String tagName) {
+		return questionRepository.count(tagName);
 	}
 
 	@Override
-	public List<Question> search(String tag, Integer page, Integer pageSize) {
-		// TODO Auto-generated method stub
-		return null;
+	public List<Question> search(String tagName, Integer page, Integer pageSize) {
+		return questionRepository.search(tagName, (page - 1) * pageSize, pageSize);
 	}
 
 	@Override
@@ -63,7 +51,7 @@ public class QuestionServiceImpl implements QuestionService {
 	@Override
 	public void voteDown(Integer answerId, Integer userId) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 }

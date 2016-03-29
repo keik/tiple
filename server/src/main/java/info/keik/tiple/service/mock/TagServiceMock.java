@@ -53,7 +53,7 @@ public class TagServiceMock implements TagService {
 		return tags.stream()
 				.collect(Collectors.toMap(
 						t -> t,
-						t -> questionService.getByTag(t).size()));
+						t -> questionService.search(t.getName(), 1, questionService.getTotalCount(t.getName())).size()));
 	}
 
 }

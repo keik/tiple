@@ -5,14 +5,16 @@ import info.keik.tiple.model.Tag;
 
 import java.util.List;
 
-public interface QuestionRepository {
+import org.apache.ibatis.annotations.Param;
 
-	public List<Question> getAll();
+public interface QuestionRepository {
 
 	public Question get(Integer userId);
 
-	public List<Question> getByTag(Tag tag);
-
 	public int add(Question question);
+
+	public List<Question> search(@Param("tagName") String tagName, @Param("begin") Integer begin, @Param("count") Integer count);
+
+	public int count(@Param("tagName") String tagName);
 
 }
