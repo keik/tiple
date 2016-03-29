@@ -21,15 +21,32 @@
   </resultMap>
 
   <select id="search" resultMap="search-map">
-    SELECT question.id, question.title, question.content, question.created_by, question.created_at, tag.name AS tname
-    FROM question
-    JOIN question_tag ON question.id = question_tag.question_id
-    JOIN tag ON question_tag.tag_id = tag.id
-    <if test="tagName != null">
-      WHERE tag.name = #{tagName}
-    </if>
-    ORDER BY question.id
-    LIMIT #{begin}, #{count}
+    SELECT
+      q.id,
+      q.title,
+      q.content,
+      q.created_at,
+      q.created_by,
+      tag.name AS tname
+    FROM (
+      SELECT
+        question.id,
+        question.title,
+        question.content,
+        question.created_at,
+        question.created_by
+      FROM question
+      LEFT JOIN question_tag ON question.id = question_tag.question_id
+      LEFT JOIN tag ON question_tag.tag_id = tag.id
+      <if test="tagName != null">
+        WHERE tag.name = #{tagName}
+      </if>
+      GROUP BY question.id
+      LIMIT #{begin}, #{count}
+    ) q
+    LEFT JOIN question_tag ON q.id = question_tag.question_id
+    LEFT JOIN tag ON question_tag.tag_id = tag.id
+    ORDER BY q.id
   </select>
   <resultMap id="search-map" type="info.keik.tiple.model.Question">
     <id property="id" column="id" />
