@@ -1,7 +1,6 @@
 package info.keik.tiple.repository;
 
 import info.keik.tiple.model.Question;
-import info.keik.tiple.model.Tag;
 
 import java.util.List;
 

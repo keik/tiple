@@ -1,7 +1,6 @@
 package info.keik.tiple.service.impl;
 
 import info.keik.tiple.model.Question;
-import info.keik.tiple.model.Tag;
 import info.keik.tiple.repository.QuestionRepository;
 import info.keik.tiple.service.QuestionService;
 
