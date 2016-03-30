@@ -3,7 +3,7 @@
 <mapper namespace="info.keik.tiple.repository.AnswerRepository">
 
   <select id="getByQuestionsId" resultMap="getByQuestionId-map">
-    SELECT answer.content, answer.created_by, answer.created_at
+    SELECT answer.content, answer.votes_count, answer.created_by, answer.created_at
     FROM answer
     JOIN question ON answer.answer_for = question.id
     JOIN user ON answer.created_by = user.id
@@ -11,6 +11,7 @@
   </select>
   <resultMap id="getByQuestionId-map" type="info.keik.tiple.model.Answer">
     <result property="content" column="content" />
+    <result property="votesCount" column="votes_count" />
     <result property="createdBy.id" column="created_by" />
     <result property="createdAt" column="created_at" />
   </resultMap>

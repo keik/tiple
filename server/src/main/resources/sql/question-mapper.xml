@@ -3,7 +3,14 @@
 <mapper namespace="info.keik.tiple.repository.QuestionRepository">
 
   <select id="get" resultMap="get-map">
-    SELECT question.id, question.title, question.content, question.created_by, question.created_at, tag.name AS tname
+    SELECT
+      question.id,
+      question.title,
+      question.content,
+      question.votes_count,
+      question.created_by,
+      question.created_at,
+      tag.name AS tname
     FROM question
     JOIN question_tag ON question.id = question_tag.question_id
     JOIN tag ON question_tag.tag_id = tag.id
@@ -13,6 +20,7 @@
     <id property="id" column="id" />
     <result property="title" column="title" />
     <result property="content" column="content" />
+    <result property="votesCount" column="votes_count" />
     <result property="createdBy.id" column="created_by" />
     <result property="createdAt" column="created_at" />
     <collection property="tags" ofType="info.keik.tiple.model.Tag">
@@ -25,6 +33,9 @@
       q.id,
       q.title,
       q.content,
+      q.views_count,
+      q.votes_count,
+      count(DISTINCT answer.id) as answers_count,
       q.created_at,
       q.created_by,
       tag.name AS tname
@@ -33,6 +44,8 @@
         question.id,
         question.title,
         question.content,
+        question.views_count,
+        question.votes_count,
         question.created_at,
         question.created_by
       FROM question
@@ -46,14 +59,20 @@
     ) q
     LEFT JOIN question_tag ON q.id = question_tag.question_id
     LEFT JOIN tag ON question_tag.tag_id = tag.id
+    LEFT JOIN answer ON q.id = answer.answer_for
+    GROUP BY q.id
     ORDER BY q.id
   </select>
   <resultMap id="search-map" type="info.keik.tiple.model.Question">
     <id property="id" column="id" />
     <result property="title" column="title" />
     <result property="content" column="content" />
+    <result property="viewsCount" column="views_count" />
+    <result property="votesCount" column="votes_count" />
+    <result property="answersCount" column="answers_count" />
     <result property="createdBy.id" column="created_by" />
     <result property="createdAt" column="created_at" />
+    <result property="updatedBy.id" column="updated_at" />
     <collection property="tags" ofType="info.keik.tiple.model.Tag">
       <result property="name" column="tname" />
     </collection>
