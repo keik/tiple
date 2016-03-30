@@ -1,5 +1,10 @@
 SET FOREIGN_KEY_CHECKS=0;
-DROP TABLE IF EXISTS user, question, tag, question_tag, answer;
+DROP TABLE IF EXISTS
+  user,
+  question,
+  tag,
+  question_tag,
+  answer;
 SET FOREIGN_KEY_CHECKS=1;
 
 CREATE TABLE user (
@@ -11,11 +16,13 @@ CREATE TABLE user (
 );
 
 CREATE TABLE question (
-  id         INTEGER        NOT NULL AUTO_INCREMENT,
-  title      VARCHAR(255)   NOT NULL,
-  content    VARCHAR(10000) NOT NULL,
-  created_by VARCHAR(32)    NOT NULL,
-  created_at DATETIME       DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  id          INTEGER        NOT NULL AUTO_INCREMENT,
+  title       VARCHAR(255)   NOT NULL,
+  content     VARCHAR(10000) NOT NULL,
+  views_count INTEGER        NOT NULL,
+  votes_count INTEGER        NOT NULL,
+  created_by  VARCHAR(32)    NOT NULL,
+  created_at  DATETIME       DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (id),
   FOREIGN KEY (created_by) REFERENCES user(id) ON DELETE CASCADE
 );
@@ -34,11 +41,12 @@ CREATE TABLE question_tag (
 );
 
 CREATE TABLE answer (
-  id         INTEGER        NOT NULL AUTO_INCREMENT,
-  answer_for INTEGER        NOT NULL,
-  content    VARCHAR(10000) NOT NULL,
-  created_by VARCHAR(32)    NOT NULL,
-  created_at DATETIME       DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  id          INTEGER        NOT NULL AUTO_INCREMENT,
+  answer_for  INTEGER        NOT NULL,
+  content     VARCHAR(10000) NOT NULL,
+  votes_count INTEGER        NOT NULL,
+  created_by  VARCHAR(32)    NOT NULL,
+  created_at  DATETIME       DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (id),
   FOREIGN KEY (answer_for) REFERENCES question(id) ON DELETE CASCADE,
   FOREIGN KEY (created_by) REFERENCES user(id) ON DELETE CASCADE
