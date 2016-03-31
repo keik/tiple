@@ -1,37 +1,38 @@
 /*
 node -e '
+  var bcrypt = require("bcrypt")
   var users = require("fs").readFileSync("./users", "utf8").trim().split("\n")
   users.forEach(function(n) {
     console.log("INSERT INTO user (id, name, email, password) VALUES ('\''%s'\'', '\''%s'\'', '\''%s@example.net'\'', '\''%s'\'');",
-      n, n.substr(0, 1).toUpperCase() + n.substr(1), n, n)
+      n, n.substr(0, 1).toUpperCase() + n.substr(1), n, bcrypt.hashSync(n, 10))
   })'
 */
-INSERT INTO user (id, name, email, password) VALUES ('alice', 'Alice', 'alice@example.net', 'alice');
-INSERT INTO user (id, name, email, password) VALUES ('bob', 'Bob', 'bob@example.net', 'bob');
-INSERT INTO user (id, name, email, password) VALUES ('carol', 'Carol', 'carol@example.net', 'carol');
-INSERT INTO user (id, name, email, password) VALUES ('dave', 'Dave', 'dave@example.net', 'dave');
-INSERT INTO user (id, name, email, password) VALUES ('elen', 'Elen', 'elen@example.net', 'elen');
-INSERT INTO user (id, name, email, password) VALUES ('fred', 'Fred', 'fred@example.net', 'fred');
-INSERT INTO user (id, name, email, password) VALUES ('greg', 'Greg', 'greg@example.net', 'greg');
-INSERT INTO user (id, name, email, password) VALUES ('henley', 'Henley', 'henley@example.net', 'henley');
-INSERT INTO user (id, name, email, password) VALUES ('isaac', 'Isaac', 'isaac@example.net', 'isaac');
-INSERT INTO user (id, name, email, password) VALUES ('justin', 'Justin', 'justin@example.net', 'justin');
-INSERT INTO user (id, name, email, password) VALUES ('kenny', 'Kenny', 'kenny@example.net', 'kenny');
-INSERT INTO user (id, name, email, password) VALUES ('leon', 'Leon', 'leon@example.net', 'leon');
-INSERT INTO user (id, name, email, password) VALUES ('mallory', 'Mallory', 'mallory@example.net', 'mallory');
-INSERT INTO user (id, name, email, password) VALUES ('noel', 'Noel', 'noel@example.net', 'noel');
-INSERT INTO user (id, name, email, password) VALUES ('oscar', 'Oscar', 'oscar@example.net', 'oscar');
-INSERT INTO user (id, name, email, password) VALUES ('pat', 'Pat', 'pat@example.net', 'pat');
-INSERT INTO user (id, name, email, password) VALUES ('quin', 'Quin', 'quin@example.net', 'quin');
-INSERT INTO user (id, name, email, password) VALUES ('richard', 'Richard', 'richard@example.net', 'richard');
-INSERT INTO user (id, name, email, password) VALUES ('steve', 'Steve', 'steve@example.net', 'steve');
-INSERT INTO user (id, name, email, password) VALUES ('trent', 'Trent', 'trent@example.net', 'trent');
-INSERT INTO user (id, name, email, password) VALUES ('uriens', 'Uriens', 'uriens@example.net', 'uriens');
-INSERT INTO user (id, name, email, password) VALUES ('victor', 'Victor', 'victor@example.net', 'victor');
-INSERT INTO user (id, name, email, password) VALUES ('walter', 'Walter', 'walter@example.net', 'walter');
-INSERT INTO user (id, name, email, password) VALUES ('xeno', 'Xeno', 'xeno@example.net', 'xeno');
-INSERT INTO user (id, name, email, password) VALUES ('york', 'York', 'york@example.net', 'york');
-INSERT INTO user (id, name, email, password) VALUES ('zoe', 'Zoe', 'zoe@example.net', 'zoe');
+INSERT INTO user (id, name, email, password) VALUES ('alice', 'Alice', 'alice@example.net', '$2a$10$fNFyEquroaHksWarM1uejeQ.Wmex1BBKSIYyu9geihh2f4e75dizq');
+INSERT INTO user (id, name, email, password) VALUES ('bob', 'Bob', 'bob@example.net', '$2a$10$Bye8VdkiHbhtmTSoUq/H3.DpvQldrJ4QkOtMlQ3meA2MAk24uDFxK');
+INSERT INTO user (id, name, email, password) VALUES ('carol', 'Carol', 'carol@example.net', '$2a$10$UJjVMODNgp9nnfDYUXS5OOdUfRu0XytJ15n0zgaNFvWu6zjws5VUW');
+INSERT INTO user (id, name, email, password) VALUES ('dave', 'Dave', 'dave@example.net', '$2a$10$MtLoO86WRuO/QEvaGfhuqOeglL9sRE3XmyUGJ8qfNJWnzFdDwC./W');
+INSERT INTO user (id, name, email, password) VALUES ('elen', 'Elen', 'elen@example.net', '$2a$10$nAlYUNOarM0FdRkBgXkDF.60Vbp.ATwaTB6OzPqE97Yhhw3.m4lAm');
+INSERT INTO user (id, name, email, password) VALUES ('fred', 'Fred', 'fred@example.net', '$2a$10$.0Spog/sxCWEVWu8txURoOp0MbmoHE9FtHgsRtb7vbEDlcmd.ROEK');
+INSERT INTO user (id, name, email, password) VALUES ('greg', 'Greg', 'greg@example.net', '$2a$10$VFFzifRTAlCbTJZ.dAwREeEpZkovdTgD8QZqK/xMDtbJWMZJPtwPK');
+INSERT INTO user (id, name, email, password) VALUES ('henley', 'Henley', 'henley@example.net', '$2a$10$isL0Ods6tdgVB5iNkAhFTuZ3jpT6wgiBzTVlut0VsUZSpjdCaOcQy');
+INSERT INTO user (id, name, email, password) VALUES ('isaac', 'Isaac', 'isaac@example.net', '$2a$10$gGNo8kEp6Goz29kaPpOtKe300f.wlGJzELuW0BidLGMFFNFHo1A4C');
+INSERT INTO user (id, name, email, password) VALUES ('justin', 'Justin', 'justin@example.net', '$2a$10$k69COla0QqVLnoARB3wrTeb6I81cHpHYEQZUFZYEgnd2gL2/ACWmC');
+INSERT INTO user (id, name, email, password) VALUES ('kenny', 'Kenny', 'kenny@example.net', '$2a$10$07.i7S7DoNzw/lWG5huCr.TUN/VuQQywfu4YiFwq7BJkcGVLpvNzu');
+INSERT INTO user (id, name, email, password) VALUES ('leon', 'Leon', 'leon@example.net', '$2a$10$nBzWhIzQeaUwjWOhhZ8VheRIwwtzwhYGvMYqS0mYHjko2DEVfdPVK');
+INSERT INTO user (id, name, email, password) VALUES ('mallory', 'Mallory', 'mallory@example.net', '$2a$10$Gg3tPYvOKOayqITxxgqBYurMnwJSMGfaGLUHJWVaRa0RdowziMphm');
+INSERT INTO user (id, name, email, password) VALUES ('noel', 'Noel', 'noel@example.net', '$2a$10$71YpRl2y9T2FSrDw60wXU.wTkSDhy8lzPXxErU41dDfJM2/ka85RC');
+INSERT INTO user (id, name, email, password) VALUES ('oscar', 'Oscar', 'oscar@example.net', '$2a$10$xS8EU61MYilPrP..lOQhT.jOeEH6GOqE0qltpsJ58iRSplctfeCM.');
+INSERT INTO user (id, name, email, password) VALUES ('pat', 'Pat', 'pat@example.net', '$2a$10$t7/40uL.f0.luQPgxlfiyOiLGpVK.ImlnS3gN6Aynt6MpTqduKQXe');
+INSERT INTO user (id, name, email, password) VALUES ('quin', 'Quin', 'quin@example.net', '$2a$10$UZVjobGCh9j1YwNJqLQGh.fZ8axm481jznkIfJM16N5r1DaXwscfm');
+INSERT INTO user (id, name, email, password) VALUES ('richard', 'Richard', 'richard@example.net', '$2a$10$IfYx8KAxFZGD0OcQCZlc8O6By4MjWAFVNt8FYbebjm8F8Hg.1D34a');
+INSERT INTO user (id, name, email, password) VALUES ('steve', 'Steve', 'steve@example.net', '$2a$10$PIxkym259J9RMu0/pIqFf.F4WPYZcwVh0Zl4Z9uqmS/pvNAWuxHMe');
+INSERT INTO user (id, name, email, password) VALUES ('trent', 'Trent', 'trent@example.net', '$2a$10$ADmAr8mxKatk4wNBBDixB.YyCwGIvdytcnifmwthTOhNj8UHa/Hsy');
+INSERT INTO user (id, name, email, password) VALUES ('uriens', 'Uriens', 'uriens@example.net', '$2a$10$G3B.tmvVjekU8V9bFyvJze4bmFnpR7goiuEMIdclmGTG1zPrUumZ2');
+INSERT INTO user (id, name, email, password) VALUES ('victor', 'Victor', 'victor@example.net', '$2a$10$YnWw6m71FeP2L6Q7N/p2oeDEEgAo5Evj4RdxLVEN3Jdb.3z0a/Irq');
+INSERT INTO user (id, name, email, password) VALUES ('walter', 'Walter', 'walter@example.net', '$2a$10$YzuSZJy2csIOHPLzT0R6j.IR0ER719i..iGM5dM.MgQEiip9DTBeu');
+INSERT INTO user (id, name, email, password) VALUES ('xeno', 'Xeno', 'xeno@example.net', '$2a$10$uajtGMIPFHcMbcX/w2pSGuNoLrbDMH6Xlmtz3FzjsA/DAHz9Dweb6');
+INSERT INTO user (id, name, email, password) VALUES ('york', 'York', 'york@example.net', '$2a$10$aAqhR1BEpwruPAf6Mo.EKeNqrC9a7EMg6NabwvWyiOogUDqYuEitG');
+INSERT INTO user (id, name, email, password) VALUES ('zoe', 'Zoe', 'zoe@example.net', '$2a$10$do1/aO.NrOj7MGKS./ZQJuM5S4OlN5el615f4tIQAqRAdhqbB6uJ.');
 
 /*
 node -e '
