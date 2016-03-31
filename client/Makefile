@@ -23,7 +23,7 @@ all: clean $(DIST_TMPL) $(DIST_JS) $(DIST_CSS) $(DIST_FONT)
 
 watch:
 	@$(MAKE) $(DIST_TMPL) $(DIST_CSS) $(DIST_FONT)
-	@$(MAKE) -j 3 watch-tmpl watch-less watch-js
+	@$(MAKE) -j watch-tmpl watch-less watch-js
 
 ## sub targets
 

@@ -26,5 +26,13 @@ public interface UserService {
 	 * 
 	 * @param user
 	 */
-	void add(User user);
+	void add(User user) throws UserService.UserDuplicateException;
+
+	class UserDuplicateException extends Exception {
+		private static final long serialVersionUID = -7539174489527480388L;
+		public UserDuplicateException(Exception e) {
+			super(e);
+		}
+	}
+
 }

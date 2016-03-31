@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class StaticPageController {
 
 	@RequestMapping("/signup")
-	public String signup() {
+	public String signup(UserController.UserForm userForm) {
 		return "static-pages/signup.html";
 	}
 

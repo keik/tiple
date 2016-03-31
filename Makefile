@@ -11,7 +11,7 @@
 all: clean server/target
 
 watch:
-	@$(MAKE) -C client watch
+	@$(MAKE) -j -C client watch
 
 run-server:
 	@mvn -f server/pom.xml spring-boot:run -Drun.jvmArguments="-Dspring.profiles.active=prod"

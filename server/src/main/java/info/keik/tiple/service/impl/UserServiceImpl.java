@@ -7,6 +7,7 @@ import info.keik.tiple.service.UserService;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DuplicateKeyException;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -26,8 +27,12 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public void add(User user) {
-		userRepository.add(user);
+	public void add(User user) throws UserService.UserDuplicateException {
+		try {
+			userRepository.add(user);
+		} catch (DuplicateKeyException e) {
+			throw new UserService.UserDuplicateException(e);
+		}
 	}
 
 }
