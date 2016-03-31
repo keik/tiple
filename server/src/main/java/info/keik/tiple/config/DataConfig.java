@@ -20,13 +20,12 @@ public class DataConfig {
 	DataSource dataSource;
 
 	@Bean
-	@Autowired
-	public SqlSessionFactory sqlSessionFactory(DataSource dataSource, ApplicationContext context)
+	public SqlSessionFactory sqlSessionFactory(ApplicationContext context)
 			throws Exception {
 		final SqlSessionFactoryBean sessionFactory = new SqlSessionFactoryBean();
 		sessionFactory.setDataSource(dataSource);
-		sessionFactory.setConfigLocation(context.getResource("mybatis-config.xml"));
-		sessionFactory.setMapperLocations(context.getResources("sql/**/*.xml"));
+		sessionFactory.setConfigLocation(context.getResource("classpath:mybatis-config.xml"));
+		sessionFactory.setMapperLocations(context.getResources("classpath:sql/**/*.xml"));
 		return sessionFactory.getObject();
 	}
 
