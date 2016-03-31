@@ -16,4 +16,6 @@ public interface QuestionRepository {
 
 	public int count(@Param("tagName") String tagName);
 
+	public int addViewsCount(@Param("id") Integer id);
+
 }

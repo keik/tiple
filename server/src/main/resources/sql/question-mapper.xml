@@ -88,4 +88,10 @@
     </if>
   </select>
 
+  <update id="addViewsCount">
+    UPDATE question
+    SET views_count = views_count + 1
+    WHERE id = #{id};
+  </update>
+
 </mapper>

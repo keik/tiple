@@ -38,7 +38,7 @@ public class QuestionServiceImpl implements QuestionService {
 
 	@Override
 	public void addViewsCount(Integer id) {
-		// TODO Auto-generated method stub
+		questionRepository.addViewsCount(id);
 	}
 
 	@Override
