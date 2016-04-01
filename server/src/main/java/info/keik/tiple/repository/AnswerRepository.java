@@ -8,7 +8,7 @@ import org.apache.ibatis.annotations.Param;
 
 public interface AnswerRepository {
 
-	public List<Answer> getByQuestionId(Integer qid);
+	public List<Answer> getByQuestionId(@Param("qid") Integer qid);
 
 	public Integer add(Answer user);
 

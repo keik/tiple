@@ -6,13 +6,14 @@
     SELECT
       answer.id,
       answer.content,
-      answer.votes_count,
+      SUM(vote_for_answer.value) AS votes_count,
       answer.created_by,
       answer.created_at
     FROM answer
-    JOIN question ON answer.answer_for = question.id
-    JOIN user ON answer.created_by = user.id
+    LEFT JOIN question ON answer.answer_for = question.id
+    LEFT JOIN vote_for_answer ON answer.id = vote_for_answer.vote_for
     WHERE question.id = #{qid}
+    GROUP BY answer.id
   </select>
   <resultMap id="getByQuestionId-map" type="info.keik.tiple.model.Answer">
     <id property="id" column="id" />
