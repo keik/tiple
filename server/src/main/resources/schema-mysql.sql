@@ -45,7 +45,6 @@ CREATE TABLE answer (
   id          INTEGER        NOT NULL AUTO_INCREMENT,
   answer_for  INTEGER        NOT NULL,
   content     VARCHAR(10000) NOT NULL,
-  votes_count INTEGER        NOT NULL,
   created_by  VARCHAR(32)    NOT NULL,
   created_at  DATETIME       DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (id),
