@@ -50,7 +50,6 @@ public class UserController {
 	@RequestMapping(value = "", method = RequestMethod.POST)
 	public String create(@Valid UserController.UserForm userForm, BindingResult bindingResult) throws UserService.UserDuplicateException {
 		if (bindingResult.hasErrors()) {
-			System.out.println("@@@@" + bindingResult.getObjectName());
 			return "static-pages/signup.html";
 		}
 		User user = userForm;
