@@ -4,17 +4,24 @@
 
   <select id="get" resultMap="get-map">
     SELECT
-      question.id,
-      question.title,
-      question.content,
-      question.votes_count,
-      question.created_by,
-      question.created_at,
+      q.id,
+      q.title,
+      q.content,
+      q.votes_count,
+      q.created_by,
+      q.created_at,
       tag.name AS tname
-    FROM question
-    JOIN question_tag ON question.id = question_tag.question_id
-    JOIN tag ON question_tag.tag_id = tag.id
-    WHERE question.id = #{id}
+    FROM (
+      SELECT
+        question.*,
+        SUM(vote_for_question.value) as votes_count
+      FROM question
+      LEFT JOIN vote_for_question ON question.id = vote_for_question.vote_for
+      WHERE question.id = #{id}
+      GROUP BY question.id
+    ) q
+    LEFT JOIN question_tag ON q.id = question_tag.question_id
+    LEFT JOIN tag ON question_tag.tag_id = tag.id
   </select>
   <resultMap id="get-map" type="info.keik.tiple.model.Question">
     <id property="id" column="id" />
@@ -30,38 +37,43 @@
 
   <select id="search" resultMap="search-map">
     SELECT
-      q.id,
-      q.title,
-      q.content,
-      q.views_count,
-      q.votes_count,
-      count(DISTINCT answer.id) as answers_count,
-      q.created_at,
-      q.created_by,
+      q3.id,
+      q3.title,
+      q3.content,
+      q3.views_count,
+      q3.votes_count,
+      q3.answers_count,
+      q3.created_at,
+      q3.created_by,
       tag.name AS tname
     FROM (
       SELECT
-        question.id,
-        question.title,
-        question.content,
-        question.views_count,
-        question.votes_count,
-        question.created_at,
-        question.created_by
-      FROM question
-      LEFT JOIN question_tag ON question.id = question_tag.question_id
-      LEFT JOIN tag ON question_tag.tag_id = tag.id
-      <if test="tagName != null">
-        WHERE tag.name = #{tagName}
-      </if>
-      GROUP BY question.id
-      LIMIT #{begin}, #{count}
-    ) q
-    LEFT JOIN question_tag ON q.id = question_tag.question_id
+        q2.*,
+        count(DISTINCT answer.id) as answers_count
+      FROM (
+        SELECT
+          q.*,
+          SUM(vote_for_question.value) as votes_count
+        FROM (
+          SELECT
+            question.*
+          FROM question
+          LEFT JOIN question_tag ON question.id = question_tag.question_id
+          LEFT JOIN tag ON question_tag.tag_id = tag.id
+          <if test="tagName != null">
+            WHERE tag.name = #{tagName}
+          </if>
+          GROUP BY question.id
+          LIMIT #{begin}, #{count}
+        ) q
+        LEFT JOIN vote_for_question ON q.id = vote_for_question.vote_for
+        GROUP BY q.id
+      ) q2
+      LEFT JOIN answer ON q2.id = answer.answer_for
+      GROUP BY q2.id
+    ) q3
+    LEFT JOIN question_tag ON q3.id = question_tag.question_id
     LEFT JOIN tag ON question_tag.tag_id = tag.id
-    LEFT JOIN answer ON q.id = answer.answer_for
-    GROUP BY q.id
-    ORDER BY q.id
   </select>
   <resultMap id="search-map" type="info.keik.tiple.model.Question">
     <id property="id" column="id" />
