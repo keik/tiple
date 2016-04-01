@@ -2,24 +2,46 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="info.keik.tiple.repository.AnswerRepository">
 
-  <select id="getByQuestionsId" resultMap="getByQuestionId-map">
-    SELECT answer.content, answer.votes_count, answer.created_by, answer.created_at
+  <select id="getByQuestionId" resultMap="getByQuestionId-map">
+    SELECT
+      answer.id,
+      answer.content,
+      answer.votes_count,
+      answer.created_by,
+      answer.created_at
     FROM answer
     JOIN question ON answer.answer_for = question.id
     JOIN user ON answer.created_by = user.id
     WHERE question.id = #{qid}
   </select>
   <resultMap id="getByQuestionId-map" type="info.keik.tiple.model.Answer">
+    <id property="id" column="id" />
     <result property="content" column="content" />
     <result property="votesCount" column="votes_count" />
     <result property="createdBy.id" column="created_by" />
     <result property="createdAt" column="created_at" />
   </resultMap>
 
-  <!--
-  <insert id="add">
-    INSERT INTO answer (answer_for, content, created_by) VALUES (#{}, #{}, #{})
+  <select id="getVote" resultType="Integer">
+    SELECT value
+    FROM vote_for_answer
+    WHERE vote_for = #{id}
+      AND created_by = #{userId}
+  </select>
+
+  <insert id="updateVote">
+    INSERT INTO vote_for_answer (
+      vote_for,
+      created_by,
+      value
+    )
+    VALUES (
+      #{id},
+      #{userId},
+      #{value}
+    )
+    ON DUPLICATE KEY UPDATE
+      value = #{value}
   </insert>
-  -->
 
 </mapper>

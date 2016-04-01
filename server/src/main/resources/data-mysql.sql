@@ -974,3 +974,6 @@ INSERT INTO answer (answer_for, content, votes_count, created_by) VALUES (148, '
 INSERT INTO answer (answer_for, content, votes_count, created_by) VALUES (148, 'Nunc pellentesque dolor sit amet metus eleifend consequat ac at risus.', 18, 'elen');
 INSERT INTO answer (answer_for, content, votes_count, created_by) VALUES (148, 'Duis viverra lacus ac magna pharetra, in mattis nisi mattis.', 23, 'zoe');
 INSERT INTO answer (answer_for, content, votes_count, created_by) VALUES (150, 'Integer quis sem a ante bibendum dapibus eu et odio.', 71, 'leon');
+
+INSERT INTO vote_for_question (vote_for, created_by, value) VALUES (1, 'alice', 1);
+INSERT INTO vote_for_answer (vote_for, created_by, value) VALUES (2, 'bob', 1);

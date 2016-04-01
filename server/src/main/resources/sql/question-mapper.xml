@@ -94,4 +94,26 @@
     WHERE id = #{id};
   </update>
 
+  <select id="getVote" resultType="Integer">
+    SELECT value
+    FROM vote_for_question
+    WHERE vote_for = #{id}
+      AND created_by = #{userId}
+  </select>
+
+  <insert id="updateVote">
+    INSERT INTO vote_for_question (
+      vote_for,
+      created_by,
+      value
+    )
+    VALUES (
+      #{id},
+      #{userId},
+      #{value}
+    )
+    ON DUPLICATE KEY UPDATE
+      value = #{value}
+  </insert>
+
 </mapper>

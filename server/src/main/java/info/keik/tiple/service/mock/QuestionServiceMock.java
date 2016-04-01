@@ -80,7 +80,7 @@ public class QuestionServiceMock implements QuestionService {
 	}
 
 	@Override
-	public void vote(Integer questionId, Integer userId) {
+	public void voteUp(Integer questionId, String userId) {
 		Question question = questions.stream()
 				.filter(q -> questionId == q.getId())
 				.findAny().get();
@@ -88,11 +88,15 @@ public class QuestionServiceMock implements QuestionService {
 	}
 
 	@Override
-	public void voteDown(Integer questionId, Integer userId) {
+	public void voteDown(Integer questionId, String userId) {
 		Question question = questions.stream()
 				.filter(q -> questionId == q.getId())
 				.findAny().get();
 		question.setVotesCount(question.getVotesCount() - 1);
+	}
+
+	@Override
+	public void unvote(Integer questionId, String userId) {
 	}
 
 	private void addDummyQuestion(int p) {

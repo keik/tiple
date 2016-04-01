@@ -42,15 +42,26 @@ public class QuestionServiceImpl implements QuestionService {
 	}
 
 	@Override
-	public void vote(Integer answerId, Integer userId) {
-		// TODO Auto-generated method stub
-
+	public void voteUp(Integer questionId, String userId) {
+		Integer v = questionRepository.getVote(questionId, userId);
+		if (v != null && v == 1) {
+			throw new RuntimeException("TODO Already voted");
+		}
+		questionRepository.updateVote(questionId, userId, 1);
 	}
 
 	@Override
-	public void voteDown(Integer answerId, Integer userId) {
-		// TODO Auto-generated method stub
+	public void voteDown(Integer questionId, String userId) {
+		Integer v = questionRepository.getVote(questionId, userId);
+		if (v != null && v == -1) {
+			throw new RuntimeException("TODO Already voted down");
+		}
+		questionRepository.updateVote(questionId, userId, -1);
+	}
 
+	@Override
+	public void unvote(Integer questionId, String userId) {
+		questionRepository.updateVote(questionId, userId, 0);
 	}
 
 }

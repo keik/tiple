@@ -52,7 +52,7 @@ public class QuestionController {
 	public String show(@PathVariable("id") Integer id, Model model) {
 		Question question = questionService.get(id);
 		questionService.addViewsCount(id);
-		List<Answer> answers = answerService.getByQuestionsId(id);
+		List<Answer> answers = answerService.getByQuestionId(id);
 		model.addAttribute("question", question);
 		model.addAttribute("answers", answers);
 		return "questions/show.html";

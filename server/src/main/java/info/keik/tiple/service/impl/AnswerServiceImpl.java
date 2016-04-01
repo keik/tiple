@@ -7,6 +7,7 @@ import info.keik.tiple.service.AnswerService;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DuplicateKeyException;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -16,8 +17,8 @@ public class AnswerServiceImpl implements AnswerService {
 	AnswerRepository answerRepository;
 
 	@Override
-	public List<Answer> getByQuestionsId(Integer id) {
-		return answerRepository.getByQuestionsId(id);
+	public List<Answer> getByQuestionId(Integer id) {
+		return answerRepository.getByQuestionId(id);
 	}
 
 	@Override
@@ -26,15 +27,26 @@ public class AnswerServiceImpl implements AnswerService {
 	}
 
 	@Override
-	public void vote(Integer answerId, Integer userId) {
-		// TODO Auto-generated method stub
-
+	public void voteUp(Integer answerId, String userId) {
+		Integer v = answerRepository.getVote(answerId, userId);
+		if (v != null && v == 1) {
+			throw new RuntimeException("TODO Already voted up");
+		}
+		answerRepository.updateVote(answerId, userId, 1);
 	}
 
 	@Override
-	public void voteDown(Integer answerId, Integer userId) {
-		// TODO Auto-generated method stub
+	public void voteDown(Integer answerId, String userId) {
+		Integer v = answerRepository.getVote(answerId, userId);
+		if (v != null && v == -1) {
+			throw new RuntimeException("TODO Already voted down");
+		}
+		answerRepository.updateVote(answerId, userId, -1);
+	}
 
+	@Override
+	public void unvote(Integer answerId, String userId) {
+		answerRepository.updateVote(answerId, userId, 0);
 	}
 
 }

@@ -28,7 +28,7 @@ public class AnswerServiceMock implements AnswerService {
 	}
 
 	@Override
-	public List<Answer> getByQuestionsId(Integer id) {
+	public List<Answer> getByQuestionId(Integer id) {
 		return answers.stream()
 				.collect(Collectors.toList());
 	}
@@ -40,7 +40,7 @@ public class AnswerServiceMock implements AnswerService {
 	}
 
 	@Override
-	public void vote(Integer answerId, Integer userId) {
+	public void voteUp(Integer answerId, String userId) {
 		Answer answer = answers.stream()
 				.filter(a -> answerId == a.getId())
 				.findAny().get();
@@ -48,11 +48,16 @@ public class AnswerServiceMock implements AnswerService {
 	}
 
 	@Override
-	public void voteDown(Integer answerId, Integer userId) {
+	public void voteDown(Integer answerId, String userId) {
 		Answer answer = answers.stream()
 				.filter(a -> answerId == a.getId())
 				.findAny().get();
 		answer.setVotesCount(answer.getVotesCount() - 1);
+	}
+
+	@Override
+	public void unvote(Integer answerId, String userId) {
+		// TODO
 	}
 
 	private void addDummyAnswer(Integer p) {

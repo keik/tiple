@@ -49,12 +49,12 @@ public interface QuestionService {
 	void addViewsCount(Integer id);
 
 	/**
-	 * Vote to specified question.
+	 * Vote up to specified question.
 	 * 
 	 * @param questionId
 	 * @param userId
 	 */
-	void vote(Integer questionId, Integer userId);
+	void voteUp(Integer questionId, String userId);
 
 	/**
 	 * Vote down to specified question.
@@ -62,6 +62,14 @@ public interface QuestionService {
 	 * @param questionId
 	 * @param userId
 	 */
-	void voteDown(Integer questionId, Integer userId);
+	void voteDown(Integer questionId, String userId);
+
+	/**
+	 * Vote down to specified question.
+	 * 
+	 * @param questionId
+	 * @param userId
+	 */
+	void unvote(Integer questionId, String userId);
 
 }

@@ -12,7 +12,7 @@ public interface AnswerService {
 	 * @param question id
 	 * @return
 	 */
-	List<Answer> getByQuestionsId(Integer id);
+	List<Answer> getByQuestionId(Integer id);
 
 	/**
 	 * Add a new answer.
@@ -22,12 +22,12 @@ public interface AnswerService {
 	void add(Answer answer);
 
 	/**
-	 * Vote to specified answer.
+	 * Vote up to specified answer.
 	 * 
 	 * @param answerId
 	 * @param userId
 	 */
-	void vote(Integer answerId, Integer userId);
+	void voteUp(Integer answerId, String userId);
 
 	/**
 	 * Vote down to specified answer.
@@ -35,5 +35,13 @@ public interface AnswerService {
 	 * @param answerId
 	 * @param userId
 	 */
-	void voteDown(Integer answerId, Integer userId);
+	void voteDown(Integer answerId, String userId);
+
+	/**
+	 * Vote down to specified answer.
+	 * 
+	 * @param answerId
+	 * @param userId
+	 */
+	void unvote(Integer answerId, String userId);
 }
