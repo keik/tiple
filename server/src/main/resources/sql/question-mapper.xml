@@ -45,7 +45,29 @@
       #{title},
       #{content},
       #{createdBy.id}
-    )
+    );
+    SET @last_insert_question_id = (SELECT LAST_INSERT_ID());
+
+    <foreach collection="tags" item="tag">
+      INSERT INTO tag (
+        name
+      )
+      SELECT
+        #{tag.name}
+      WHERE NOT EXISTS (
+        SELECT name FROM tag WHERE name = #{tag.name}
+      );
+
+      INSERT INTO question_tag (
+        question_id,
+        tag_id
+      )
+      SELECT
+        @last_insert_question_id,
+        id
+      FROM tag WHERE name = #{tag.name};
+    </foreach>
+
   </insert>
 
   <select id="search" resultMap="search-map">

@@ -2,13 +2,16 @@ package info.keik.tiple.controller;
 
 import info.keik.tiple.model.Answer;
 import info.keik.tiple.model.Question;
+import info.keik.tiple.model.Tag;
 import info.keik.tiple.model.User;
 import info.keik.tiple.service.AnswerService;
 import info.keik.tiple.service.QuestionService;
 import info.keik.tiple.service.UserService;
 
 import java.security.Principal;
+import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -64,15 +67,23 @@ public class QuestionController {
 	}
 
 	@RequestMapping(value = "", method = RequestMethod.POST)
-	public String create(Principal principal, Model model, Question question) {
+	public String create(Principal principal,
+			Model model,
+			Question question,
+			@RequestParam("tags") String tags) {
 		if (principal == null) {
 			throw new RuntimeException("authentication required.");
 		}
 
 		User user = userService.get(principal.getName());
 		question.setCreatedBy(user);
+		question.setTags(Arrays.asList(tags.split(" "))
+				.stream()
+				.map(tagName -> new Tag(tagName))
+				.collect(Collectors.toList()));
+		System.out.println(question);
 		questionService.add(question);
-		return "redirect:/q";
+		return "redirect:/q?";
 	}
 
 }
