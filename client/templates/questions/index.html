@@ -99,7 +99,7 @@
               <a th:unless="${i == page}" href="#" th:href="@{'/q?page=' + ${i} + '&page_size=' + ${pageSize}}" th:text="${i}" th:attr="style=''" style="display: none">1</a>
             </li>
             <li th:if="${page < total / pageSize - 3}"><span>...</span></li>
-            <li th:if="${page < total / pageSize - 2}"><a href="#" th:href="@{'/q?page=' + ${total / pageSize} + '&page_size=' + ${pageSize}}"}" th:text="${total / pageSize}">10</a></li>
+            <li th:if="${page < total / pageSize - 2}"><a href="#" th:href="@{'/q?page=' + ${total / pageSize + (total % pageSize == 0 ? 0 : 1)} + '&page_size=' + ${pageSize}}"}" th:text="${total / pageSize + (total % pageSize == 0 ? 0 : 1)}">10</a></li>
             <li th:if="${page < total / pageSize + (total % pageSize == 0 ? 0 : 1)}"><a href="#" th:href="@{'/q?page=' + ${page + 1} + '&page_size=' + ${pageSize}}">Next</a></li>
           </ul>
         </nav>
