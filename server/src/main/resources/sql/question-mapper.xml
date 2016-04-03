@@ -14,7 +14,7 @@
     FROM (
       SELECT
         question.*,
-        SUM(vote_for_question.value) as votes_count
+        IFNULL(SUM(vote_for_question.value), 0) as votes_count
       FROM question
       LEFT JOIN vote_for_question ON question.id = vote_for_question.vote_for
       WHERE question.id = #{id}
@@ -35,6 +35,19 @@
     </collection>
   </resultMap>
 
+  <insert id="add" parameterType="info.keik.tiple.model.Question">
+    INSERT INTO question (
+      title,
+      content,
+      created_by
+    )
+    VALUES (
+      #{title},
+      #{content},
+      #{createdBy.id}
+    )
+  </insert>
+
   <select id="search" resultMap="search-map">
     SELECT
       q3.id,
@@ -53,7 +66,7 @@
       FROM (
         SELECT
           q.*,
-          SUM(vote_for_question.value) as votes_count
+          IFNULL(SUM(vote_for_question.value), 0) as votes_count
         FROM (
           SELECT
             question.*
@@ -93,8 +106,8 @@
   <select id="count" resultType="Integer">
     SELECT COUNT(DISTINCT question.id)
     FROM question
-    JOIN question_tag ON question.id = question_tag.question_id
-    JOIN tag ON question_tag.tag_id = tag.id
+    LEFT JOIN question_tag ON question.id = question_tag.question_id
+    LEFT JOIN tag ON question_tag.tag_id = tag.id
     <if test="tagName != null">
       WHERE tag.name = #{tagName}
     </if>
