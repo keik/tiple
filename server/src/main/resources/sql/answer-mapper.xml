@@ -6,7 +6,7 @@
     SELECT
       answer.id,
       answer.content,
-      SUM(vote_for_answer.value) AS votes_count,
+      IFNULL(SUM(vote_for_answer.value), 0) AS votes_count,
       answer.created_by,
       answer.created_at
     FROM answer
@@ -22,6 +22,19 @@
     <result property="createdBy.id" column="created_by" />
     <result property="createdAt" column="created_at" />
   </resultMap>
+
+  <insert id="add" parameterType="info.keik.tiple.model.Answer">
+    INSERT INTO answer (
+      content,
+      answer_for,
+      created_by
+    )
+    VALUES (
+      #{content},
+      #{answerFor},
+      #{createdBy.id}
+    )
+  </insert>
 
   <select id="getVote" resultType="Integer">
     SELECT value

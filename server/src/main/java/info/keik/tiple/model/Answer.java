@@ -9,6 +9,7 @@ public class Answer {
 
 	private Integer id;
 	private String content;
+	private Integer answerFor;
 	private Integer votesCount;
 	private User createdBy;
 	private Date createdAt;

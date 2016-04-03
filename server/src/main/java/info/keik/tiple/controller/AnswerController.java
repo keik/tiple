@@ -6,17 +6,14 @@ import info.keik.tiple.service.AnswerService;
 import info.keik.tiple.service.UserService;
 
 import java.security.Principal;
-import java.util.Locale;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
 
-@RestController
+@Controller
 @RequestMapping("/q/{questionId}/answers")
 public class AnswerController {
 
@@ -30,15 +27,23 @@ public class AnswerController {
 	UserService userService;
 
 	@RequestMapping
-	public ResponseEntity<String> create(Principal principal, Answer answer, @PathVariable("questionId") Integer questionId) {
+	public String create(
+			Principal principal,
+			Answer answer,
+			@PathVariable("questionId") Integer questionId) {
 		if (principal == null) {
-			return new ResponseEntity<>(msg.getMessage("msg.answer.unauthorized", null, Locale.ENGLISH), HttpStatus.UNAUTHORIZED);
+			// TODO
+			// return new
+			// ResponseEntity<>(msg.getMessage("msg.answer.unauthorized", null,
+			// Locale.ENGLISH), HttpStatus.UNAUTHORIZED);
+			throw new RuntimeException("TODO");
 		}
 
 		User user = userService.get(principal.getName());
 		answer.setCreatedBy(user);
+		answer.setAnswerFor(questionId);
 		answerService.add(answer);
-		return new ResponseEntity<>(HttpStatus.CREATED);
+		return "redirect:/q/" + questionId;
 	}
 
 }
