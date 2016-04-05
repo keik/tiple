@@ -1,7 +1,7 @@
 spring:
   datasource:
     platform: mysql
-    url: jdbc:mysql://localhost/tiple?allowMultiQueries=true
+    url: jdbc:mysql://localhost/tiple?allowMultiQueries=true&useSSL=false
     username: tiple
     password: tiple
     driverClassName: com.mysql.jdbc.Driver
