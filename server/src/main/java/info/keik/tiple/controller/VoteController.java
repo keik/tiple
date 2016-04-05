@@ -1,9 +1,5 @@
 package info.keik.tiple.controller;
 
-import info.keik.tiple.service.AnswerService;
-import info.keik.tiple.service.QuestionService;
-import info.keik.tiple.service.UserService;
-
 import java.security.Principal;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +12,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import info.keik.tiple.service.AnswerService;
+import info.keik.tiple.service.QuestionService;
+import info.keik.tiple.service.UserService;
+
 @RestController
 @RequestMapping("/")
 public class VoteController {
@@ -25,9 +25,6 @@ public class VoteController {
 
 	@Autowired
 	private AnswerService answerService;
-
-	@Autowired
-	private UserService userService;
 
 	@RequestMapping(value = "/questions/{qid}/votes", method = RequestMethod.POST)
 	public ResponseEntity<String> createToQuestion(
