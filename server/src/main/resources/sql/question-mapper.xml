@@ -99,6 +99,7 @@
             WHERE tag.name = #{tagName}
           </if>
           GROUP BY question.id
+          ORDER BY question.created_at DESC
           LIMIT #{begin}, #{count}
         ) q
         LEFT JOIN vote_for_question ON q.id = vote_for_question.vote_for
@@ -109,6 +110,7 @@
     ) q3
     LEFT JOIN question_tag ON q3.id = question_tag.question_id
     LEFT JOIN tag ON question_tag.tag_id = tag.id
+    ORDER BY q3.created_at DESC
   </select>
   <resultMap id="search-map" type="info.keik.tiple.model.Question">
     <id property="id" column="id" />
