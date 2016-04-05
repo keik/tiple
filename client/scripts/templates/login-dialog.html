@@ -1,0 +1,15 @@
+<form class="panel form" th:action="@{/session}" action="/" method="post"
+      style="position: relative; width: 400px"
+      th:object="${userForm}">
+  <h2>log in</h2>
+  <span class="modeless-close" style="position: absolute; top: 8px; right: 8px;">×</span>
+  <div>
+    <label>ID</label>
+    <input type="text" name="id" />
+  </div>
+  <div>
+    <label>Password</label>
+    <input type="text" name="password" />
+  </div>
+  <input class="btn btn-default" type="submit" value="Log in" />
+</form>

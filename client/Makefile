@@ -34,7 +34,6 @@ $(DIST_TMPL): node_modules
 
 $(DIST_JS): node_modules $(R)/static
 	@node_modules/.bin/browserify $(MAIN_JS) \
-		-t [ babelify --presets es2015 ] \
 		-o $@
 
 $(DIST_CSS): node_modules $(R)/static
@@ -51,7 +50,6 @@ watch-js: node_modules $(R)/static
 	@node_modules/.bin/watchify $(MAIN_JS) \
 		-d \
 		-v \
-		-t [ babelify --presets es2015 ] \
 		-o $(DIST_JS)
 
 watch-less: node_modules $(R)/static
