@@ -14,6 +14,7 @@
     LEFT JOIN vote_for_answer ON answer.id = vote_for_answer.vote_for
     WHERE question.id = #{qid}
     GROUP BY answer.id
+    ORDER BY votes_count DESC;
   </select>
   <resultMap id="getByQuestionId-map" type="info.keik.tiple.model.Answer">
     <id property="id" column="id" />
