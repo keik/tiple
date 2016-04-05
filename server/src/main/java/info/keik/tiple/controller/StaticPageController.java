@@ -12,7 +12,7 @@ public class StaticPageController {
 	}
 
 	@RequestMapping("/login")
-	public String login() {
+	public String login(UserController.UserForm userForm) {
 		return "static-pages/login.html";
 	}
 

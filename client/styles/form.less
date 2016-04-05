@@ -36,9 +36,9 @@ textarea {
   position: absolute;
   padding: 4px;
   margin: -8px 0 0 0;
-  color: #884444;
-  background-color: #FFDDDD;
-  border: 1px solid #884444;
+  color: @color-of-error;
+  background-color: @color-of-error-bg;
+  border: 1px solid @color-of-error;
   border-radius: 3px;
   list-style: none;
 
@@ -50,7 +50,7 @@ textarea {
     width: 0;
     content: " ";
     border: solid 6px transparent;
-    border-bottom-color: #884444;
+    border-bottom-color: @color-of-error;
   }
   &:after {
     position: absolute;
@@ -59,6 +59,6 @@ textarea {
     width: 0;
     content: " ";
     border: solid 5px transparent;
-    border-bottom-color: #FFDDDD;
+    border-bottom-color: @color-of-error-bg;
   }
 }

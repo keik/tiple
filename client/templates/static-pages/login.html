@@ -20,10 +20,24 @@
       </div>
     </header>
 
-    <form class="panel form form-centered" th:action="@{/session}" action="/" method="post">
+    <form class="panel form form-centered" th:action="@{/session}" action="/" method="post"
+          th:object="${userForm}">
       <h2>log in</h2>
-      <label>ID: <input type="text" name="id" /></label>
-      <label>Password: <input type="text" name="password" /></label>
+      <div class="panel panel-error panel-centered" th:if="${session.SPRING_SECURITY_LAST_EXCEPTION} != null" th:text="#{msg.auth.failed}"></div>
+      <div>
+        <label>ID</label>
+        <input type="text" name="id" />
+        <ul class="errors" th:if="${#fields.hasErrors('id')}">
+          <li th:each="err : ${#fields.errors('id')}" th:text="${err}" />
+        </ul>
+      </div>
+      <div>
+        <label>Password</label>
+        <input type="text" name="password" />
+        <ul class="errors" th:if="${#fields.hasErrors('password')}">
+          <li th:each="err : ${#fields.errors('password')}" th:text="${err}" />
+        </ul>
+      </div>
       <input class="btn btn-default" type="submit" value="Log in" />
     </form>
 

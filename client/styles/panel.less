@@ -1,13 +1,14 @@
 .panel {
   padding: 12px;
+  margin-bottom: 12px;
   border: 1px solid #ccc;
   border-radius: 4px;
   box-shadow: 0 2px 3px -1px #aaa;
 
   &.panel-error {
-    color: #fff;
-    background-color: #FF0000;
-    border-color: #FF0000;
+    color: @color-of-error;
+    background-color: @color-of-error-bg;
+    border-color: @color-of-error;
     font-weight: bold;
   }
 }
