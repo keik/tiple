@@ -28,21 +28,21 @@
         <div>
           <label for="id">ID</label>
           <input id="id" type="text" name="id" placeholder="ID" th:field="*{id}"/>
-          <ul>
+          <ul class="errors" th:if="${#fields.hasErrors('id')}">
             <li th:each="err : ${#fields.errors('id')}" th:text="${err}" />
           </ul>
         </div>
         <div>
           <label for="email">Email</label>
           <input id="email" type="text" name="email" placeholder="Email" th:field="*{email}"/>
-          <ul>
+          <ul class="errors" th:if="${#fields.hasErrors('email')}">
             <li th:each="err : ${#fields.errors('email')}" th:text="${err}" />
           </ul>
         </div>
         <div>
           <label for="password">Password</label>
           <input id="password" type="password" name="password" placeholder="Password" th:field="*{password}"/>
-          <ul>
+          <ul class="errors" th:if="${#fields.hasErrors('password')}">
             <li th:each="err : ${#fields.errors('password')}" th:text="${err}" />
           </ul>
         </div>
