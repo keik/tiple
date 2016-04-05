@@ -30,7 +30,7 @@ watch:
 .PHONY: $(DIST_TMPL) $(DIST_JS) $(DIST_CSS) $(DIST_FONT) watch-js watch-tmpl watch-less build-js clean
 
 $(DIST_TMPL): node_modules
-	@cp -r templates $@
+	@rsync -a templates/ $@
 
 $(DIST_JS): node_modules $(R)/static
 	@node_modules/.bin/browserify $(MAIN_JS) \
@@ -42,10 +42,10 @@ $(DIST_CSS): node_modules $(R)/static
 
 $(DIST_FONT): node_modules $(R)/static
 	@mkdir -p $@
-	@cp -r node_modules/font-awesome/{css,fonts} $@
+	@rsync -a node_modules/font-awesome/{css,fonts} $@
 
 watch-tmpl: node_modules $(DIST_TMPL)
-	@node_modules/.bin/watchf 'templates/**/*.html' -c 'cp --parents {} $(R)'
+	@node_modules/.bin/watchf 'templates/**/*.html' -c 'rsync -aR {} $(R)'
 
 watch-js: node_modules $(R)/static
 	@node_modules/.bin/watchify $(MAIN_JS) \
