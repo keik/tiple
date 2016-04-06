@@ -1,8 +1,8 @@
-<form class="panel form" th:action="@{/session}" action="/" method="post"
-      style="position: relative; width: 400px"
-      th:object="${userForm}">
-  <h2>log in</h2>
-  <span class="modeless-close" style="position: absolute; top: 8px; right: 8px;">×</span>
+<span class="modeless-close" style="position: absolute; top: 8px; right: 8px;">×</span>
+<p>
+  You need to log in to ask question, post answer, or vote.
+</p>
+<form class="form" action="/session?redirect=/TODO.html" method="post" style="position: relative; width: 400px">
   <div>
     <label>ID</label>
     <input type="text" name="id" />

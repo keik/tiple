@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@RequestMapping("/q/{questionId}/answers")
+@RequestMapping("/q/{qid}/a")
 public class AnswerController {
 
 	@Autowired
@@ -30,7 +30,7 @@ public class AnswerController {
 	public String create(
 			Principal principal,
 			Answer answer,
-			@PathVariable("questionId") Integer questionId) {
+			@PathVariable("qid") Integer qid) {
 		if (principal == null) {
 			// TODO
 			// return new
@@ -41,9 +41,9 @@ public class AnswerController {
 
 		User user = userService.get(principal.getName());
 		answer.setCreatedBy(user);
-		answer.setAnswerFor(questionId);
+		answer.setAnswerFor(qid);
 		answerService.add(answer);
-		return "redirect:/q/" + questionId;
+		return "redirect:/q/" + qid;
 	}
 
 }

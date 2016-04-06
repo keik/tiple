@@ -12,6 +12,8 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
+import org.springframework.security.web.authentication.SavedRequestAwareAuthenticationSuccessHandler;
 
 @Configuration
 @EnableWebSecurity
@@ -41,20 +43,16 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 				.antMatchers(HttpMethod.PUT, "/q").hasRole("USER")
 				.antMatchers(HttpMethod.DELETE, "/q").hasRole("USER")
 				// create or update or delete answer
-				.antMatchers(HttpMethod.POST, "/q/**/answers/").hasRole("USER")
-				.antMatchers(HttpMethod.PUT, "/q/**/answers/").hasRole("USER")
-				.antMatchers(HttpMethod.DELETE, "/q/**/answers/").hasRole("USER")
-				// create or update or delete vote
-				.antMatchers(HttpMethod.POST, "/q/**/votes").hasRole("USER")
-				.antMatchers(HttpMethod.PUT, "/q/**/votes").hasRole("USER")
-				.antMatchers(HttpMethod.DELETE, "/q/**/votes").hasRole("USER")
+				.antMatchers(HttpMethod.POST, "/q/**/a").hasRole("USER")
+				.antMatchers(HttpMethod.PUT, "/q/**/a").hasRole("USER")
+				.antMatchers(HttpMethod.DELETE, "/q/**/a").hasRole("USER")
 				.anyRequest().permitAll()
 
 				.and()
 				.csrf().disable()
 
-				.formLogin().loginPage("/login").loginProcessingUrl("/session")
-				.defaultSuccessUrl("/")
+				.formLogin().successHandler(successHandler())
+				.loginPage("/login").loginProcessingUrl("/session")
 				.usernameParameter("id").passwordParameter("password")
 				.permitAll()
 
@@ -67,6 +65,15 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		auth
 				.userDetailsService(userDetailsService)
 				.passwordEncoder(passwordEncoder());
+	}
+
+	@Bean
+	public AuthenticationSuccessHandler successHandler() {
+		SavedRequestAwareAuthenticationSuccessHandler successHandler = new SavedRequestAwareAuthenticationSuccessHandler();
+		successHandler.setUseReferer(true);
+		successHandler.setTargetUrlParameter("redirect");
+		successHandler.setDefaultTargetUrl("/");
+		return successHandler;
 	}
 
 }

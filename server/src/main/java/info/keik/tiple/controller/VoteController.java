@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import info.keik.tiple.service.AnswerService;
 import info.keik.tiple.service.QuestionService;
-import info.keik.tiple.service.UserService;
 
 @RestController
 @RequestMapping("/")
@@ -26,46 +25,50 @@ public class VoteController {
 	@Autowired
 	private AnswerService answerService;
 
-	@RequestMapping(value = "/questions/{qid}/votes", method = RequestMethod.POST)
+	@RequestMapping(value = "/q/{qid}/votes", method = RequestMethod.POST)
 	public ResponseEntity<String> createToQuestion(
 			@AuthenticationPrincipal Principal principal,
 			@PathVariable("qid") Integer qid,
-			Model model
-			) {
+			Model model) {
+		if (principal == null)
+			return new ResponseEntity<>(HttpStatus.FORBIDDEN);
 		questionService.voteUp(qid, principal.getName());
-		return new ResponseEntity<String>(HttpStatus.CREATED);
+		return new ResponseEntity<>(HttpStatus.CREATED);
 	}
 
-	@RequestMapping(value = "/questions/{qid}/votes/{uid}", method = RequestMethod.DELETE)
+	@RequestMapping(value = "/q/{qid}/votes/{uid}", method = RequestMethod.DELETE)
 	public ResponseEntity<String> destroyFromQuestion(
 			@AuthenticationPrincipal Principal principal,
 			@PathVariable("qid") Integer qid,
 			@PathVariable("uid") Integer uid,
-			Model model
-			) {
+			Model model) {
+		if (principal == null)
+			return new ResponseEntity<>(HttpStatus.FORBIDDEN);
 		questionService.voteDown(qid, principal.getName());
-		return new ResponseEntity<String>(HttpStatus.OK);
+		return new ResponseEntity<>(HttpStatus.OK);
 	}
 
-	@RequestMapping(value = "/answers/{aid}/votes", method = RequestMethod.POST)
+	@RequestMapping(value = "/q/{qid}/a/{aid}/votes", method = RequestMethod.POST)
 	public ResponseEntity<String> createToAnswer(
 			@AuthenticationPrincipal Principal principal,
 			@PathVariable("aid") Integer aid,
-			Model model
-			) {
+			Model model) {
+		if (principal == null)
+			return new ResponseEntity<>(HttpStatus.FORBIDDEN);
 		answerService.voteUp(aid, principal.getName());
-		return new ResponseEntity<String>(HttpStatus.CREATED);
+		return new ResponseEntity<>(HttpStatus.CREATED);
 	}
 
-	@RequestMapping(value = "/answers/{aid}/votes/{uid}", method = RequestMethod.DELETE)
+	@RequestMapping(value = "/q/{qid}/a/{aid}/votes/{uid}", method = RequestMethod.DELETE)
 	public ResponseEntity<String> destroyFromAnswer(
 			@AuthenticationPrincipal Principal principal,
 			@PathVariable("aid") Integer aid,
 			@PathVariable("uid") Integer uid,
-			Model model
-			) {
+			Model model) {
+		if (principal == null)
+			return new ResponseEntity<>(HttpStatus.FORBIDDEN);
 		answerService.voteDown(aid, principal.getName());
-		return new ResponseEntity<String>(HttpStatus.OK);
+		return new ResponseEntity<>(HttpStatus.OK);
 	}
 
 }
