@@ -30,20 +30,41 @@ function onVoteClick(e) {
     e.preventDefault()
 
     fetch(e.target.href, {
-      method: /vote-up/.test(e.target.className) ? 'POST' : 'DELETE',
+      method: /voted/.test(e.target.className) ? 'DELETE' : 'POST',
       credentials: 'include'}).then(res => {
         if (res.ok)
-          return res.text();
+          return res.status;
         else
-          throw new Error(res.statusText)
-      }).then(function(msg) {
+          throw new Error(res.status)
+      }).then(function(status) {
         let votesCountEl = e.target.parentNode.querySelector('.votes-count')
-        console.log(votesCountEl.textContent);
-        votesCountEl.textContent =
-          parseInt(votesCountEl.textContent, 10) +
-          (/vote-up/.test(e.target.className) ? 1 : -1);
-      }).catch(function(msg) {
-        new Modeless(require('../templates/login-dialog.html')())
+        switch(status) {
+        case 201:
+          e.target.className += ' voted'
+          votesCountEl.textContent =
+            parseInt(votesCountEl.textContent, 10) +
+            (/vote-up/.test(e.target.className) ? 1 : -1);
+          break;
+        case 204:
+          e.target.className = e.target.className.replace(/\b voted\b/, '')
+          votesCountEl.textContent =
+            parseInt(votesCountEl.textContent, 10) +
+            (/vote-up/.test(e.target.className) ? -1 : 1);
+          break;
+        default:
+          // no-op
+        }
+
+      }).catch(function(status) {
+        switch(status.message) {
+        case '403':
+          new Modeless(require('../templates/login-dialog.html')({
+            'redirectUrl': window.location.pathname
+          }))
+          break;
+        default:
+          // no-op
+        }
       })
   }
 }

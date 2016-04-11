@@ -1,5 +1,19 @@
 package info.keik.tiple.controller;
 
+import java.security.Principal;
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.web.bind.annotation.AuthenticationPrincipal;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+
 import info.keik.tiple.model.Answer;
 import info.keik.tiple.model.Question;
 import info.keik.tiple.model.Tag;
@@ -7,19 +21,6 @@ import info.keik.tiple.model.User;
 import info.keik.tiple.service.AnswerService;
 import info.keik.tiple.service.QuestionService;
 import info.keik.tiple.service.UserService;
-
-import java.security.Principal;
-import java.util.Arrays;
-import java.util.List;
-import java.util.stream.Collectors;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 @RequestMapping("/q")
@@ -52,11 +53,22 @@ public class QuestionController {
 	}
 
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
-	public String show(@PathVariable("id") Integer id, Model model) {
-		Question question = questionService.get(id);
+	public String show(
+			@PathVariable("id") Integer id,
+			@AuthenticationPrincipal Principal principal,
+			Model model) {
+
 		questionService.addViewsCount(id);
-		List<Answer> answers = answerService.getByQuestionId(id);
+
+		Question question = questionService.get(id);
 		model.addAttribute("question", question);
+
+		Integer voteForQuestion = principal != null
+				? questionService.getVote(id, principal.getName())
+				: null;
+		model.addAttribute("voteForQuestion", voteForQuestion);
+
+		List<Answer> answers = answerService.getByQuestionId(id);
 		model.addAttribute("answers", answers);
 		return "questions/show.html";
 	}
@@ -81,7 +93,6 @@ public class QuestionController {
 				.stream()
 				.map(tagName -> new Tag(tagName))
 				.collect(Collectors.toList()));
-		System.out.println(question);
 		questionService.add(question);
 		return "redirect:/q?";
 	}

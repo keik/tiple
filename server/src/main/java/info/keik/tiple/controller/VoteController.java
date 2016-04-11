@@ -10,10 +10,12 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import info.keik.tiple.service.AnswerService;
 import info.keik.tiple.service.QuestionService;
+import info.keik.tiple.service.QuestionService.AlreadyVotedException;
 
 @RestController
 @RequestMapping("/")
@@ -29,29 +31,37 @@ public class VoteController {
 	public ResponseEntity<String> createToQuestion(
 			@AuthenticationPrincipal Principal principal,
 			@PathVariable("qid") Integer qid,
+			@RequestParam("v") Integer v,
 			Model model) {
 		if (principal == null)
 			return new ResponseEntity<>(HttpStatus.FORBIDDEN);
-		questionService.voteUp(qid, principal.getName());
+		try {
+			if (v == 1 || v == -1)
+				questionService.vote(qid, principal.getName(), v);
+			else
+				new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+		} catch (AlreadyVotedException e) {
+			return new ResponseEntity<>(HttpStatus.CONFLICT);
+		}
 		return new ResponseEntity<>(HttpStatus.CREATED);
 	}
 
-	@RequestMapping(value = "/q/{qid}/votes/{uid}", method = RequestMethod.DELETE)
+	@RequestMapping(value = "/q/{qid}/votes", method = RequestMethod.DELETE)
 	public ResponseEntity<String> destroyFromQuestion(
 			@AuthenticationPrincipal Principal principal,
 			@PathVariable("qid") Integer qid,
-			@PathVariable("uid") Integer uid,
 			Model model) {
 		if (principal == null)
 			return new ResponseEntity<>(HttpStatus.FORBIDDEN);
-		questionService.voteDown(qid, principal.getName());
-		return new ResponseEntity<>(HttpStatus.OK);
+		questionService.unvote(qid, principal.getName());
+		return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 	}
 
 	@RequestMapping(value = "/q/{qid}/a/{aid}/votes", method = RequestMethod.POST)
 	public ResponseEntity<String> createToAnswer(
 			@AuthenticationPrincipal Principal principal,
 			@PathVariable("aid") Integer aid,
+			@RequestParam("v") Integer value,
 			Model model) {
 		if (principal == null)
 			return new ResponseEntity<>(HttpStatus.FORBIDDEN);
@@ -59,16 +69,15 @@ public class VoteController {
 		return new ResponseEntity<>(HttpStatus.CREATED);
 	}
 
-	@RequestMapping(value = "/q/{qid}/a/{aid}/votes/{uid}", method = RequestMethod.DELETE)
+	@RequestMapping(value = "/q/{qid}/a/{aid}/votes", method = RequestMethod.DELETE)
 	public ResponseEntity<String> destroyFromAnswer(
 			@AuthenticationPrincipal Principal principal,
 			@PathVariable("aid") Integer aid,
-			@PathVariable("uid") Integer uid,
 			Model model) {
 		if (principal == null)
 			return new ResponseEntity<>(HttpStatus.FORBIDDEN);
-		answerService.voteDown(aid, principal.getName());
-		return new ResponseEntity<>(HttpStatus.OK);
+		questionService.unvote(aid, principal.getName());
+		return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 	}
 
 }

@@ -1,11 +1,5 @@
 package info.keik.tiple.service.mock;
 
-import info.keik.tiple.model.Question;
-import info.keik.tiple.model.Tag;
-import info.keik.tiple.model.User;
-import info.keik.tiple.service.QuestionService;
-import info.keik.tiple.service.TagService;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
@@ -14,6 +8,12 @@ import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import info.keik.tiple.model.Question;
+import info.keik.tiple.model.Tag;
+import info.keik.tiple.model.User;
+import info.keik.tiple.service.QuestionService;
+import info.keik.tiple.service.TagService;
 
 @Service
 public class QuestionServiceMock implements QuestionService {
@@ -54,19 +54,13 @@ public class QuestionServiceMock implements QuestionService {
 	@Override
 	public Integer getTotalCount(String tagName) {
 		return (int) questions.stream()
-				.filter(tagName == null ?
-						q -> true :
-						q -> q.getTags().stream().anyMatch(t -> t.getName().equals(tagName))
-				).count();
+				.filter(tagName == null ? q -> true : q -> q.getTags().stream().anyMatch(t -> t.getName().equals(tagName))).count();
 	}
 
 	@Override
 	public List<Question> search(String tagName, Integer page, Integer pageSize) {
 		return questions.stream()
-				.filter(tagName == null ?
-						q -> true :
-						q -> q.getTags().stream().anyMatch(t -> t.getName().equals(tagName))
-				)
+				.filter(tagName == null ? q -> true : q -> q.getTags().stream().anyMatch(t -> t.getName().equals(tagName)))
 				.collect(Collectors.toList())
 				.subList((page - 1) * pageSize, page * pageSize);
 	}
@@ -80,19 +74,11 @@ public class QuestionServiceMock implements QuestionService {
 	}
 
 	@Override
-	public void voteUp(Integer questionId, String userId) {
+	public void vote(Integer questionId, String userId, Integer value) {
 		Question question = questions.stream()
 				.filter(q -> questionId == q.getId())
 				.findAny().get();
-		question.setVotesCount(question.getVotesCount() + 1);
-	}
-
-	@Override
-	public void voteDown(Integer questionId, String userId) {
-		Question question = questions.stream()
-				.filter(q -> questionId == q.getId())
-				.findAny().get();
-		question.setVotesCount(question.getVotesCount() - 1);
+		question.setVotesCount(question.getVotesCount() + value);
 	}
 
 	@Override
@@ -199,6 +185,12 @@ public class QuestionServiceMock implements QuestionService {
 			break;
 		}
 		questions.add(q);
+	}
+
+	@Override
+	public Integer getVote(Integer questionId, String userId) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

@@ -1,13 +1,13 @@
 package info.keik.tiple.service.impl;
 
-import info.keik.tiple.model.Question;
-import info.keik.tiple.repository.QuestionRepository;
-import info.keik.tiple.service.QuestionService;
-
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import info.keik.tiple.model.Question;
+import info.keik.tiple.repository.QuestionRepository;
+import info.keik.tiple.service.QuestionService;
 
 @Service
 public class QuestionServiceImpl implements QuestionService {
@@ -42,26 +42,22 @@ public class QuestionServiceImpl implements QuestionService {
 	}
 
 	@Override
-	public void voteUp(Integer questionId, String userId) {
+	public void vote(Integer questionId, String userId, Integer value) throws AlreadyVotedException {
 		Integer v = questionRepository.getVote(questionId, userId);
-		if (v != null && v == 1) {
-			throw new RuntimeException("TODO Already voted");
+		if (v != null && v != 0) {
+			throw new AlreadyVotedException();
 		}
-		questionRepository.updateVote(questionId, userId, 1);
-	}
-
-	@Override
-	public void voteDown(Integer questionId, String userId) {
-		Integer v = questionRepository.getVote(questionId, userId);
-		if (v != null && v == -1) {
-			throw new RuntimeException("TODO Already voted down");
-		}
-		questionRepository.updateVote(questionId, userId, -1);
+		questionRepository.updateVote(questionId, userId, value);
 	}
 
 	@Override
 	public void unvote(Integer questionId, String userId) {
 		questionRepository.updateVote(questionId, userId, 0);
+	}
+
+	@Override
+	public Integer getVote(Integer questionId, String userId) {
+		return questionRepository.getVote(questionId, userId);
 	}
 
 }
