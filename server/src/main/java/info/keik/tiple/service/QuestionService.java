@@ -25,7 +25,7 @@ public interface QuestionService {
 	/**
 	 * Return count of all questions.
 	 * 
-	 * @param tag name
+	 * @param tagName tag name
 	 * @return count of all questions count
 	 */
 	Integer getTotalCount(String tagName);
@@ -33,9 +33,9 @@ public interface QuestionService {
 	/**
 	 * Search questions with pagination.
 	 * 
-	 * @param tag name
-	 * @param page number
-	 * @param item count per page
+	 * @param tagName tag name
+	 * @param page page number
+	 * @param pageSize items count per page
 	 * @return questions that specified with conditions
 	 */
 	List<Question> search(String tagName, Integer page, Integer pageSize);
@@ -43,35 +43,39 @@ public interface QuestionService {
 	/**
 	 * Add views counter of the specified question.
 	 * 
-	 * @param question id
+	 * @param id question ID
 	 * @return views count of the specified question
 	 */
 	void addViewsCount(Integer id);
 
 	/**
-	 * Vote up to specified question.
+	 * Vote to specified question.
 	 * 
-	 * @param questionId
-	 * @param userId
+	 * @param questionId question ID
+	 * @param userId user ID
+	 * @param value voting value
 	 */
 	void vote(Integer questionId, String userId, Integer value) throws AlreadyVotedException;
 
 	/**
 	 * Vote down to specified question.
 	 * 
-	 * @param questionId
-	 * @param userId
+	 * @param questionId question ID
+	 * @param userId user ID
 	 */
 	void unvote(Integer questionId, String userId);
 
 	/**
 	 * Return value of vote by specific user.
 	 * 
-	 * @param questionId
-	 * @param userId
+	 * @param questionId question ID
+	 * @param userId user ID
 	 */
 	Integer getVote(Integer questionId, String userId);
 
+	/**
+	 * Exception when voting to already voted question.
+	 */
 	static class AlreadyVotedException extends Exception {
 		private static final long serialVersionUID = 4960199252512062428L;
 
