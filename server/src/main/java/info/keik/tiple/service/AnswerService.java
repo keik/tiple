@@ -1,8 +1,8 @@
 package info.keik.tiple.service;
 
-import info.keik.tiple.model.Answer;
-
 import java.util.List;
+
+import info.keik.tiple.model.Answer;
 
 public interface AnswerService {
 

@@ -1,8 +1,8 @@
 package info.keik.tiple.service.impl;
 
-import info.keik.tiple.service.CommentService;
-
 import org.springframework.stereotype.Service;
+
+import info.keik.tiple.service.CommentService;
 
 @Service
 public class CommentServiceImpl implements CommentService {

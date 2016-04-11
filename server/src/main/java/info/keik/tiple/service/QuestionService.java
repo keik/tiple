@@ -17,8 +17,7 @@ public interface QuestionService {
 	/**
 	 * Add a new question.
 	 * 
-	 * @param a
-	 *            question
+	 * @param a question
 	 * @return created question
 	 */
 	Question add(Question question);
@@ -26,8 +25,7 @@ public interface QuestionService {
 	/**
 	 * Return count of all questions.
 	 * 
-	 * @param tag
-	 *            name
+	 * @param tag name
 	 * @return count of all questions count
 	 */
 	Integer getTotalCount(String tagName);
@@ -35,12 +33,9 @@ public interface QuestionService {
 	/**
 	 * Search questions with pagination.
 	 * 
-	 * @param tag
-	 *            name
-	 * @param page
-	 *            number
-	 * @param item
-	 *            count per page
+	 * @param tag name
+	 * @param page number
+	 * @param item count per page
 	 * @return questions that specified with conditions
 	 */
 	List<Question> search(String tagName, Integer page, Integer pageSize);
@@ -48,8 +43,7 @@ public interface QuestionService {
 	/**
 	 * Add views counter of the specified question.
 	 * 
-	 * @param question
-	 *            id
+	 * @param question id
 	 * @return views count of the specified question
 	 */
 	void addViewsCount(Integer id);

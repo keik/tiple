@@ -1,10 +1,5 @@
 package info.keik.tiple.service.mock;
 
-import info.keik.tiple.model.Answer;
-import info.keik.tiple.model.User;
-import info.keik.tiple.service.AnswerService;
-import info.keik.tiple.service.QuestionService;
-
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -12,6 +7,11 @@ import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import info.keik.tiple.model.Answer;
+import info.keik.tiple.model.User;
+import info.keik.tiple.service.AnswerService;
+import info.keik.tiple.service.QuestionService;
 
 @Service
 public class AnswerServiceMock implements AnswerService {

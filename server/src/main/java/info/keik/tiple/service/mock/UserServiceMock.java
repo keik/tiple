@@ -1,14 +1,14 @@
 package info.keik.tiple.service.mock;
 
-import info.keik.tiple.model.User;
-import info.keik.tiple.service.UserService;
-
 import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+
+import info.keik.tiple.model.User;
+import info.keik.tiple.service.UserService;
 
 @Service
 public class UserServiceMock implements UserService {

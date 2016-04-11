@@ -1,15 +1,8 @@
 package info.keik.tiple.controller;
 
-import info.keik.tiple.model.User;
-import info.keik.tiple.service.UserService;
-import info.keik.tiple.service.UserService.UserDuplicateException;
-
 import java.util.List;
 
 import javax.validation.Valid;
-
-import lombok.Data;
-import lombok.EqualsAndHashCode;
 
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotBlank;
@@ -23,6 +16,12 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+
+import info.keik.tiple.model.User;
+import info.keik.tiple.service.UserService;
+import info.keik.tiple.service.UserService.UserDuplicateException;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 @Controller
 @RequestMapping("/users")

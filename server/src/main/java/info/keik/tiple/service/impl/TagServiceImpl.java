@@ -1,12 +1,12 @@
 package info.keik.tiple.service.impl;
 
-import info.keik.tiple.model.Tag;
-import info.keik.tiple.service.TagService;
-
 import java.util.List;
 import java.util.Map;
 
 import org.springframework.stereotype.Service;
+
+import info.keik.tiple.model.Tag;
+import info.keik.tiple.service.TagService;
 
 @Service
 public class TagServiceImpl implements TagService {

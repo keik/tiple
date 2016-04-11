@@ -1,7 +1,5 @@
 package info.keik.tiple.advice;
 
-import info.keik.tiple.config.SecurityConfig;
-
 import org.apache.commons.lang.builder.ToStringBuilder;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.Aspect;
@@ -9,6 +7,8 @@ import org.aspectj.lang.annotation.Before;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
+
+import info.keik.tiple.config.SecurityConfig;
 
 @Component
 @Aspect

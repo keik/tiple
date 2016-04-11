@@ -1,10 +1,10 @@
 package info.keik.tiple.repository;
 
-import info.keik.tiple.model.Answer;
-
 import java.util.List;
 
 import org.apache.ibatis.annotations.Param;
+
+import info.keik.tiple.model.Answer;
 
 public interface AnswerRepository {
 

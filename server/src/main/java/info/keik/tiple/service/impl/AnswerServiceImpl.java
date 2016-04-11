@@ -1,13 +1,13 @@
 package info.keik.tiple.service.impl;
 
-import info.keik.tiple.model.Answer;
-import info.keik.tiple.repository.AnswerRepository;
-import info.keik.tiple.service.AnswerService;
-
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import info.keik.tiple.model.Answer;
+import info.keik.tiple.repository.AnswerRepository;
+import info.keik.tiple.service.AnswerService;
 
 @Service
 public class AnswerServiceImpl implements AnswerService {

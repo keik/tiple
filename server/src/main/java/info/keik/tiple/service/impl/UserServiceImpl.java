@@ -1,14 +1,14 @@
 package info.keik.tiple.service.impl;
 
-import info.keik.tiple.model.User;
-import info.keik.tiple.repository.UserRepository;
-import info.keik.tiple.service.UserService;
-
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DuplicateKeyException;
 import org.springframework.stereotype.Service;
+
+import info.keik.tiple.model.User;
+import info.keik.tiple.repository.UserRepository;
+import info.keik.tiple.service.UserService;
 
 @Service
 public class UserServiceImpl implements UserService {

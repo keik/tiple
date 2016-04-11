@@ -1,10 +1,5 @@
 package info.keik.tiple.controller;
 
-import info.keik.tiple.model.Answer;
-import info.keik.tiple.model.User;
-import info.keik.tiple.service.AnswerService;
-import info.keik.tiple.service.UserService;
-
 import java.security.Principal;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +7,11 @@ import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import info.keik.tiple.model.Answer;
+import info.keik.tiple.model.User;
+import info.keik.tiple.service.AnswerService;
+import info.keik.tiple.service.UserService;
 
 @Controller
 @RequestMapping("/q/{qid}/a")

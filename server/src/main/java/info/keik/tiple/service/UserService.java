@@ -1,8 +1,8 @@
 package info.keik.tiple.service;
 
-import info.keik.tiple.model.User;
-
 import java.util.List;
+
+import info.keik.tiple.model.User;
 
 public interface UserService {
 
@@ -30,6 +30,7 @@ public interface UserService {
 
 	class UserDuplicateException extends Exception {
 		private static final long serialVersionUID = -7539174489527480388L;
+
 		public UserDuplicateException(Exception e) {
 			super(e);
 		}

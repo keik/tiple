@@ -1,14 +1,14 @@
 package info.keik.tiple.security;
 
-import info.keik.tiple.model.User;
-import info.keik.tiple.service.UserService;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
+
+import info.keik.tiple.model.User;
+import info.keik.tiple.service.UserService;
 
 @Service
 public class CustomUserDetailsService implements UserDetailsService {

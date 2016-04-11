@@ -1,9 +1,9 @@
 package info.keik.tiple.service;
 
-import info.keik.tiple.model.Tag;
-
 import java.util.List;
 import java.util.Map;
+
+import info.keik.tiple.model.Tag;
 
 public interface TagService {
 

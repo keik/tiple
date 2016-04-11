@@ -1,8 +1,8 @@
 package info.keik.tiple.repository;
 
-import info.keik.tiple.model.User;
-
 import java.util.List;
+
+import info.keik.tiple.model.User;
 
 public interface UserRepository {
 
