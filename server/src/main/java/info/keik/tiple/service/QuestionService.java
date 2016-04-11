@@ -8,7 +8,7 @@ public interface QuestionService {
 
 	/**
 	 * Return a question that specified with ID.
-	 * 
+	 *
 	 * @param id
 	 * @return a question that specified with ID
 	 */
@@ -16,7 +16,7 @@ public interface QuestionService {
 
 	/**
 	 * Add a new question.
-	 * 
+	 *
 	 * @param a question
 	 * @return created question
 	 */
@@ -24,7 +24,7 @@ public interface QuestionService {
 
 	/**
 	 * Return count of all questions.
-	 * 
+	 *
 	 * @param tagName tag name
 	 * @return count of all questions count
 	 */
@@ -32,7 +32,7 @@ public interface QuestionService {
 
 	/**
 	 * Search questions with pagination.
-	 * 
+	 *
 	 * @param tagName tag name
 	 * @param page page number
 	 * @param pageSize items count per page
@@ -42,7 +42,7 @@ public interface QuestionService {
 
 	/**
 	 * Add views counter of the specified question.
-	 * 
+	 *
 	 * @param id question ID
 	 * @return views count of the specified question
 	 */
@@ -50,7 +50,7 @@ public interface QuestionService {
 
 	/**
 	 * Vote to specified question.
-	 * 
+	 *
 	 * @param questionId question ID
 	 * @param userId user ID
 	 * @param value voting value
@@ -59,7 +59,7 @@ public interface QuestionService {
 
 	/**
 	 * Vote down to specified question.
-	 * 
+	 *
 	 * @param questionId question ID
 	 * @param userId user ID
 	 */
@@ -67,9 +67,10 @@ public interface QuestionService {
 
 	/**
 	 * Return value of vote by specific user.
-	 * 
+	 *
 	 * @param questionId question ID
 	 * @param userId user ID
+	 * @return vote value for specified question
 	 */
 	Integer getVote(Integer questionId, String userId);
 

@@ -18,6 +18,7 @@ public class Question {
 	private User createdBy;
 	private Date createdAt;
 	private Date updatedAt;
+	private Integer yourVoteValue;
 
 	public Question() {
 	}

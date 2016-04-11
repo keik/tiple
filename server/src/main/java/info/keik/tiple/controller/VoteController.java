@@ -61,11 +61,18 @@ public class VoteController {
 	public ResponseEntity<String> createToAnswer(
 			@AuthenticationPrincipal Principal principal,
 			@PathVariable("aid") Integer aid,
-			@RequestParam("v") Integer value,
+			@RequestParam("v") Integer v,
 			Model model) {
 		if (principal == null)
 			return new ResponseEntity<>(HttpStatus.FORBIDDEN);
-		answerService.voteUp(aid, principal.getName());
+		try {
+			if (v == 1 || v == -1)
+				answerService.vote(aid, principal.getName(), v);
+			else
+				new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+		} catch (AlreadyVotedException e) {
+			return new ResponseEntity<>(HttpStatus.CONFLICT);
+		}
 		return new ResponseEntity<>(HttpStatus.CREATED);
 	}
 
@@ -76,7 +83,7 @@ public class VoteController {
 			Model model) {
 		if (principal == null)
 			return new ResponseEntity<>(HttpStatus.FORBIDDEN);
-		questionService.unvote(aid, principal.getName());
+		answerService.unvote(aid, principal.getName());
 		return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 	}
 

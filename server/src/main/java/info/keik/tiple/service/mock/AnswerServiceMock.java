@@ -40,19 +40,11 @@ public class AnswerServiceMock implements AnswerService {
 	}
 
 	@Override
-	public void voteUp(Integer answerId, String userId) {
+	public void vote(Integer answerId, String userId, Integer value) {
 		Answer answer = answers.stream()
 				.filter(a -> answerId == a.getId())
 				.findAny().get();
-		answer.setVotesCount(answer.getVotesCount() + 1);
-	}
-
-	@Override
-	public void voteDown(Integer answerId, String userId) {
-		Answer answer = answers.stream()
-				.filter(a -> answerId == a.getId())
-				.findAny().get();
-		answer.setVotesCount(answer.getVotesCount() - 1);
+		answer.setVotesCount(answer.getVotesCount() + value);
 	}
 
 	@Override
@@ -112,5 +104,11 @@ public class AnswerServiceMock implements AnswerService {
 			};
 		}
 		answers.add(a);
+	}
+
+	@Override
+	public Integer getVote(Integer answerId, String userId) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

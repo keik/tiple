@@ -61,14 +61,17 @@ public class QuestionController {
 		questionService.addViewsCount(id);
 
 		Question question = questionService.get(id);
-		model.addAttribute("question", question);
-
-		Integer voteForQuestion = principal != null
+		Integer yourVoteValueForQuestion = principal != null
 				? questionService.getVote(id, principal.getName())
 				: null;
-		model.addAttribute("voteForQuestion", voteForQuestion);
+		question.setYourVoteValue(yourVoteValueForQuestion);
 
 		List<Answer> answers = answerService.getByQuestionId(id);
+		if (principal != null)
+			answers.stream().forEach(
+					a -> a.setYourVoteValue(answerService.getVote(a.getId(), principal.getName())));
+
+		model.addAttribute("question", question);
 		model.addAttribute("answers", answers);
 		return "questions/show.html";
 	}

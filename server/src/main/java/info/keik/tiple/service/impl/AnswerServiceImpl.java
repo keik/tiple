@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import info.keik.tiple.model.Answer;
 import info.keik.tiple.repository.AnswerRepository;
 import info.keik.tiple.service.AnswerService;
+import info.keik.tiple.service.QuestionService.AlreadyVotedException;
 
 @Service
 public class AnswerServiceImpl implements AnswerService {
@@ -26,26 +27,22 @@ public class AnswerServiceImpl implements AnswerService {
 	}
 
 	@Override
-	public void voteUp(Integer answerId, String userId) {
+	public void vote(Integer answerId, String userId, Integer value) throws AlreadyVotedException {
 		Integer v = answerRepository.getVote(answerId, userId);
-		if (v != null && v == 1) {
-			throw new RuntimeException("TODO Already voted up");
+		if (v != null && v != 0) {
+			throw new AlreadyVotedException();
 		}
-		answerRepository.updateVote(answerId, userId, 1);
-	}
-
-	@Override
-	public void voteDown(Integer answerId, String userId) {
-		Integer v = answerRepository.getVote(answerId, userId);
-		if (v != null && v == -1) {
-			throw new RuntimeException("TODO Already voted down");
-		}
-		answerRepository.updateVote(answerId, userId, -1);
+		answerRepository.updateVote(answerId, userId, value);
 	}
 
 	@Override
 	public void unvote(Integer answerId, String userId) {
 		answerRepository.updateVote(answerId, userId, 0);
+	}
+
+	@Override
+	public Integer getVote(Integer answerId, String userId) {
+		return answerRepository.getVote(answerId, userId);
 	}
 
 }

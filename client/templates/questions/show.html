@@ -26,9 +26,9 @@
         <h1 th:text="${question.title}">QUESTION_1</h1>
         <div class="question-details">
           <div class="vote">
-            <a href="#" th:href="${'/q/' + question.id + '/votes?v=1'}" class="vote-up fa fa-caret-up" th:classappend="${voteForQuestion == 1} ? voted"></a>
+            <a href="#" th:href="${'/q/' + question.id + '/votes?v=1'}" class="vote-up fa fa-caret-up" th:classappend="${question.yourVoteValue == 1} ? voted"></a>
             <span th:text="${question.votesCount}" class="votes-count">10</span>
-            <a href="#" th:href="${'/q/' + question.id + '/votes?v=-1'}" class="vote-down fa fa-caret-down" th:classappend="${voteForQuestion == -1} ? voted"></a>
+            <a href="#" th:href="${'/q/' + question.id + '/votes?v=-1'}" class="vote-down fa fa-caret-down" th:classappend="${question.yourVoteValue == -1} ? voted"></a>
             <i class="favorite fa fa-star"></i>
           </div>
           <p th:text="${question.content}">
@@ -65,9 +65,9 @@
           <ul class="answers" th:remove="all-but-first">
             <li class="answer" th:each="answer : ${answers}">
               <div class="vote">
-                <a href="#" th:href="${'/q/' + question.id + '/a/' + answer.id + '/votes?v=1'}" class="vote-up fa fa-caret-up"></a>
+                <a href="#" th:href="${'/q/' + question.id + '/a/' + answer.id + '/votes?v=1'}" class="vote-up fa fa-caret-up" th:classappend="${answer.yourVoteValue == 1} ? voted"></a>
                 <span th:text="${answer.votesCount}" class="votes-count">10</span>
-                <a href="#" th:href="${'/q/' + question.id + '/a/' + answer.id + '/votes?v=-1'}" class="vote-down fa fa-caret-down"></a>
+                <a href="#" th:href="${'/q/' + question.id + '/a/' + answer.id + '/votes?v=-1'}" class="vote-down fa fa-caret-down" th:classappend="${answer.yourVoteValue == -1} ? voted"></a>
               </div>
               <p th:text="${answer.content}">
                 In consequat posuere justo ac hendrerit. Duis vehicula nisi eu est bibendum condimentum. Curabitur nec vulputate enim. Vivamus mattis at quam eget ornare. Integer nec facilisis lectus, ut aliquet purus. Donec felis orci, finibus euismod sollicitudin in, mollis vitae tellus. Mauris posuere orci a orci cursus, in faucibus magna hendrerit. Phasellus vitae molestie libero, at condimentum nulla. Vestibulum auctor cursus urna, id hendrerit nunc scelerisque non.
